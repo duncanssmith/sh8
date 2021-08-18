@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('abstract');
+            $table->string('slug')->unique();
             $table->text('body')->nullable();
             $table->string('author', 64)->nullable();
             $table->string('year', 16)->nullable();

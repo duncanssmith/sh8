@@ -7,4 +7,6 @@
         {{ $category->slug }}
     </h2>
 
+    <a href="/categories">Back</a>
+
 </x-layout>

@@ -1,8 +1,9 @@
 <x-layout>
 
 @foreach ($posts as $post)
+    <br/>
     <h1>
-        <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
+        <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
     </h1>
     <p>
         {{ $post->body }}
@@ -13,6 +14,7 @@
     <p>
         {{ $post->publication_date }}
     </p>
+    <hr/>
 @endforeach
 
 </x-layout>
