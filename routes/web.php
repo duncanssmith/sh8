@@ -3,8 +3,10 @@
 use App\Models\Post;
 use App\Models\Work;
 use App\Models\Category;
+use App\Models\Text;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,21 +54,46 @@ Route::get('/works', function () {
 });
 
 Route::get('/works/{work}', function ($slug) {
+    $yamlFrontMatter = YamlFrontMatter::parse(file_get_contents(resource_path().'/views/post1.html'));
+
     $work = cache()->remember("works.{$slug}", 30, function() use ($slug) {
         return Work::where('slug', $slug)->firstOrFail();
     });
 
-    $basePath = base_path();
-    $appPath = app_path();
-    $resourcePath = resource_path();
-    $publicPath = public_path();
+//    $basePath = base_path();
+//    $appPath = app_path();
+//    $resourcePath = resource_path();
+//    $publicPath = public_path();
 
     return view('work', [
         'work' => $work,
-        'basePath' => $basePath,
-        'appPath' => $appPath,
-        'resourcePath' => $resourcePath,
-        'publicPath' => $publicPath,
+        'title' => $yamlFrontMatter->matter('title'),
+        'author' => $yamlFrontMatter->matter('author'),
+        'content' => $yamlFrontMatter->body(),
+
+//        'basePath' => $basePath,
+//        'appPath' => $appPath,
+//        'resourcePath' => $resourcePath,
+//        'publicPath' => $publicPath,
+    ]);
+})->where('slug', '[A-z_\-]+');
+
+Route::get('/texts', function () {
+//    ddd(Text::all());
+
+    return view('texts', [
+        'texts' => Text::all(),
+        'title' => 'All texts'
+    ]);
+});
+
+Route::get('/texts/{text}', function ($slug) {
+    $text = cache()->remember("texts.{$slug}", 30, function() use ($slug) {
+        return Text::where('slug', $slug)->firstOrFail();
+    });
+
+    return view('text', [
+        'text' => $text
     ]);
 })->where('slug', '[A-z_\-]+');
 

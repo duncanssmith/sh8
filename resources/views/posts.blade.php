@@ -5,14 +5,11 @@
     <h1>
         <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
     </h1>
-    <p>
+    <article>
         {{ $post->body }}
-    </p>
+    </article>
     <p>
         {{ $post->author }}
-    </p>
-    <p>
-        {{ $post->publication_date }}
     </p>
     <hr/>
 @endforeach

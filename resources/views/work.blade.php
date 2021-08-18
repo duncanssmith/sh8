@@ -3,10 +3,13 @@
     <br/>
     <img src="'/img/' . ' {{ $work->reference }} ' . ' .jpg'">
 
-    <p>{{ $basePath }}</p>
-    <p>{{ $appPath }}</p>
-    <p>{{ $resourcePath }}</p>
-    <p>{{ $publicPath }}</p>
+{{--    <p>{{ $basePath }}</p>--}}
+{{--    <p>{{ $appPath }}</p>--}}
+{{--    <p>{{ $resourcePath }}</p>--}}
+    {{--    <p>{{ $publicPath }}</p>--}}
+    <p>{{ $title }}</p>
+    <p>{{ $author }}</p>
+    <p>{{ $content }}</p>
 
     <h1>
         {{ $work->title }}
