@@ -7,10 +7,6 @@
                 <a href="/categories/{{ $category->slug }}">{{ $category->name }}</a>
             </h1>
 
-            <p>
-                {{ $category->slug }}
-            </p>
-
             <hr/>
 
         </div>

@@ -4,6 +4,7 @@ use App\Models\Post;
 use App\Models\Work;
 use App\Models\Category;
 use App\Models\Text;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -33,7 +34,7 @@ Route::get('/posts', function () {
 
     return view('posts', [
 //        'posts' => Post::all(), // lazy load
-        'posts' => Post::with('user')->get(), // eager load 'user'
+        'posts' => Post::latest()->with('author')->get(), // order by time and eager load 'user' aliased to 'author' in the Post model
         'title' => 'All posts'
     ]);
 });
@@ -52,6 +53,13 @@ Route::get('/works', function () {
 
     return view('works', [
         'works' => Work::all()
+    ]);
+});
+
+Route::get('authors/{author}', function (User $author) {
+
+    return view('posts', [
+        'posts' => $author->posts
     ]);
 });
 

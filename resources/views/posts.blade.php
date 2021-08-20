@@ -9,7 +9,7 @@
         {{ $post->body }}
     </article>
     <p class="my-5">
-        {{ $post->user->alias }}
+        by <a href="/authors/{{$post->author->id}}">{{ $post->author->alias }}</a>
     </p>
     <hr/>
 @endforeach

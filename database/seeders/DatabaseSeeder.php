@@ -47,17 +47,31 @@ class DatabaseSeeder extends Seeder
 
         Category::create([
             'name' => 'Painting',
-            'slug' => 'ptg'
+            'slug' => 'painting'
         ]);
 
         Category::create([
             'name' => 'Drawing',
-            'slug' => 'dwg'
+            'slug' => 'drawing'
         ]);
 
         Category::create([
             'name' => 'Printmaking',
-            'slug' => 'prnt'
+            'slug' => 'printmaking'
+        ]);
+
+        Category::create([
+            'name' => 'Photography',
+            'slug' => 'photography'
+        ]);
+
+        Category::create([
+            'name' => 'Sculpture',
+            'slug' => 'Sculpture'
+        ]);
+        Category::create([
+            'name' => 'Film/Video',
+            'slug' => 'film-video'
         ]);
 
         Text::create([

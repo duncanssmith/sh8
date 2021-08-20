@@ -13,7 +13,7 @@
     </article>
 
     <p class="my-5">
-        {{ $post->user->alias }}
+        by {{ $post->author->alias }}
     </p>
 
     <a href="/posts" class="font-bold text-purple-800 hover:text-purple-600 py-0 px-6">Back</a>
