@@ -7,6 +7,7 @@ use App\Models\CategoryText;
 use App\Models\CategoryWork;
 use App\Models\Post;
 use App\Models\Text;
+use App\Models\User;
 use App\Models\Work;
 use Illuminate\Database\Seeder;
 
@@ -20,26 +21,43 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 //        User::truncate();
-        Category::truncate();
-        Text::truncate();
-        Post::truncate();
-        Work::truncate();
-
-//        User::factory(1)->create();
+//        Category::truncate();
+//        Text::truncate();
+//        Post::truncate();
+//        Work::truncate();
+//
+        User::factory(1)->create([
+            'name' => 'Duncan Smith',
+            'alias' => 'Scorpio',
+            'email' => 'duncanssmith@gmail.com',
+        ]);
+        User::factory(3)->create();
+        Post::factory(2)->create([
+            'user_id' => 1
+        ]);
+        Post::factory(4)->create([
+            'user_id' => 2
+        ]);
+        Post::factory(2)->create([
+            'user_id' => 3
+        ]);
+        Post::factory(5)->create([
+            'user_id' => 4
+        ]);
 
         Category::create([
             'name' => 'Painting',
-            'slug' => 'painting'
+            'slug' => 'ptg'
         ]);
 
         Category::create([
             'name' => 'Drawing',
-            'slug' => 'drawing'
+            'slug' => 'dwg'
         ]);
 
         Category::create([
             'name' => 'Printmaking',
-            'slug' => 'printmaking'
+            'slug' => 'prnt'
         ]);
 
         Text::create([
@@ -134,26 +152,23 @@ class DatabaseSeeder extends Seeder
             'work_date' => '2020-03-14'
         ]);
 
-        Post::create([
-            'title' => 'Ambient feelings',
-            'slug' => 'ambient-feelings',
-            'body' => 'I want to write a post here, thanks!',
-            'author' => 'Duncan Smith',
-        ]);
-
-        Post::create([
-            'title' => 'Greenhouse fingers',
-            'slug' => 'greenhouse-fingers',
-            'body' => 'I want to write another post here, thanks!',
-            'author' => 'Duncan Smith',
-        ]);
-
-        Post::create([
-            'title' => 'Deep blue water',
-            'slug' => 'deep-blue-water',
-            'body' => 'I want to write a third post here, thanks!',
-            'author' => 'Duncan Smith',
-        ]);
+//        Post::create([
+//            'title' => 'Ambient feelings',
+//            'slug' => 'ambient-feelings',
+//            'body' => 'I want to write a post here, thanks!',
+//        ]);
+//
+//        Post::create([
+//            'title' => 'Greenhouse fingers',
+//            'slug' => 'greenhouse-fingers',
+//            'body' => 'I want to write another post here, thanks!',
+//        ]);
+//
+//        Post::create([
+//            'title' => 'Deep blue water',
+//            'slug' => 'deep-blue-water',
+//            'body' => 'I want to write a third post here, thanks!',
+//        ]);
 
         CategoryText::create([
             'category_id' => 1,

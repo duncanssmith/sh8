@@ -32,7 +32,8 @@ require __DIR__.'/auth.php';
 Route::get('/posts', function () {
 
     return view('posts', [
-        'posts' => Post::all(),
+//        'posts' => Post::all(), // lazy load
+        'posts' => Post::with('user')->get(), // eager load 'user'
         'title' => 'All posts'
     ]);
 });
@@ -48,28 +49,24 @@ Route::get('/posts/{post}', function ($slug) {
 })->where('slug', '[A-z_\-]+');
 
 Route::get('/works', function () {
+
     return view('works', [
         'works' => Work::all()
     ]);
 });
 
 Route::get('/works/{work}', function ($slug) {
-    $yamlFrontMatter = YamlFrontMatter::parse(file_get_contents(resource_path().'/views/post1.html'));
+//    $yamlFrontMatter = YamlFrontMatter::parse(file_get_contents(resource_path().'/views/post1.html'));
 
     $work = cache()->remember("works.{$slug}", 30, function() use ($slug) {
         return Work::where('slug', $slug)->firstOrFail();
     });
 
-//    $basePath = base_path();
-//    $appPath = app_path();
-//    $resourcePath = resource_path();
-//    $publicPath = public_path();
-
     return view('work', [
         'work' => $work,
-        'title' => $yamlFrontMatter->matter('title'),
-        'author' => $yamlFrontMatter->matter('author'),
-        'content' => $yamlFrontMatter->body(),
+//        'title' => $yamlFrontMatter->matter('title'),
+//        'author' => $yamlFrontMatter->matter('author'),
+//        'content' => $yamlFrontMatter->body(),
 
 //        'basePath' => $basePath,
 //        'appPath' => $appPath,
@@ -105,8 +102,11 @@ Route::get('/categories', function () {
 
 Route::get('/categories/{category}', function ($slug) {
     $category = cache()->remember("categories.{$slug}", 30, function() use ($slug) {
-        return Category::where('slug', $slug)->firstOrFail();
+//        return Category::where('slug', $slug)->firstOrFail();
+        return Category::with('works')->with('texts')->where('slug', $slug)->firstOrFail();
     });
+
+//    ddd($category);
 
     return view('category', [
         'category' => $category
