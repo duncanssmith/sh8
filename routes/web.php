@@ -5,6 +5,7 @@ use App\Models\Work;
 use App\Models\Category;
 use App\Models\Text;
 use App\Models\User;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -20,8 +21,16 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('laravel');
+//});
+
+Route::get('/duncan', function () {
+    return view('test-tailwind');
+});
+
+Route::get('/laravel', function () {
+    return view('laravel');
 });
 
 Route::get('/dashboard', function () {
@@ -30,36 +39,32 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/posts', function () {
+Route::get('/', [PostController::class, 'index'])->name('home');
 
-    return view('posts', [
-//        'posts' => Post::all(), // lazy load
-        'posts' => Post::latest()->with('author')->get(), // order by time and eager load 'user' aliased to 'author' in the Post model
-        'title' => 'All posts'
-    ]);
-});
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('post');
+//    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {
+//    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {
+//        return Post::where('slug', $post->slug)->with('author')->firstOrFail();
+//    });
 
-Route::get('/posts/{post}', function ($slug) {
-    $post = cache()->remember("posts.{$slug}", 30, function() use ($slug) {
-        return Post::where('slug', $slug)->firstOrFail();
-    });
-
-    return view('post', [
-        'post' => $post,
-    ]);
-})->where('slug', '[A-z_\-]+');
+//    return view('post', [
+//        'post' => $post,
+//    ]);
+//})->where('slug', '[A-z_\-]+');
 
 Route::get('/works', function () {
 
     return view('works', [
-        'works' => Work::all()
+        'works' => Work::all(),
+        'title' => 'Works',
     ]);
 });
 
-Route::get('authors/{author}', function (User $author) {
+Route::get('/authors/{author:username}', function (User $author) {
 
     return view('posts', [
-        'posts' => $author->posts
+        'posts' => $author->posts->load(['author']),
+        'title' => 'Posts by author',
     ]);
 });
 
@@ -72,6 +77,7 @@ Route::get('/works/{work}', function ($slug) {
 
     return view('work', [
         'work' => $work,
+        'title' => 'A work',
 //        'title' => $yamlFrontMatter->matter('title'),
 //        'author' => $yamlFrontMatter->matter('author'),
 //        'content' => $yamlFrontMatter->body(),
@@ -88,7 +94,7 @@ Route::get('/texts', function () {
 
     return view('texts', [
         'texts' => Text::all(),
-        'title' => 'All texts'
+        'title' => 'Texts',
     ]);
 });
 
@@ -98,13 +104,15 @@ Route::get('/texts/{text}', function ($slug) {
     });
 
     return view('text', [
-        'text' => $text
+        'text' => $text,
+        'title' => 'A text',
     ]);
 })->where('slug', '[A-z_\-]+');
 
 Route::get('/categories', function () {
     return view('categories', [
-        'categories' => Category::all()
+        'categories' => Category::all(),
+        'title' => 'Categories',
     ]);
 });
 
@@ -117,6 +125,7 @@ Route::get('/categories/{category}', function ($slug) {
 //    ddd($category);
 
     return view('category', [
-        'category' => $category
+        'category' => $category,
+        'title' => 'A category',
     ]);
 })->where('slug', '[A-z_\-]+');

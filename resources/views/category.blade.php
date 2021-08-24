@@ -7,7 +7,7 @@
         </h1>
 
         <div class="px-0 py-12">
-            @if (count($category->works) > 0)
+            @if ($category->works->count())
                 <h3 class="font-bold text-lg">Works <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> {{count($category->works)}} </span> </h3>
                 <hr/>
                 @foreach($category->works as $work)
@@ -29,7 +29,7 @@
         </div>
 
         <div class="px-0 py-12">
-            @if (count($category->texts) > 0)
+            @if ($category->texts->count())
                 <h3 class="font-bold text-lg">Texts <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> {{count($category->texts)}} </span> </h3>
                 @foreach($category->texts as $text)
 

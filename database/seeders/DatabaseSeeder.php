@@ -28,11 +28,11 @@ class DatabaseSeeder extends Seeder
 //
         User::factory(1)->create([
             'name' => 'Duncan Smith',
-            'alias' => 'Scorpio',
+            'username' => '@duncanssmith',
             'email' => 'duncanssmith@gmail.com',
         ]);
         User::factory(3)->create();
-        Post::factory(2)->create([
+        Post::factory(5)->create([
             'user_id' => 1
         ]);
         Post::factory(4)->create([
