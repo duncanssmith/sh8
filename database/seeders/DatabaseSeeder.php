@@ -32,18 +32,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'duncanssmith@gmail.com',
         ]);
         User::factory(3)->create();
-        Post::factory(5)->create([
-            'user_id' => 1
-        ]);
-        Post::factory(4)->create([
-            'user_id' => 2
-        ]);
-        Post::factory(2)->create([
-            'user_id' => 3
-        ]);
-        Post::factory(5)->create([
-            'user_id' => 4
-        ]);
 
         Category::create([
             'name' => 'Painting',
@@ -72,6 +60,25 @@ class DatabaseSeeder extends Seeder
         Category::create([
             'name' => 'Film/Video',
             'slug' => 'film-video'
+        ]);
+
+        Category::factory(1)->create();
+
+        Post::factory(5)->create([
+            'user_id' => 1,
+            'category_id' => 6,
+        ]);
+        Post::factory(4)->create([
+            'user_id' => 2,
+            'category_id' => 3,
+        ]);
+        Post::factory(2)->create([
+            'user_id' => 3,
+            'category_id' => 2,
+        ]);
+        Post::factory(5)->create([
+            'user_id' => 4,
+            'category_id' => 5,
         ]);
 
         Text::create([

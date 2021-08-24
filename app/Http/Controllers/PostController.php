@@ -8,18 +8,25 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    //
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index()
     {
 
         return view('posts', [
-            'posts' => $this->getPosts(),
+//            'posts' => Post::latest()->with('author')->with('category')->filter(request()->only('search'))->get(),
+            'posts' => Post::latest()->filter(request()->only('search'))->get(),
 //        'posts' => Post::all(), // lazy load
 //        'posts' => Post::latest()->with('author')->get(), // order by time and eager load 'user' aliased to 'author' in the Post model
-            'title' => 'All posts',
+            'title' => 'Posts',
         ]);
     }
-
+//
+    /**
+     * @param Post $post
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function show(Post $post)
     {
 //        $post = cache()->remember("posts.{$slug}", 30, function() use ($slug) {
@@ -28,20 +35,7 @@ class PostController extends Controller
 
         return view('post', [
             'post' => $post,
-            'title' => 'A Post',
+            'title' => 'A post',
         ]);
-    }
-
-    protected function getPosts()
-    {
-        $posts = Post::latest();
-
-        if (request('search')) {
-            $posts
-                ->where('title', 'like', '%' . request('search') . '%')
-                ->orWhere('body', 'like', '%' . request('search') . '%');
-        }
-
-        return $posts->get();
     }
 }

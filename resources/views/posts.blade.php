@@ -9,7 +9,7 @@
 
             @if ($posts->count() > 0)
                 <div>
-                    <h1>{{ $title ?? '' }}</h1>
+                    <h1>{{ $title ?? '' }} <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> {{count($posts)}} </span> </h1>
                 </div>
                 <x-posts-grid :posts="$posts" />
             @else
