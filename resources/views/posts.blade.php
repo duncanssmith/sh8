@@ -11,7 +11,10 @@
                 <div>
                     <h1>{{ $title ?? '' }} <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> {{count($posts)}} </span> </h1>
                 </div>
-                <x-posts-grid :posts="$posts" />
+                <x-posts-grid :posts="$posts" :images="$images" />
+
+                {{-- pagination links --}}
+                {{ $posts->links() }}
             @else
                 <p class="text-center">No posts found.</p>
             @endif

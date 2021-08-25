@@ -1,8 +1,9 @@
 <x-layout>
 
-    <h1>
-        {{ $text->title }}
-    </h1>
+    <h1>Text</h1>
+    <a href="/texts" class="text-purple-100 hover:text-purple-200 py-0 px-0">Back</a>
+
+    <h1> {{ $text->title }} </h1>
     <h2>
         {{ $text->slug }}
     </h2>
@@ -25,6 +26,5 @@
         Publication date: {{ $text->publication_date }}
     </p>
 
-    <a href="/texts" class="btn btn-info">Back</a>
 
 </x-layout>

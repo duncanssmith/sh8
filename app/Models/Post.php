@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Post extends Model
 {
@@ -15,10 +16,16 @@ class Post extends Model
     // If not, it needs to be in each route closure added into the Eloquent route call
     protected $with = ['category', 'author'];
 
+    /**
+     * @return BelongsTo
+     */
     public function category() {
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function author() {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -33,7 +40,15 @@ class Post extends Model
         if ($filters['search'] ?? false) {
             $query
                 ->where('title', 'like', '%' . $filters['search'] . '%')
+                ->orWhere('excerpt', 'like', '%' . $filters['search'] . '%')
                 ->orWhere('body', 'like', '%' . $filters['search'] . '%');
+
+//            $query
+//                ->when($filters['category'] ?? false, fn($query, $category) => $query
+//                    ->whereHas('category', fn($query) => $query
+//                        ->where('slug', $category)
+//                )
+//            );
         }
 
         return $query;

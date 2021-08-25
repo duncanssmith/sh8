@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->unsignedInteger('category_id');
             $table->string('title');
             $table->string('slug')->unique();
+            $table->text('excerpt')->nullable();
             $table->text('body')->nullable();
             $table->timestamps();
         });

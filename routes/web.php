@@ -6,6 +6,9 @@ use App\Models\Category;
 use App\Models\Text;
 use App\Models\User;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\WorkController;
+use App\Http\Controllers\TextController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -25,23 +28,20 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 //    return view('laravel');
 //});
 
-Route::get('/duncan', function () {
-    return view('test-tailwind');
-});
-
-Route::get('/laravel', function () {
-    return view('laravel');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 require __DIR__.'/auth.php';
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('post');
+
+Route::get('/works', [WorkController::class, 'index'])->name('works');
+
+Route::get('/works/{work:slug}', [WorkController::class, 'show'])->name('work');
+
+Route::get('/texts', [TextController::class, 'index'])->name('texts');
+
+Route::get('/texts/{text:slug}', [TextController::class, 'show'])->name('text');
+
 //    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {
 //    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {
 //        return Post::where('slug', $post->slug)->with('author')->firstOrFail();
@@ -52,19 +52,21 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('post');
 //    ]);
 //})->where('slug', '[A-z_\-]+');
 
-Route::get('/works', function () {
-
-    return view('works', [
-        'works' => Work::all(),
-        'title' => 'Works',
-    ]);
-});
-
 Route::get('/authors/{author:username}', function (User $author) {
 
     return view('posts', [
         'posts' => $author->posts->load(['author']),
         'title' => 'Posts by author',
+    ]);
+});
+
+/*
+Route::get('/works', function () {
+
+    return view('works', [
+        'works' => Work::all(),
+        'title' => 'Works',
+        'images' => self::IMAGES,
     ]);
 });
 
@@ -78,6 +80,7 @@ Route::get('/works/{work}', function ($slug) {
     return view('work', [
         'work' => $work,
         'title' => 'A work',
+        'images' => self::IMAGES[$work->id],
 //        'title' => $yamlFrontMatter->matter('title'),
 //        'author' => $yamlFrontMatter->matter('author'),
 //        'content' => $yamlFrontMatter->body(),
@@ -88,7 +91,9 @@ Route::get('/works/{work}', function ($slug) {
 //        'publicPath' => $publicPath,
     ]);
 })->where('slug', '[A-z_\-]+');
+*/
 
+/*
 Route::get('/texts', function () {
 //    ddd(Text::all());
 
@@ -108,6 +113,7 @@ Route::get('/texts/{text}', function ($slug) {
         'title' => 'A text',
     ]);
 })->where('slug', '[A-z_\-]+');
+*/
 
 Route::get('/categories', function () {
     return view('categories', [
@@ -116,16 +122,23 @@ Route::get('/categories', function () {
     ]);
 });
 
-Route::get('/categories/{category}', function ($slug) {
-    $category = cache()->remember("categories.{$slug}", 30, function() use ($slug) {
-//        return Category::where('slug', $slug)->firstOrFail();
-        return Category::with('works')->with('texts')->where('slug', $slug)->firstOrFail();
-    });
-
-//    ddd($category);
-
-    return view('category', [
-        'category' => $category,
-        'title' => 'A category',
+Route::get('categories/{category:slug}', function (Category $category) {
+    return view('posts', [
+        'posts' => $category->posts,
+        'currentCategory' => $category,
+        'categories' => Category::all()
     ]);
-})->where('slug', '[A-z_\-]+');
+})->name('category');
+
+
+//Route::get('/categories/{category}', function ($slug) {
+//    $category = cache()->remember("categories.{$slug}", 30, function() use ($slug) {
+//        return Category::where('slug', $slug)->firstOrFail();
+//        return Category::with('works')->with('texts')->where('slug', $slug)->firstOrFail();
+//    });
+
+//    return view('category', [
+//        'category' => $category,
+//        'title' => 'A category',
+//    ]);
+//})->where('slug', '[A-z_\-]+');

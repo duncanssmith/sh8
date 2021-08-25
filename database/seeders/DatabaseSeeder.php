@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             'username' => '@duncanssmith',
             'email' => 'duncanssmith@gmail.com',
         ]);
-        User::factory(3)->create();
+        User::factory(6)->create();
 
         Category::create([
             'name' => 'Painting',
@@ -79,6 +79,18 @@ class DatabaseSeeder extends Seeder
         Post::factory(5)->create([
             'user_id' => 4,
             'category_id' => 5,
+        ]);
+        Post::factory(3)->create([
+            'user_id' => 5,
+            'category_id' => 2,
+        ]);
+        Post::factory(2)->create([
+            'user_id' => 6,
+            'category_id' => 2,
+        ]);
+        Post::factory(3)->create([
+            'user_id' => 6,
+            'category_id' => 6,
         ]);
 
         Text::create([

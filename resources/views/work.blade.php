@@ -1,11 +1,10 @@
 <x-layout>
 
-    <br/>
-    <img src="'/img/' . ' {{ $work->reference }} ' . ' .jpg'">
+    <h1>Work</h1>
+    <a href="/works" class="text-purple-100 hover:text-purple-200 py-0 px-0">Back</a>
 
-    <p>{{ $title ?? '' }}</p>
-    <p>{{ $author ?? '' }}</p>
-    <p>{{ $content ?? '' }}</p>
+    <br/>
+    <img src="/images/ds/{{ $image }}">
 
     <h1>
         {{ $work->title }}
@@ -20,6 +19,5 @@
         {{ $work->work_date ?? ''}}
     </p>
 
-    <a href="/works" class="font-bold text-purple-800 hover:text-purple-600 py-0 px-6">Back</a>
 
 </x-layout>

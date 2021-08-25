@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Work;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class WorkController extends Controller
 {
     const IMAGES = [
         0 => 'IMG_0216.PNG', 1 => 'IMG_0217.PNG', 2 => 'IMG_0222.PNG', 3 => 'IMG_0223.PNG', 4 => 'IMG_0548.PNG', 5 => 'IMG_0549.PNG', 6 => 'IMG_0552.PNG', 7 => 'IMG_0553.PNG', 8 => 'IMG_0554.PNG',
@@ -25,34 +25,30 @@ class PostController extends Controller
      */
     public function index()
     {
-        // 'posts' => Post::latest()->with('author')->with('category')->filter(request()->only('search'))->get(),
-        // 'posts' => Post::all(), // lazy load
-        // 'posts' => Post::latest()->with('author')->get(), // order by time and eager load 'user' aliased to 'author' in the Post model
-        //  return Post::latest()->filter(request()->only('search'))->paginate(3);
-
-        return view('posts', [
-            'posts' => Post::latest()->filter(request()->only('search')
-            )->paginate(6),
-            'title' => 'Posts',
+        return view('works', [
+            'works' => Work::all(),
+            'title' => 'Works',
             'images' => self::IMAGES,
         ]);
     }
 
     /**
-     * @param Post $post
+     * @param Work $work
+     *
      * @return Factory|View
+     * @throws \Exception
      */
-    public function show(Post $post)
+    public function show(Work $work)
     {
-        $slug = $post->slug;
-        $post = cache()->remember("posts.{$slug}", 30, function() use ($slug) {
-            return Post::where('slug', $slug)->firstOrFail();
+        $slug = ($work->slug);
+        $work = cache()->remember("works.{$slug}", 30, function() use ($slug) {
+            return Work::where('slug', $slug)->firstOrFail();
         });
 
-        return view('post', [
-            'post' => $post,
-            'title' => 'A post',
-            'image' => self::IMAGES[$post->id],
+        return view('work', [
+            'work' => $work,
+            'title' => 'A work',
+            'image' => self::IMAGES[$work->id],
         ]);
     }
 }

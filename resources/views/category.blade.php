@@ -1,5 +1,8 @@
 <x-layout>
 
+    <h1>Category</h1>
+    <a href="/categories" class="text-purple-100 hover:text-purple-200 py-0 px-0">Back</a>
+
     <div class="px-2 py-20">
 
         <h1 class="font-bold text-2xl">
@@ -45,10 +48,6 @@
                 <p>No texts in {{ $category->name }} yet</p>
             @endif
         </div>
-
     </div>
 
-    <button class="bg-white text-purple-800 hover:text-purple-400 py-0 px-6">
-        <a href="/categories">Back</a>
-    </button>
 </x-layout>
