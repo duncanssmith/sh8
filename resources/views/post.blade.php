@@ -54,8 +54,9 @@
                     {{ $post->title }}
                 </h1>
 
-                <div class="space-y-4 lg:text-md leading-loose">
-                    {{ $post->excerpt }}
+                <div class="font-bold space-y-4 lg:text-lg leading-loose">
+                    <p class="my-4">{{ $post->excerpt }}
+                    </p>
                 </div>
 
                 <div class="space-y-4 lg:text-lg leading-loose">

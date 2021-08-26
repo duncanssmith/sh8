@@ -34,6 +34,12 @@ Route::get('/', [PostController::class, 'index'])->name('home');
 
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('post');
 
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+
+Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('category');
+
+Route::get('/category-posts/{category:slug}', [CategoryController::class, 'showPosts'])->name('category');
+
 Route::get('/works', [WorkController::class, 'index'])->name('works');
 
 Route::get('/works/{work:slug}', [WorkController::class, 'show'])->name('work');
@@ -115,20 +121,20 @@ Route::get('/texts/{text}', function ($slug) {
 })->where('slug', '[A-z_\-]+');
 */
 
-Route::get('/categories', function () {
-    return view('categories', [
-        'categories' => Category::all(),
-        'title' => 'Categories',
-    ]);
-});
+//Route::get('/categories', function () {
+//    return view('categories', [
+//        'categories' => Category::all(),
+//        'title' => 'Categories',
+//    ]);
+//});
 
-Route::get('categories/{category:slug}', function (Category $category) {
-    return view('posts', [
-        'posts' => $category->posts,
-        'currentCategory' => $category,
-        'categories' => Category::all()
-    ]);
-})->name('category');
+//Route::get('categories/{category:slug}', function (Category $category) {
+//    return view('posts', [
+//        'posts' => $category->posts,
+//        'currentCategory' => $category,
+//        'categories' => Category::all()
+//    ]);
+//})->name('category');
 
 
 //Route::get('/categories/{category}', function ($slug) {

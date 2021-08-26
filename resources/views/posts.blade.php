@@ -13,8 +13,8 @@
                 </div>
                 <x-posts-grid :posts="$posts" :images="$images" />
 
-                {{-- pagination links --}}
-                {{ $posts->links() }}
+                {{-- pagination links, only when on the posts table --}}
+                {!! empty($categories) ? $posts->links() : '' !!}
             @else
                 <p class="text-center">No posts found.</p>
             @endif

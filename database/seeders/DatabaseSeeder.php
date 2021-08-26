@@ -82,7 +82,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Post::factory(3)->create([
             'user_id' => 5,
-            'category_id' => 2,
+            'category_id' => 1,
         ]);
         Post::factory(2)->create([
             'user_id' => 6,
@@ -90,7 +90,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Post::factory(3)->create([
             'user_id' => 6,
-            'category_id' => 6,
+            'category_id' => 1,
         ]);
 
         Text::create([
@@ -141,7 +141,7 @@ class DatabaseSeeder extends Seeder
             'title' => 'Blue sea',
             'slug' => 'blue-sea',
             'media' => 'Oil on canvas',
-            'dimensions' => '10 x 20 in',
+            'dimensions' => '30 x 50 cm',
             'work_date' => '2020-03-14'
         ]);
 
@@ -149,7 +149,7 @@ class DatabaseSeeder extends Seeder
             'title' => 'Blue ocean',
             'slug' => 'blue-ocean',
             'media' => 'Oil on canvas',
-            'dimensions' => '10 x 20 in',
+            'dimensions' => '24 x 35 cm',
             'work_date' => '2020-03-14'
         ]);
 
@@ -157,7 +157,7 @@ class DatabaseSeeder extends Seeder
             'title' => 'Blue sky',
             'slug' => 'blue-sky',
             'media' => 'Oil on canvas',
-            'dimensions' => '10 x 20 in',
+            'dimensions' => '10 x 20 cm',
             'work_date' => '2020-03-14'
         ]);
 
@@ -165,7 +165,7 @@ class DatabaseSeeder extends Seeder
             'title' => 'Blue horse',
             'slug' => 'blue-horse',
             'media' => 'Oil on canvas',
-            'dimensions' => '10 x 20 in',
+            'dimensions' => '10 x 20 cm',
             'work_date' => '2020-03-14'
         ]);
 
@@ -173,7 +173,7 @@ class DatabaseSeeder extends Seeder
             'title' => 'Green sea',
             'slug' => 'green-sea',
             'media' => 'Oil on canvas',
-            'dimensions' => '10 x 20 in',
+            'dimensions' => '10 x 20 cm',
             'work_date' => '2020-03-14'
         ]);
 
@@ -181,7 +181,7 @@ class DatabaseSeeder extends Seeder
             'title' => 'Green forest',
             'slug' => 'green-forest',
             'media' => 'Oil on canvas',
-            'dimensions' => '10 x 20 in',
+            'dimensions' => '10 x 20 cm',
             'work_date' => '2020-03-14'
         ]);
 
@@ -262,6 +262,32 @@ class DatabaseSeeder extends Seeder
             'work_id' => 1,
             'order' => 6,
         ]);
+
+        CategoryWork::create([
+            'category_id' => 4,
+            'work_id' => 5,
+            'order' => 7,
+        ]);
+
+        CategoryWork::create([
+            'category_id' => 5,
+            'work_id' => 4,
+            'order' => 8,
+        ]);
+
+        CategoryWork::create([
+            'category_id' => 6,
+            'work_id' => 3,
+            'order' => 9,
+        ]);
+
+        CategoryWork::create([
+            'category_id' => 7,
+            'work_id' => 1,
+            'order' => 10,
+        ]);
+
+
 
     }
 }
