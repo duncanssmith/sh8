@@ -22,7 +22,7 @@ class CreateTextsTable extends Migration
             $table->string('year', 16)->nullable();
             $table->string('description', 256)->nullable();
             $table->string('publication', 256)->nullable();
-            $table->date('publication_date')->nullable();
+            $table->string('publication_date')->nullable();
             $table->timestamps();
         });
     }

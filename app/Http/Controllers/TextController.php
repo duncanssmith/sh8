@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class TextController extends Controller
 {
@@ -51,7 +52,7 @@ class TextController extends Controller
      */
     public function create()
     {
-        return view('texts.create', [
+        return view('admin.texts.create', [
             'route' => '/texts'
         ]);
     }

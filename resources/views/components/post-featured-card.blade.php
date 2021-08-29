@@ -8,9 +8,9 @@
 {{--            // TODO--}}
 {{--            <img src="/images/illustration-5.png" alt="Blog Post illustration" class="rounded-xl">--}}
 {{--            <img src="/images/ds/{{ $image }}" alt="Post image" class="rounded-xl">--}}
-            @if( $post->thumbnail)
+{{--            @if( $post->thumbnail)--}}
                 <img src="{{ $post->thumbnail }}" alt="Post image" class="rounded-xl">
-            @endif
+{{--            @endif--}}
         </div>
 
         <div class="mt-8 flex flex-col justify-between">

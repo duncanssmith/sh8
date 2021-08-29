@@ -10,7 +10,7 @@
     @include('_ds_nav')
 
     @if($userIsAdmin)
-        <a href="/admin/works/create" title="add a new work" class="text-2xl text-indigo-900"> + </a>
+        <a href="/admin/texts/create" title="add a new text" class="text-2xl text-indigo-900"> + </a>
     @endif
 
     @foreach ($texts as $text)

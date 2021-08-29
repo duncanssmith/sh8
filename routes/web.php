@@ -1,14 +1,17 @@
 <?php
 
-use App\Models\Post;
-use App\Models\Work;
+use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\TextController;
+use App\Http\Controllers\WorkController;
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Text;
 use App\Models\User;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\WorkController;
-use App\Http\Controllers\TextController;
-use App\Http\Controllers\CategoryController;
+use App\Models\Work;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -58,7 +61,18 @@ Route::get('works/{work:slug}', [WorkController::class, 'show']);
 Route::get('texts', [TextController::class, 'index'])->name('texts');
 Route::get('texts/{text:slug}', [TextController::class, 'show']);
 
+Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
+Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
+Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
+Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
+
+Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+
+// Admin Section
+Route::middleware('can:admin')->group(function () {
+    Route::resource('admin/posts', AdminPostController::class)->except('show');
+});
 
 //    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {
 //    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {

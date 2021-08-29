@@ -15,7 +15,7 @@
                 <h3 class="font-bold text-lg">Works <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> {{count($category->works)}} </span> </h3>
                 <hr/>
 {{--                @foreach($category->works as $work)--}}
-                    <x-category-works-grid :works="$works" :images="$images" />
+                    <x-category-works-grid :works="$works"/>
 {{----}}
 {{--                    <img src="{{ $work->id }}">--}}
 {{--                    <br>--}}

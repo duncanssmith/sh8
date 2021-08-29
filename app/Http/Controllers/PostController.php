@@ -25,9 +25,13 @@ class PostController extends Controller
             $admin = Auth::user()->username == 'duncanssmith' ? true : false;
         }
 
+//        $posts = Post::latest()->filter(request()->only('search'));
+//        $posts = Post::all();
+//        ddd($posts);
+
         return view('posts.index', [
-            'posts' => Post::latest()->filter(request()->only('search')
-            )->paginate(6),
+            'posts' => Post::latest()->filter(request()->only('search'))->paginate(3),
+//            'posts' => Post::all(),
             'title' => 'Posts',
             'userIsAdmin' => $admin
         ]);
@@ -55,15 +59,13 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create', [
+        return view('admin.posts.create', [
             'route' => '/'
         ]);
     }
 
     public function store()
     {
-        $path = request()->file('thumbnail')->store('storage/thumbnails');
-
         $attributes = request()->validate([
             'title' => 'required',
             'thumbnail' => 'required|image',
@@ -74,7 +76,7 @@ class PostController extends Controller
         ]);
 
         $attributes['user_id'] = auth()->id();
-        $attributes['thumbnail'] = request()->file('thumbnail')->store('storage/thumbnails');
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
 
         Post::create($attributes);
 

@@ -52,16 +52,13 @@ class WorkController extends Controller
      */
     public function create()
     {
-        return view('works.create', [
+        return view('admin.works.create', [
             'route' => '/works'
         ]);
     }
 
     public function store()
     {
-        $path = request()->file('thumbnail')->store('public/thumbnails');
-//        ddd($path);
-
         $attributes = request()->validate([
             'title' => 'required',
             'thumbnail' => 'required|image',
@@ -71,9 +68,7 @@ class WorkController extends Controller
             'work_date' => 'required',
         ]);
 
-
-//        $attributes['user_id'] = auth()->id();
-        $attributes['thumbnail'] = request()->file('thumbnail')->store('public/thumbnails');
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
 
         Work::create($attributes);
 

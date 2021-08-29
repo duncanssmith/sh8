@@ -1,6 +1,6 @@
 <x-layout>
 
-{{--    @include ('_posts_header')--}}
+    @include ('_posts_header')
 
     <div class="my-10">
     <h1>Works</h1>
