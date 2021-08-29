@@ -1,4 +1,5 @@
-@props(['post', 'image'])
+{{--@props(['post', 'image'])--}}
+@props(['post'])
 
 <article
     class="transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl">
@@ -6,7 +7,10 @@
         <div>
 {{--            // TODO--}}
 {{--            <img src="/images/illustration-5.png" alt="Blog Post illustration" class="rounded-xl">--}}
-            <img src="/images/ds/{{ $image }}" alt="Post image" class="rounded-xl">
+{{--            <img src="/images/ds/{{ $image }}" alt="Post image" class="rounded-xl">--}}
+            @if( $post->thumbnail)
+                <img src="{{ $post->thumbnail }}" alt="Post image" class="rounded-xl">
+            @endif
         </div>
 
         <div class="mt-8 flex flex-col justify-between">

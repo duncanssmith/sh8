@@ -6,6 +6,7 @@ use App\Models\Text;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TextController extends Controller
 {
@@ -14,9 +15,15 @@ class TextController extends Controller
      */
     public function index()
     {
-        return view('texts', [
+        $admin = false;
+        if (Auth::user()) {
+            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
+        }
+
+        return view('texts.index', [
             'texts' => Text::all(),
             'title' => 'Texts',
+            'userIsAdmin' => $admin
         ]);
     }
 
@@ -33,9 +40,38 @@ class TextController extends Controller
             return Text::where('slug', $slug)->firstOrFail();
         });
 
-        return view('text', [
+        return view('texts.show', [
             'text' => $text,
             'title' => 'A text',
         ]);
     }
+
+    /**
+     * @return Factory|View
+     */
+    public function create()
+    {
+        return view('texts.create', [
+            'route' => '/texts'
+        ]);
+    }
+
+    public function store()
+    {
+        $attributes = request()->validate([
+            'title' => 'required',
+            'slug' => ['required', Rule::unique('texts', 'slug')],
+            'body' => 'required',
+            'author' => 'required',
+            'year' => 'required',
+            'description' => 'required',
+            'publication' => 'required',
+            'publication_date' => 'required',
+        ]);
+
+        Text::create($attributes);
+
+        return redirect('/texts');
+    }
+
 }

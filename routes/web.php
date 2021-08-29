@@ -24,29 +24,41 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-//Route::get('/', function () {
-//    return view('laravel');
-//});
-
 require __DIR__.'/auth.php';
+
+Route::get('/laravel', function () {
+    return view('laravel');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
-Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('post');
+Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin');
+Route::post('admin/posts', [PostController::class, 'store'])->middleware('admin');
 
-Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+Route::get('admin/works/create', [WorkController::class, 'create'])->middleware('admin');
+Route::post('admin/works', [WorkController::class, 'store'])->middleware('admin');
 
-Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('category');
 
-Route::get('/category-posts/{category:slug}', [CategoryController::class, 'showPosts'])->name('category');
+Route::get('admin/texts/create', [TextController::class, 'create'])->middleware('admin');
+Route::post('admin/texts', [TextController::class, 'store'])->middleware('admin');
 
-Route::get('/works', [WorkController::class, 'index'])->name('works');
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
-Route::get('/works/{work:slug}', [WorkController::class, 'show'])->name('work');
+Route::get('categories', [CategoryController::class, 'index'])->name('categories');
+Route::get('categories/{category:slug}', [CategoryController::class, 'show']);
+Route::get('category-posts/{category:slug}', [CategoryController::class, 'showPosts']);
 
-Route::get('/texts', [TextController::class, 'index'])->name('texts');
+Route::get('works', [WorkController::class, 'index'])->name('works');
+Route::get('works/{work:slug}', [WorkController::class, 'show']);
 
-Route::get('/texts/{text:slug}', [TextController::class, 'show'])->name('text');
+Route::get('texts', [TextController::class, 'index'])->name('texts');
+Route::get('texts/{text:slug}', [TextController::class, 'show']);
+
+
 
 //    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {
 //    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {

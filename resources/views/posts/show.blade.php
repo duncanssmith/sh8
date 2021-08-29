@@ -3,14 +3,17 @@
     <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
         <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
             <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
-                <img src="/images/ds/{{ $image }}" alt="{{ $post->title }}" class="rounded-xl">
+                {{--                <img src="/images/ds/{{ $image }}" alt="{{ $post->title }}" class="rounded-xl">--}}
+                <img src="/{{ $post->thumbnail }}" alt="{{ $post->title }}" class="rounded-xl">
+                <h1 class="font-bold text-4xl text-blue-900">
+                    {{ $post->thumbnail }}
+                </h1>
 
                 <div class="space-x-2">
                     <a href="/categories/{{ $post->category->slug }}"
                        class="px-3 py-1 border border-blue-600 rounded-full text-blue-600 text-xs uppercase font-semibold"
                        style="font-size: 10px">{{ $post->category->name }}</a>
                 </div>
-
 
                 <p class="mt-4 block text-gray-400 text-xs">
                     Published <time>{{ $post->updated_at->diffForHumans() }}</time>

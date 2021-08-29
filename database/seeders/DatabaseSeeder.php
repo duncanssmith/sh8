@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 //
         User::factory(1)->create([
             'name' => 'Duncan Smith',
-            'username' => '@duncanssmith',
+            'username' => 'duncanssmith',
             'email' => 'duncanssmith@gmail.com',
         ]);
         User::factory(6)->create();
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'film-video'
         ]);
 
-        Category::factory(1)->create();
+        Category::factory(5)->create();
 
         Post::factory(5)->create([
             'user_id' => 1,
@@ -92,6 +92,8 @@ class DatabaseSeeder extends Seeder
             'user_id' => 6,
             'category_id' => 1,
         ]);
+
+        Text::factory(2)->create();
 
         Text::create([
             'title' => 'New Yorker Review',
@@ -137,53 +139,59 @@ class DatabaseSeeder extends Seeder
             'publication_date' => '2009-06-15'
         ]);
 
+        Text::factory(12)->create();
+
+        Work::factory(10)->create();
+
         Work::create([
-            'title' => 'Blue sea',
-            'slug' => 'blue-sea',
+            'title' => 'Blue Mandala',
+            'slug' => 'blue-mandala',
             'media' => 'Oil on canvas',
             'dimensions' => '30 x 50 cm',
             'work_date' => '2020-03-14'
         ]);
 
         Work::create([
-            'title' => 'Blue ocean',
-            'slug' => 'blue-ocean',
+            'title' => 'Ocean Swell',
+            'slug' => 'ocean-swell',
             'media' => 'Oil on canvas',
             'dimensions' => '24 x 35 cm',
             'work_date' => '2020-03-14'
         ]);
 
         Work::create([
-            'title' => 'Blue sky',
-            'slug' => 'blue-sky',
+            'title' => 'Dangerous Blue Sky',
+            'slug' => 'dangerous-blue-sky',
+            'media' => 'Oil on canvas',
+            'dimensions' => '11 x 27 cm',
+            'work_date' => '2020-03-14'
+        ]);
+
+        Work::create([
+            'title' => 'Horses In Flight',
+            'slug' => 'horses-in-flight',
+            'media' => 'Oil on canvas',
+            'dimensions' => '58 x 212 cm',
+            'work_date' => '2020-03-14'
+        ]);
+
+        Work::create([
+            'title' => 'Point Of No Return',
+            'slug' => 'point-of-no-return',
+            'media' => 'Oil on canvas',
+            'dimensions' => '168 x 225 cm',
+            'work_date' => '2020-03-14'
+        ]);
+
+        Work::create([
+            'title' => 'Forest Of Tiny Lights',
+            'slug' => 'forest-of-tiny-lights',
             'media' => 'Oil on canvas',
             'dimensions' => '10 x 20 cm',
             'work_date' => '2020-03-14'
         ]);
 
-        Work::create([
-            'title' => 'Blue horse',
-            'slug' => 'blue-horse',
-            'media' => 'Oil on canvas',
-            'dimensions' => '10 x 20 cm',
-            'work_date' => '2020-03-14'
-        ]);
-
-        Work::create([
-            'title' => 'Green sea',
-            'slug' => 'green-sea',
-            'media' => 'Oil on canvas',
-            'dimensions' => '10 x 20 cm',
-            'work_date' => '2020-03-14'
-        ]);
-
-        Work::create([
-            'title' => 'Green forest',
-            'slug' => 'green-forest',
-            'media' => 'Oil on canvas',
-            'dimensions' => '10 x 20 cm',
-            'work_date' => '2020-03-14'
-        ]);
+        Work::factory(20)->create();
 
 //        Post::create([
 //            'title' => 'Ambient feelings',
@@ -202,6 +210,7 @@ class DatabaseSeeder extends Seeder
 //            'slug' => 'deep-blue-water',
 //            'body' => 'I want to write a third post here, thanks!',
 //        ]);
+        CategoryText::factory(18)->create();
 
         CategoryText::create([
             'category_id' => 1,
@@ -226,6 +235,8 @@ class DatabaseSeeder extends Seeder
             'text_id' => 1,
             'order' => 4,
         ]);
+
+        CategoryWork::factory(12)->create();
 
         CategoryWork::create([
             'category_id' => 1,

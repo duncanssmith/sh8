@@ -1,10 +1,12 @@
 <x-layout>
 
     <h1>Work</h1>
+
     <a href="/works" class="text-purple-100 hover:text-purple-200 py-0 px-0">Back</a>
 
     <br/>
-    <img src="/images/ds/{{ $image }}">
+    {{--    <img src="/images/ds/{{ $image }}">--}}
+    <img src="/images/ds/{{ $work->thumbnail }}">
 
     <h1>
         {{ $work->title }}
@@ -18,6 +20,5 @@
     <p>
         {{ $work->work_date ?? ''}}
     </p>
-
 
 </x-layout>

@@ -1,4 +1,4 @@
-@props(['texts', 'images'])
+@props(['texts'])
 
 <div class="lg:grid lg:grid-cols-6">
     @foreach ($texts as $text)
