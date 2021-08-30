@@ -3,7 +3,7 @@
     <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
         <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
             <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
-                <img src="{{ asset('storage' . $post->thumbnail }}" alt="{{ $post->title }}" class="rounded-xl">
+                <img src="{{ asset('storage/' . $post->thumbnail }}" alt="{{ $post->title }}" class="rounded-xl">
                 <h1 class="font-bold text-1xl text-blue-900">
                     {{ $post->thumbnail }}
                 </h1>
