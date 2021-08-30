@@ -17,7 +17,7 @@
 {{--                @foreach($category->works as $work)--}}
                     <x-category-works-grid :works="$works"/>
 {{----}}
-{{--                    <img src="{{ $work->id }}">--}}
+{{--                    <img src="{{ asset('storage/'.$work->thumbnail) }}">--}}
 {{--                    <br>--}}
 {{--                    <span title="{{ $work->id }}">*</span>--}}
 {{--                    <p>{{ $work->title }}</p>--}}

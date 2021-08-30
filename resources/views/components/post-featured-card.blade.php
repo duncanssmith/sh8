@@ -6,11 +6,9 @@
     <div class="py-6 px-5">
         <div>
 {{--            // TODO--}}
-{{--            <img src="/images/illustration-5.png" alt="Blog Post illustration" class="rounded-xl">--}}
-{{--            <img src="/images/ds/{{ $image }}" alt="Post image" class="rounded-xl">--}}
-{{--            @if( $post->thumbnail)--}}
-                <img src="{{ $post->thumbnail }}" alt="Post image" class="rounded-xl">
-{{--            @endif--}}
+            @if( $post->thumbnail)
+                <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="Post image" class="rounded-xl">
+            @endif
         </div>
 
         <div class="mt-8 flex flex-col justify-between">
@@ -31,13 +29,13 @@
             </header>
 
             <div class="text-sm mt-4">
-{{--                <p>{{ $post->body }}</p>--}}
-                {{ $post->excerpt }}
+                <p>
+                    {{ $post->excerpt }}
+                </p>
             </div>
 
             <footer class="flex justify-between items-center mt-8">
                 <div class="flex items-center text-sm">
-{{--                    <img src="/images/lary-avatar.svg" alt="Lary avatar">--}}
                     <div class="ml-3">
                         <h5 class="font-bold">{{ $post->author->name }}</h5>
                     </div>

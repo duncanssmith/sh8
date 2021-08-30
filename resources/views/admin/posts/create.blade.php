@@ -7,6 +7,8 @@
                 @csrf
 
 {{--                ==========================================--}}
+                <x-form.input name="title" />
+
                 <label for="thumbnail" class="block mb2 uppercase font-bold text-xs text-gray-700">
                 </label>
                 <input class="border border-gray-400 p-2 w-full text-gray-800"
@@ -18,21 +20,21 @@
 
 {{--                ==========================================--}}
 
-                <label for="title" class="block mb2 uppercase font-bold text-xs text-gray-700">
-                    Title
-                </label>
+{{--                <label for="title" class="block mb2 uppercase font-bold text-xs text-gray-700">--}}
+{{--                    Title--}}
+{{--                </label>--}}
 
-                <input class="border border-gray-400 p-2 w-full text-gray-800"
-                       type="text"
-                       name="title"
-                       id="title"
-                       value="{{ old('title') }}"
-                       required
-                />
+{{--                <input class="border border-gray-400 p-2 w-full text-gray-800"--}}
+{{--                       type="text"--}}
+{{--                       name="title"--}}
+{{--                       id="title"--}}
+{{--                       value="{{ old('title') }}"--}}
+{{--                       required--}}
+{{--                />--}}
 
-                @error('title')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+{{--                @error('title')--}}
+{{--                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>--}}
+{{--                @enderror--}}
 
 {{--                ==========================================--}}
 

@@ -12,7 +12,11 @@
                     <x-form.input name="thumbnail" type="file" :value="old('thumbnail', $post->thumbnail)" />
                 </div>
 
+                @if($post->thumbnail)
                 <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="" class="rounded-xl ml-6" width="100">
+                @else
+                    <h1>No image</h1>
+                @endif
             </div>
 
             <x-form.textarea name="excerpt" required>{{ old('excerpt', $post->excerpt) }}</x-form.textarea>

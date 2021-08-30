@@ -3,8 +3,6 @@
 {{--        <span class="text-blue-500">Duncan Smith</span>--}}
 {{--    </h1>--}}
 
-    {{--                <h2 class="inline-flex mt-2">By Lary Laracore <img src="./images/lary-head.svg" alt="Head of Lary the mascot"></h2>--}}
-
     {{--                <p class="text-sm mt-14">Paintings and drawings, 2021</p>--}}
 
     <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">

@@ -18,15 +18,27 @@
                 <a href="/">
 {{--                    <img src="/images/logo.svg" alt="Duncan Smith" width="165" height="16">--}}
                     <h1 class="font-bold text-white text-xl ">Duncan Smith</h1>
+                    @if(Auth()->user())
+                        <p class="text-white text-md">{{ Auth()->user()->username }} logged in</p>
+                    @endif
                 </a>
             </div>
 
             <div class="mt-8 md:mt-0">
-                <a href="/" class="text-xs font-bold uppercase"><i class="ellipsis">...</i></a>
+                @if(Auth()->user())
+{{--                    <a href="/logout" class=" bg-gray-100 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-5">Logout </a>--}}
+                    <form method="post" action="/logout">
+                        @csrf
+                        <x-submit>Logout</x-submit>
+                    </form>
+                @else
+                    <a href="/login" class="text-xs font-bold uppercase">Login</a>
+                    <a href="/register" class="text-xs font-bold uppercase">Register</a>
 
-{{--                <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">--}}
+{{--                    <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">--}}
 {{--                    Subscribe for Updates--}}
-{{--                </a>--}}
+{{--                    </a>--}}
+                @endif
             </div>
         </nav>
 
@@ -61,5 +73,6 @@
         </footer>
     </section>
 
+    <x-flash />
 
     </body>

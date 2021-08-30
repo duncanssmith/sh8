@@ -7,7 +7,11 @@
 
         <div class="py-6 px-5">
             <div>
-                <img src="/{{ $work->thumbnail }}" alt="Work image" class="rounded-xl">
+                @if ($work->thumbnail)
+                <img src="{{ asset('storage/'.$work->thumbnail) }}" alt="Work image" class="rounded-xl">
+                @else
+                    <h3>No image</h3>
+                @endif
             </div>
 
             <div class="mt-8 flex flex-col justify-between">
