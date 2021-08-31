@@ -7,7 +7,7 @@
         <div>
 {{--            // TODO--}}
             @if( $post->thumbnail)
-                <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="Post image" class="rounded-xl">
+                <img src="{{ asset($post->thumbnail) }}" alt="Post image" class="rounded-xl">
             @endif
         </div>
 

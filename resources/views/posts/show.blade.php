@@ -8,7 +8,7 @@
 
     <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
         <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
-            <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="{{ $post->title }}" class="rounded-xl">
+            <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->title }}" class="rounded-xl">
 
             <div class="space-x-2">
                 <a href="/categories/{{ $post->category->slug }}"

@@ -64,9 +64,73 @@ class DatabaseSeeder extends Seeder
 
         Category::factory(5)->create();
 
-        Post::factory(5)->create([
+        /*
+            'thumbnail' => 'thumbnails/7zeWq9tpSiQ2nv5STJ9t6p0QNQOxfHi14LmOlHeC.jpg',
+            'thumbnail' => 'thumbnails/97jiYPsC7c9VBzxS1BuFH2rvjEtMO5vTK2GsH0IA.jpg',
+            'thumbnail' => 'thumbnails/cTYsXr5mseJPbplrCIQCLkzY3g2wTMIJEG2PUDOi.jpg',
+            'thumbnail' => 'thumbnails/JCGD5WhwkslWKwUcyLe1Ar88Y0Nb2L3lDW4nZ3x2.jpg',
+            'thumbnail' => 'thumbnails/MRPr9daxotsvirULK6X4irLMQxGS4Wrt8Woay2n4.jpg',
+            'thumbnail' => 'thumbnails/mxekNxvylONJ9iqxbEW1uMcTgpJTytgneIKgES0R.jpg',
+            'thumbnail' => 'thumbnails/mxekNxvylONJ9iqxbEW1uMcTgpJTytgneIKgES0R.jpg',
+            'thumbnail' => 'thumbnails/ZbQG4WDbzMvLenfgBLd03JF6bqp4leRs0DoxUdBC.jpg',
+            'thumbnail' => 'thumbnails/Qsysl4NML40hjkKnehg86ySWmNgHTppkDJD9OXcP.jpg',
+            'thumbnail' => 'thumbnails/RKvUrGQ5LUXX9sEyGZQZ4KRq7WAGNftO7okpGWWP.jpg',
+            'thumbnail' => 'thumbnails/ybv7KOsH4CIFH06lvD0n2n9mC1xxLqNEQdi5rq9Z.jpg',
+        */
+        Post::factory(1)->create([
+            'thumbnail' => 'thumbnails/7zeWq9tpSiQ2nv5STJ9t6p0QNQOxfHi14LmOlHeC.jpg',
             'user_id' => 1,
             'category_id' => 6,
+        ]);
+        Post::factory(1)->create([
+            'thumbnail' => 'thumbnails/97jiYPsC7c9VBzxS1BuFH2rvjEtMO5vTK2GsH0IA.jpg',
+            'user_id' => 1,
+            'category_id' => 6,
+        ]);
+        Post::factory(1)->create([
+            'thumbnail' => 'thumbnails/cTYsXr5mseJPbplrCIQCLkzY3g2wTMIJEG2PUDOi.jpg',
+            'user_id' => 1,
+            'category_id' => 6,
+        ]);
+        Post::factory(1)->create([
+            'thumbnail' => 'thumbnails/JCGD5WhwkslWKwUcyLe1Ar88Y0Nb2L3lDW4nZ3x2.jpg',
+            'user_id' => 1,
+            'category_id' => 6,
+        ]);
+        Post::factory(1)->create([
+            'thumbnail' => 'thumbnails/MRPr9daxotsvirULK6X4irLMQxGS4Wrt8Woay2n4.jpg',
+            'user_id' => 1,
+            'category_id' => 6,
+        ]);
+        Post::factory(1)->create([
+            'thumbnail' => 'thumbnails/mxekNxvylONJ9iqxbEW1uMcTgpJTytgneIKgES0R.jpg',
+            'user_id' => 2,
+            'category_id' => 3,
+        ]);
+        Post::factory(1)->create([
+            'thumbnail' => 'thumbnails/mxekNxvylONJ9iqxbEW1uMcTgpJTytgneIKgES0R.jpg',
+            'user_id' => 2,
+            'category_id' => 3,
+        ]);
+        Post::factory(1)->create([
+            'thumbnail' => 'thumbnails/ZbQG4WDbzMvLenfgBLd03JF6bqp4leRs0DoxUdBC.jpg',
+            'user_id' => 2,
+            'category_id' => 3,
+        ]);
+        Post::factory(1)->create([
+            'thumbnail' => 'thumbnails/Qsysl4NML40hjkKnehg86ySWmNgHTppkDJD9OXcP.jpg',
+            'user_id' => 2,
+            'category_id' => 3,
+        ]);
+        Post::factory(1)->create([
+            'thumbnail' => 'thumbnails/RKvUrGQ5LUXX9sEyGZQZ4KRq7WAGNftO7okpGWWP.jpg',
+            'user_id' => 2,
+            'category_id' => 3,
+        ]);
+        Post::factory(1)->create([
+            'thumbnail' => 'thumbnails/ybv7KOsH4CIFH06lvD0n2n9mC1xxLqNEQdi5rq9Z.jpg',
+            'user_id' => 2,
+            'category_id' => 3,
         ]);
         Post::factory(4)->create([
             'user_id' => 2,
@@ -141,11 +205,10 @@ class DatabaseSeeder extends Seeder
 
         Text::factory(12)->create();
 
-        Work::factory(10)->create();
-
         Work::create([
             'title' => 'Blue Mandala',
             'slug' => 'blue-mandala',
+            'thumbnail' => 'thumbnails/7zeWq9tpSiQ2nv5STJ9t6p0QNQOxfHi14LmOlHeC.jpg',
             'media' => 'Oil on canvas',
             'dimensions' => '30 x 50 cm',
             'work_date' => '2020-03-14'
@@ -154,6 +217,7 @@ class DatabaseSeeder extends Seeder
         Work::create([
             'title' => 'Ocean Swell',
             'slug' => 'ocean-swell',
+            'thumbnail' => 'thumbnails/97jiYPsC7c9VBzxS1BuFH2rvjEtMO5vTK2GsH0IA.jpg',
             'media' => 'Oil on canvas',
             'dimensions' => '24 x 35 cm',
             'work_date' => '2020-03-14'
@@ -162,6 +226,7 @@ class DatabaseSeeder extends Seeder
         Work::create([
             'title' => 'Dangerous Blue Sky',
             'slug' => 'dangerous-blue-sky',
+            'thumbnail' => 'thumbnails/cTYsXr5mseJPbplrCIQCLkzY3g2wTMIJEG2PUDOi.jpg',
             'media' => 'Oil on canvas',
             'dimensions' => '11 x 27 cm',
             'work_date' => '2020-03-14'
@@ -170,6 +235,7 @@ class DatabaseSeeder extends Seeder
         Work::create([
             'title' => 'Horses In Flight',
             'slug' => 'horses-in-flight',
+            'thumbnail' => 'thumbnails/JCGD5WhwkslWKwUcyLe1Ar88Y0Nb2L3lDW4nZ3x2.jpg',
             'media' => 'Oil on canvas',
             'dimensions' => '58 x 212 cm',
             'work_date' => '2020-03-14'
@@ -178,20 +244,70 @@ class DatabaseSeeder extends Seeder
         Work::create([
             'title' => 'Point Of No Return',
             'slug' => 'point-of-no-return',
+            'thumbnail' => 'thumbnails/MRPr9daxotsvirULK6X4irLMQxGS4Wrt8Woay2n4.jpg',
             'media' => 'Oil on canvas',
             'dimensions' => '168 x 225 cm',
             'work_date' => '2020-03-14'
         ]);
 
+
         Work::create([
             'title' => 'Forest Of Tiny Lights',
             'slug' => 'forest-of-tiny-lights',
+            'thumbnail' => 'thumbnails/mxekNxvylONJ9iqxbEW1uMcTgpJTytgneIKgES0R.jpg',
             'media' => 'Oil on canvas',
             'dimensions' => '10 x 20 cm',
             'work_date' => '2020-03-14'
         ]);
 
+        Work::create([
+            'title' => 'City Of Tiny Lights',
+            'slug' => 'city-of-tiny-lights',
+            'thumbnail' => 'thumbnails/mxekNxvylONJ9iqxbEW1uMcTgpJTytgneIKgES0R.jpg',
+            'media' => 'Oil on canvas',
+            'dimensions' => '10 x 20 cm',
+            'work_date' => '2020-03-14'
+        ]);
+
+        Work::create([
+            'title' => 'Baby Snakes',
+            'slug' => 'baby-snakes',
+            'thumbnail' => 'thumbnails/ZbQG4WDbzMvLenfgBLd03JF6bqp4leRs0DoxUdBC.jpg',
+            'media' => 'Oil on canvas',
+            'dimensions' => '10 x 20 cm',
+            'work_date' => '2020-03-14'
+        ]);
+
+        Work::create([
+            'title' => 'Tame Llama',
+            'slug' => 'tame-llama',
+            'thumbnail' => 'thumbnails/Qsysl4NML40hjkKnehg86ySWmNgHTppkDJD9OXcP.jpg',
+            'media' => 'Oil on canvas',
+            'dimensions' => '10 x 20 cm',
+            'work_date' => '2020-03-14'
+        ]);
+
+        Work::create([
+            'title' => 'Chumba Wumba',
+            'slug' => 'chumba-wumba',
+            'thumbnail' => 'thumbnails/RKvUrGQ5LUXX9sEyGZQZ4KRq7WAGNftO7okpGWWP.jpg',
+            'media' => 'Oil on canvas',
+            'dimensions' => '10 x 20 cm',
+            'work_date' => '2020-03-14'
+        ]);
+
+        Work::create([
+            'title' => 'Pink Brown Blue',
+            'slug' => 'pink-brown-blue',
+            'thumbnail' => 'thumbnails/ybv7KOsH4CIFH06lvD0n2n9mC1xxLqNEQdi5rq9Z.jpg',
+            'media' => 'Oil on canvas',
+            'dimensions' => '10 x 20 cm',
+            'work_date' => '2020-03-14'
+        ]);
+
+
         Work::factory(20)->create();
+        Work::factory(10)->create();
 
 //        Post::create([
 //            'title' => 'Ambient feelings',
