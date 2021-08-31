@@ -8,7 +8,7 @@
         <div class="py-6 px-5">
             <div>
                 @if ($work->thumbnail)
-                <img src="{{ asset('storage/'.$work->thumbnail) }}" alt="Work image" class="rounded-xl">
+                <img src="{{ asset($work->thumbnail) }}" alt="Work image" class="rounded-xl">
                 @else
                     <h3>No image</h3>
                 @endif

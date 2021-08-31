@@ -7,7 +7,7 @@
     <x-pagelinks :pagetitle="$pagetitle" :backlink="$backlink" :index="$index" :create="$create" :admin="$userIsAdmin" />
 
     <article class="max-w-4xl mx-auto">
-        <img src="{{ asset('$work->thumbnail') }}">
+        <img src="{{ asset($work->thumbnail) }}">
 
         <h1>
             {{ $work->title }}
