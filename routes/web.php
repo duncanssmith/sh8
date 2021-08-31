@@ -27,7 +27,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-require __DIR__.'/auth.php';
+//require __DIR__.'/auth.php';
 
 Route::get('/laravel', function () {
     return view('laravel');
@@ -39,15 +39,17 @@ Route::get('/dashboard', function () {
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
-Route::get('admin/posts/create', [AdminPostController::class, 'create']);// ->middleware('admin');
-Route::post('admin/posts', [AdminPostController::class, 'store'])->middleware('admin');
+Route::get('admin/posts/create', [AdminPostController::class, 'create']);
+// ->middleware('admin');
+Route::post('admin/posts', [AdminPostController::class, 'store']);
+//->middleware('admin');
 
-Route::get('admin/works/create', [WorkController::class, 'create'])->middleware('admin');
-Route::post('admin/works', [WorkController::class, 'store'])->middleware('admin');
+Route::get('admin/works/create', [WorkController::class, 'create']);//->middleware('admin');
+Route::post('admin/works', [WorkController::class, 'store']);//->middleware('admin');
 
 
-Route::get('admin/texts/create', [TextController::class, 'create'])->middleware('admin');
-Route::post('admin/texts', [TextController::class, 'store'])->middleware('admin');
+Route::get('admin/texts/create', [TextController::class, 'create']);//->middleware('admin');
+Route::post('admin/texts', [TextController::class, 'store']);//->middleware('admin');
 
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 

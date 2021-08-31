@@ -1,24 +1,26 @@
 <x-layout>
 
-    <h1>Work</h1>
+    @php
+        $pagetitle="Work"; $backlink="/"; $index="/works"; $create="/admin/works/create";
+    @endphp
 
-    <a href="/works" class="text-purple-100 hover:text-purple-200 py-0 px-0">Back</a>
+    <x-pagelinks :pagetitle="$pagetitle" :backlink="$backlink" :index="$index" :create="$create" :admin="$userIsAdmin" />
 
-    <br/>
-    {{--    <img src="/images/ds/{{ $image }}">--}}
-    <img src="/images/ds/{{ $work->thumbnail }}">
+    <article class="max-w-4xl mx-auto">
+        <img src="{{ asset('$work->thumbnail') }}">
 
-    <h1>
-        {{ $work->title }}
-    </h1>
-    <p>
-        {{ $work->media ?? ''}}
-    </p>
-    <p>
-        {{ $work->dimensions ?? '' }}
-    </p>
-    <p>
-        {{ $work->work_date ?? ''}}
-    </p>
+        <h1>
+            {{ $work->title }}
+        </h1>
+        <p>
+            {{ $work->media ?? ''}}
+        </p>
+        <p>
+            {{ $work->dimensions ?? '' }}
+        </p>
+        <p>
+            {{ $work->work_date ?? ''}}
+        </p>
+    </article>
 
 </x-layout>

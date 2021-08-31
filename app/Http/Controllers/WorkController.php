@@ -24,7 +24,7 @@ class WorkController extends Controller
         return view('works.index', [
             'works' => Work::all(),
             'title' => 'Works',
-            'userIsAdmin' => $admin
+            'userIsAdmin' => $admin,
         ]);
     }
 
@@ -41,9 +41,15 @@ class WorkController extends Controller
             return Work::where('slug', $slug)->firstOrFail();
         });
 
+        $admin = false;
+        if (Auth::user()) {
+            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
+        }
+
         return view('works.show', [
             'work' => $work,
             'title' => 'A work',
+            'userIsAdmin' => $admin,
         ]);
     }
 
@@ -52,8 +58,14 @@ class WorkController extends Controller
      */
     public function create()
     {
+        $admin = false;
+        if (Auth::user()) {
+            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
+        }
+
         return view('admin.works.create', [
-            'route' => '/works'
+            'route' => '/works',
+            'userIsAdmin' => $admin,
         ]);
     }
 

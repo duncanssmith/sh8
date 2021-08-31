@@ -33,7 +33,7 @@ class PostController extends Controller
             'posts' => Post::latest()->filter(request()->only('search'))->paginate(3),
 //            'posts' => Post::all(),
             'title' => 'Posts',
-            'userIsAdmin' => $admin
+            'userIsAdmin' => $admin,
         ]);
     }
 
@@ -43,6 +43,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $admin = false;
+        if (Auth::user()) {
+            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
+        }
+
         $slug = $post->slug;
         $post = cache()->remember("posts.{$slug}", 30, function() use ($slug) {
             return Post::where('slug', $slug)->firstOrFail();
@@ -51,6 +56,7 @@ class PostController extends Controller
         return view('posts.show', [
             'post' => $post,
             'title' => 'A post',
+            'userIsAdmin' => $admin,
         ]);
     }
 
@@ -59,8 +65,14 @@ class PostController extends Controller
      */
     public function create()
     {
+        $admin = false;
+        if (Auth::user()) {
+            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
+        }
+
         return view('admin.posts.create', [
-            'route' => '/'
+            'route' => '/',
+            'userIsAdmin' => $admin,
         ]);
     }
 

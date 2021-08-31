@@ -1,18 +1,15 @@
 <x-layout>
 
-    <h1>Categories</h1>
-    <a href="/" class="text-purple-100 hover:text-purple-200 py-0 px-0">Back</a>
+    @php
+        $pagetitle="Pages"; $backlink="/"; $index="/categories"; $create="/admin/category/create";
+    @endphp
 
-@foreach ($categories as $category)
-        <div class="px-2 py-10">
+    <x-pagelinks :pagetitle="$pagetitle" :backlink="$backlink" :index="$index" :create="$create" :admin="$userIsAdmin" />
 
-            <h1 class="font-bold text-l">
-                <a href="/categories/{{ $category->slug }}">{{ $category->name }}</a>
-            </h1>
-
-            <hr/>
-
-        </div>
-    @endforeach
+    @if ($categories->count() > 0)
+        <x-categories-grid :categories="$categories"/>
+    @else
+        <p class="text-center">No categories found.</p>
+    @endif
 
 </x-layout>
