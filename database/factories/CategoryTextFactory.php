@@ -22,8 +22,8 @@ class CategoryTextFactory extends Factory
     public function definition()
     {
         return [
-            'category_id' => $this->faker->numberBetween(1, 11),
-            'text_id' =>   $this->faker->numberBetween(1, 18),
+            'category_id' => $this->faker->numberBetween(1, 6),
+            'text_id' =>   $this->faker->numberBetween(1, 5),
             'order' =>  $this->faker->randomDigitNotZero(),
         ];
     }

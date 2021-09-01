@@ -22,8 +22,8 @@ class CategoryWorkFactory extends Factory
     public function definition()
     {
         return [
-            'category_id' => $this->faker->numberBetween(1, 11),
-            'work_id' =>   $this->faker->numberBetween(1, 21),
+            'category_id' => $this->faker->numberBetween(1, 6),
+            'work_id' =>   $this->faker->numberBetween(1, 11),
             'order' =>  $this->faker->randomDigitNotZero(),
         ];
     }

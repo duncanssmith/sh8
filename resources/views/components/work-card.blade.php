@@ -59,6 +59,14 @@
                             View
                         </a>
                     </div>
+                    <div class="bg-gray-200 py-4 px-4 rounded-lg">
+                        <h1 class="font-bold text-gray-700">{{ count($work->categories) }} pages with this work</h1>
+                        @foreach ($work->categories as $category)
+                            <div class="text-gray-600 text-sm hover:text-gray-400">
+                                <a href="/categories/{{ $category->slug }} ">{{ ucwords($category->name) }}</a>
+                            </div>
+                        @endforeach
+                    </div>
                 </footer>
             </div>
         </div>

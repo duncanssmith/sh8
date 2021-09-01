@@ -24,16 +24,20 @@
             <div class="mt-8 md:mt-2 py-2">
 
                 @if(Auth()->user())
-                    <p class="text-gray-400 text-md"><i class="far fa-user"></i> {{ Auth()->user()->username }}</p>
+                    <p class="text-gray-400 text-md py-0 mt-2 mb-0"><i class="far fa-user"></i> {{ Auth()->user()->username }}</p>
                     <form method="post" action="/logout">
                         @csrf
-                        <x-submit>Logout</x-submit>
+                        <span class="mt-0 mb-0 py-0">
+                            <x-submit>Logout</x-submit>
+                        </span>
                     </form>
                 @endif
 
                 @guest
-                    <a href="/login" class="text-xs font-bold uppercase text-gray-400">Login</a> |
-                    <a href="/register" class="text-xs font-bold uppercase text-gray-400">Register</a>
+                    <div class="mt-8 mb-8 md:mt-2 py-2">
+                        <a href="/login" class="text-xs font-bold uppercase text-gray-400">Login</a> |
+                        <a href="/register" class="text-xs font-bold uppercase text-gray-400">Register</a>
+                    </div>
                 @endguest
 
             </div>

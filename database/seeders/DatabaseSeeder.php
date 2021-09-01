@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'duncanssmith@gmail.com',
         ]);
 
-        User::factory(6)->create();
+        User::factory(3)->create();
 
         Category::create([
             'name' => 'Painting',
@@ -56,14 +56,14 @@ class DatabaseSeeder extends Seeder
 
         Category::create([
             'name' => 'Sculpture',
-            'slug' => 'Sculpture'
+            'slug' => 'sculpture'
         ]);
         Category::create([
             'name' => 'Film/Video',
             'slug' => 'film-video'
         ]);
 
-        Category::factory(5)->create();
+//        Category::factory(5)->create();
 
         /*
             'thumbnail' => 'thumbnails/7zeWq9tpSiQ2nv5STJ9t6p0QNQOxfHi14LmOlHeC.jpg',
@@ -145,6 +145,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 4,
             'category_id' => 5,
         ]);
+        /*
         Post::factory(3)->create([
             'user_id' => 5,
             'category_id' => 1,
@@ -157,14 +158,15 @@ class DatabaseSeeder extends Seeder
             'user_id' => 6,
             'category_id' => 1,
         ]);
+        */
 
-        Text::factory(2)->create();
+//        Text::factory(2)->create();
 
         Text::create([
             'title' => 'New Yorker Review',
             'slug' => 'first-text',
             'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras euismod ligula et eros fringilla, eu iaculis mauris ultricies. Nam sodales gravida dictum. Proin in molestie odio. Aliquam luctus et justo consequat elementum. Cras id eleifend lorem. Nam euismod, est at tempus dignissim, ipsum nunc viverra mi, ultricies commodo nisi erat eget libero. Praesent magna lectus, varius vestibulum vehicula sed, mattis at quam. Cras bibendum metus id nulla maximus, eu lacinia ex molestie. Fusce urna nulla, scelerisque sit amet egestas in, tincidunt vel lorem. In porttitor eget neque vel varius. Mauris at euismod sapien. Vivamus consectetur, neque eget posuere blandit, nibh magna convallis dui, suscipit mattis enim est eu augue. Maecenas eget lobortis dui. Nullam metus sem, venenatis et tristique et, vulputate quis lorem. Cras sagittis justo ut justo imperdiet aliquam. Sed eu malesuada mi.',
-            'author' => 'Roger Penrose',
+            'author' => 'Joselina Rosencrantz',
             'year' => '2019',
             'description' => 'A review of exhibition at Flowers East, London',
             'publication' => 'The New Yorker',
@@ -175,9 +177,9 @@ class DatabaseSeeder extends Seeder
             'title' => 'Observer Colour Magazine Review',
             'slug' => 'observer-colour-magazine-review',
             'body' => 'Suspendisse nec lectus dapibus, dignissim nunc a, cursus nulla. Integer elementum feugiat nisi sit amet elementum. Morbi porta finibus aliquet. Sed vel dolor ac mauris maximus ornare vitae id mi. Donec pellentesque luctus est, vitae tempus urna cursus in. Nulla facilisi. Phasellus et hendrerit turpis, tempus tincidunt lectus. Sed consequat dolor augue, euismod aliquet quam venenatis quis. Praesent elementum dolor lacinia nulla pretium tincidunt. Ut fermentum lacus eu ligula sagittis eleifend. Maecenas tincidunt quis elit vel pharetra.',
-            'author' => 'Jane Birkin',
+            'author' => 'Jane Furmanovsky',
             'year' => '2014',
-            'description' => 'A review in the Observer',
+            'description' => 'A contemporary art survey in the Observer',
             'publication' => 'The Observer',
             'publication_date' => '2014-09-23'
         ]);
@@ -204,68 +206,78 @@ class DatabaseSeeder extends Seeder
             'publication_date' => '2009-06-15'
         ]);
 
-        Text::factory(12)->create();
+        Text::create([
+            'title' => 'Arts Review',
+            'slug' => 'arts-review',
+            'body' => 'Post-minimalism is alive and well in dignissim tincidunt ipsum eu, pellentesque pulvinar ante. Cras porttitor lacus dui, vel faucibus diam pretium nec. Aenean venenatis id quam sit amet faucibus. Sed eleifend eros at nisl porta placerat. Ut vestibulum dolor in metus iaculis, id lacinia mauris feugiat. Quisque ultricies nulla vitae dictum aliquet. Integer pharetra sem sed velit luctus mollis. Aenean sodales egestas varius.',
+            'author' => 'Richard Roth',
+            'year' => '2017',
+            'description' => 'Review in Arts Review ',
+            'publication' => 'Arts Review',
+            'publication_date' => '2017-08-15'
+        ]);
+
+//        Text::factory(9)->create();
 
         Work::create([
-            'title' => 'Blue Mandala',
-            'slug' => 'blue-mandala',
+            'title' => 'Cat\'s Meow',
+            'slug' => 'cats-meow',
             'thumbnail' => 'thumbnails/7zeWq9tpSiQ2nv5STJ9t6p0QNQOxfHi14LmOlHeC.jpg',
-            'media' => 'Oil on canvas',
+            'media' => 'Flashe on plywood',
             'dimensions' => '30 x 50 cm',
             'work_date' => '2020-03-14'
         ]);
 
         Work::create([
-            'title' => 'Ocean Swell',
-            'slug' => 'ocean-swell',
+            'title' => 'Painter\'s Block',
+            'slug' => 'painters-block',
             'thumbnail' => 'thumbnails/97jiYPsC7c9VBzxS1BuFH2rvjEtMO5vTK2GsH0IA.jpg',
-            'media' => 'Oil on canvas',
+            'media' => 'Flashe on plywood',
             'dimensions' => '24 x 35 cm',
             'work_date' => '2020-03-14'
         ]);
 
         Work::create([
-            'title' => 'Dangerous Blue Sky',
-            'slug' => 'dangerous-blue-sky',
+            'title' => 'Slap Happy',
+            'slug' => 'slap-happy',
             'thumbnail' => 'thumbnails/cTYsXr5mseJPbplrCIQCLkzY3g2wTMIJEG2PUDOi.jpg',
-            'media' => 'Oil on canvas',
+            'media' => 'Flashe on plywood',
             'dimensions' => '11 x 27 cm',
             'work_date' => '2020-03-14'
         ]);
 
         Work::create([
-            'title' => 'Horses In Flight',
-            'slug' => 'horses-in-flight',
+            'title' => 'Happy Hour II',
+            'slug' => 'happy-hour-ii',
             'thumbnail' => 'thumbnails/JCGD5WhwkslWKwUcyLe1Ar88Y0Nb2L3lDW4nZ3x2.jpg',
-            'media' => 'Oil on canvas',
+            'media' => 'Flashe on plywood',
             'dimensions' => '58 x 212 cm',
             'work_date' => '2020-03-14'
         ]);
 
         Work::create([
-            'title' => 'Point Of No Return',
-            'slug' => 'point-of-no-return',
+            'title' => 'Faster Pussycat!',
+            'slug' => 'faster-pussycat',
             'thumbnail' => 'thumbnails/MRPr9daxotsvirULK6X4irLMQxGS4Wrt8Woay2n4.jpg',
-            'media' => 'Oil on canvas',
+            'media' => 'Flashe on plywood',
             'dimensions' => '168 x 225 cm',
             'work_date' => '2020-03-14'
         ]);
 
-
         Work::create([
-            'title' => 'Forest Of Tiny Lights',
-            'slug' => 'forest-of-tiny-lights',
+            'title' => 'Angelina',
+            'slug' => 'angelina',
             'thumbnail' => 'thumbnails/mxekNxvylONJ9iqxbEW1uMcTgpJTytgneIKgES0R.jpg',
-            'media' => 'Oil on canvas',
+            'media' => 'Flashe on plywood',
             'dimensions' => '10 x 20 cm',
-            'work_date' => '2020-03-14'
+            'work_date' => '2007-03-14'
         ]);
 
         Work::create([
             'title' => 'City Of Tiny Lights',
             'slug' => 'city-of-tiny-lights',
             'thumbnail' => 'thumbnails/mxekNxvylONJ9iqxbEW1uMcTgpJTytgneIKgES0R.jpg',
-            'media' => 'Oil on canvas',
+            'media' => 'Flashe on plywood',
             'dimensions' => '10 x 20 cm',
             'work_date' => '2020-03-14'
         ]);
@@ -274,7 +286,7 @@ class DatabaseSeeder extends Seeder
             'title' => 'Baby Snakes',
             'slug' => 'baby-snakes',
             'thumbnail' => 'thumbnails/ZbQG4WDbzMvLenfgBLd03JF6bqp4leRs0DoxUdBC.jpg',
-            'media' => 'Oil on canvas',
+            'media' => 'Flashe on plywood',
             'dimensions' => '10 x 20 cm',
             'work_date' => '2020-03-14'
         ]);
@@ -283,32 +295,31 @@ class DatabaseSeeder extends Seeder
             'title' => 'Tame Llama',
             'slug' => 'tame-llama',
             'thumbnail' => 'thumbnails/Qsysl4NML40hjkKnehg86ySWmNgHTppkDJD9OXcP.jpg',
-            'media' => 'Oil on canvas',
+            'media' => 'Flashe on plywood',
             'dimensions' => '10 x 20 cm',
             'work_date' => '2020-03-14'
         ]);
 
         Work::create([
-            'title' => 'Chumba Wumba',
-            'slug' => 'chumba-wumba',
+            'title' => 'Everybody Knows',
+            'slug' => 'everybody-knows',
             'thumbnail' => 'thumbnails/RKvUrGQ5LUXX9sEyGZQZ4KRq7WAGNftO7okpGWWP.jpg',
-            'media' => 'Oil on canvas',
+            'media' => 'Flashe on plywood',
             'dimensions' => '10 x 20 cm',
             'work_date' => '2020-03-14'
         ]);
 
         Work::create([
-            'title' => 'Pink Brown Blue',
-            'slug' => 'pink-brown-blue',
+            'title' => 'Windsocks',
+            'slug' => 'windsocks',
             'thumbnail' => 'thumbnails/ybv7KOsH4CIFH06lvD0n2n9mC1xxLqNEQdi5rq9Z.jpg',
-            'media' => 'Oil on canvas',
+            'media' => 'Flashe on plywood',
             'dimensions' => '10 x 20 cm',
             'work_date' => '2020-03-14'
         ]);
 
 
-        Work::factory(20)->create();
-        Work::factory(10)->create();
+//        Work::factory(3)->create();
 
 //        Post::create([
 //            'title' => 'Ambient feelings',
@@ -327,7 +338,7 @@ class DatabaseSeeder extends Seeder
 //            'slug' => 'deep-blue-water',
 //            'body' => 'I want to write a third post here, thanks!',
 //        ]);
-        CategoryText::factory(18)->create();
+//        CategoryText::factory(18)->create();
 
         CategoryText::create([
             'category_id' => 1,
@@ -353,7 +364,7 @@ class DatabaseSeeder extends Seeder
             'order' => 4,
         ]);
 
-        CategoryWork::factory(12)->create();
+//        CategoryWork::factory(12)->create();
 
         CategoryWork::create([
             'category_id' => 1,
@@ -410,12 +421,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         CategoryWork::create([
-            'category_id' => 7,
+            'category_id' => 6,
             'work_id' => 1,
             'order' => 10,
         ]);
-
-
-
     }
 }
