@@ -18,7 +18,7 @@
                 @if ($category->works->count())
                     <h3 class="font-bold text-lg">Works <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> {{count($category->works)}} </span> </h3>
                     <hr/>
-                        <x-category-works-grid :works="$works"/>
+                        <x-category-works-grid :works="$works" :admin="$userIsAdmin"/>
                 @else
                     <h3 class="font-bold text-lg">Works</h3>
                     <p>No works in {{ $category->name }} yet</p>
@@ -29,7 +29,7 @@
             <div class="px-0 py-12">
                 @if ($category->texts->count())
                     <h3 class="font-bold text-lg">Texts <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> {{count($category->texts)}} </span> </h3>
-                        <x-category-texts-grid :texts="$texts"/>
+                        <x-category-texts-grid :texts="$texts" :admin="$userIsAdmin"/>
                 @else
                     <h3 class="font-bold text-lg">Texts</h3>
                     <p>No texts in {{ $category->name }} yet</p>

@@ -22,7 +22,8 @@ class WorkController extends Controller
         }
 
         return view('works.index', [
-            'works' => Work::all(),
+            'works' => Work::latest()->filter(request()->only('search'))->paginate(3),
+//            'works' => Work::all(),
             'title' => 'Works',
             'userIsAdmin' => $admin,
         ]);

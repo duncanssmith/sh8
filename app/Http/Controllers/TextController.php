@@ -22,7 +22,8 @@ class TextController extends Controller
         }
 
         return view('texts.index', [
-            'texts' => Text::all(),
+            'texts' => Text::latest()->filter(request()->only('search'))->paginate(3),
+//            'texts' => Text::all(),
             'title' => 'Texts',
             'userIsAdmin' => $admin,
         ]);

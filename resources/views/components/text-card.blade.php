@@ -1,4 +1,4 @@
-@props(['text'])
+@props(['text', 'admin'])
 
 <article
     {{ $attributes->merge(['class' => 'text-gray-700 transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl']) }} >
@@ -9,23 +9,35 @@
 
             <div class="mt-8 flex flex-col justify-between">
                 <header>
-                    <div class="space-x-2">
-                        <a href="/texts/{{ $text->slug }}"
-                           class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
-                           style="font-size: 10px"><i class="icon icon-ellipsis"></i></a>
-                    </div>
+                    @if ($admin)
+                        <span class="space-x-2">
+                            <a href="/admin/texts/{{ $text->slug }}/edit"
+                               class="px-3 py-1 border bg-blue-200 border-blue-300 rounded-full text-blue-700 text-xs uppercase font-semibold"
+                               style="font-size: 10px"><i class="far fa-edit" title="Edit the text"></i></a>
+                        </span>
+                        <span class="space-x-2">
+                            <a href="/admin/texts/{{ $text->slug }}/assign"
+                               class="px-3 py-1 border bg-green-200 border-green-300 rounded-full text-green-700 text-xs uppercase font-semibold"
+                               style="font-size: 10px"><i class="fas fa-link" title="Assign text to a page"></i></a>
+                        </span>
+                        <span class="space-x-2">
+                            <a href="/admin/texts/{{ $text->slug }}/delete"
+                               class="px-3 py-1 border bg-red-200 border-red-300 rounded-full text-red-700 text-xs uppercase font-semibold"
+                               style="font-size: 10px"><i class="far fa-trash-alt" title="Delete! (Are you sure?)"></i></a>
+                        </span>
+                    @endif
 
-                    <div class="mt-4">
-                        <h1 class="text-3xl">
+                    <div class="mt-4 text-gray-700">
+                        <h1 class="text-3xl my-4">
                             {{ $text->title }}
                         </h1>
                         <p class="text-3sm">
                             {{ $text->body }}
                         </p>
-                        <p class="text-3sm">
+                        <p class="text-3sm mt-2">
                             {{ $text->author }}
                         </p>
-                        <p class="text-3md">
+                        <p class="text-3md mt-1">
                             {{ $text->year }}
                         </p>
 
@@ -38,7 +50,7 @@
                         <a href="/texts/{{ $text->slug }}"
                            class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8"
                         >
-                            ...
+                            View
                         </a>
                     </div>
                 </footer>

@@ -1,4 +1,4 @@
-@props(['work'])
+@props(['work', 'admin'])
 
 <article
     {{ $attributes->merge(['class' => 'text-gray-700 transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl']) }} >
@@ -16,11 +16,23 @@
 
             <div class="mt-8 flex flex-col justify-between">
                 <header>
-                    <div class="space-x-2">
-                        <a href="/works/{{ $work->slug }}"
-                           class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
-                           style="font-size: 10px">...</a>
-                    </div>
+                    @if ($admin)
+                        <span class="space-x-2">
+                            <a href="/admin/works/{{ $work->slug }}/edit"
+                               class="px-3 py-1 border bg-blue-200 border-blue-300 rounded-full text-blue-700 text-xs uppercase font-semibold"
+                               style="font-size: 10px"><i class="far fa-edit" title="Edit this work"></i></a>
+                        </span>
+                        <span class="space-x-2">
+                            <a href="/admin/works/{{ $work->slug }}/assign"
+                               class="px-3 py-1 border bg-green-200 border-green-300 rounded-full text-green-700 text-xs uppercase font-semibold"
+                               style="font-size: 10px"><i class="fas fa-link" title="Assign this work to a page"></i></a>
+                        </span>
+                        <span class="space-x-2">
+                            <a href="/admin/works/{{ $work->slug }}/delete"
+                               class="px-3 py-1 border bg-red-200 border-red-300 rounded-full text-red-700 text-xs uppercase font-semibold"
+                               style="font-size: 10px"><i class="far fa-trash-alt" title="Delete work! (Are you sure?)"></i></a>
+                        </span>
+                    @endif
 
                     <div class="mt-4">
                         <h1 class="text-3xl">
@@ -44,7 +56,7 @@
                         <a href="/works/{{ $work->slug }}"
                            class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8"
                         >
-                            ...
+                            View
                         </a>
                     </div>
                 </footer>

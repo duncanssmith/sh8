@@ -6,21 +6,22 @@
 
     <x-pagelinks :pagetitle="$pagetitle" :index="$index" :create="$create" :admin="$userIsAdmin" />
 
-    <article class="max-w-4xl mx-auto">
+    <div class="text-gray-700 max-w-4xl mx-auto">
+
         <img src="{{ asset($work->thumbnail) }}">
 
-        <h1>
+        <h2 class="font-bold space-y-4 lg:text-lg leading-loose mt-6">
             {{ $work->title }}
-        </h1>
-        <p>
+        </h2>
+        <p class="py-1">
             {{ $work->media ?? ''}}
         </p>
-        <p>
+        <p class="py-1">
             {{ $work->dimensions ?? '' }}
         </p>
-        <p>
+        <p class="py-1">
             {{ $work->work_date ?? ''}}
         </p>
-    </article>
+    </div>
 
 </x-layout>

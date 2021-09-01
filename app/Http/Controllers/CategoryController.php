@@ -21,6 +21,7 @@ class CategoryController extends Controller
 
         return view('categories.index', [
             'categories' => Category::all(),
+//            'categories' => Category::latest()->filter(request()->only('search'))->paginate(10),
             'title' => 'Categories',
             'userIsAdmin' => $admin,
         ]);

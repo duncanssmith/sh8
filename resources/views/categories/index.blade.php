@@ -8,6 +8,8 @@
 
     @if ($categories->count() > 0)
         <x-categories-grid :categories="$categories" :admin="$userIsAdmin"/>
+
+{{--        {!! empty($categories) ? '' : $categories->links() !!}--}}
     @else
         <p class="text-center">No categories found.</p>
     @endif

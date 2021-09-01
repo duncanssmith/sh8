@@ -6,29 +6,32 @@
 
     <x-pagelinks :pagetitle="$pagetitle" :index="$index" :create="$create" :admin="$userIsAdmin" />
 
-    <article class="">
-        <h1> {{ $text->title }} </h1>
-        <h2>
+    <div class="text-gray-700">
+
+        <h1 class="text-gray-700 font-bold text-3xl lg:text-4xl mb-10">{{ $text->title }} </h1>
+
+           <h2 class="text-gray-700 font-bold space-y-4 lg:text-lg leading-loose">
             {{ $text->slug }}
-        </h2>
-        <article>
+           </h2>
+
+        <div class="text-gray-700 py-4 space-y-4 lg:text-lg leading-loose">
             {{ $text->body }}
-        </article>
-        <p>
-            Author: {{ $text->author }}
+        </div>
+        <p class="text-gray-700 py-4">
+            <span class="font-bold">Author:</span> {{ $text->author }}
         </p>
-        <p>
-            Year: {{ $text->year }}
+        <p class="text-gray-700 py-4" >
+            <span class="font-bold">Year:</span> {{ $text->year }}
         </p>
-        <p>
-            Description: {{ $text->description }}
+        <p class="text-gray-700 py-4" >
+            <span class="font-bold">Description:</span> {{ $text->description }}
         </p>
-        <p>
-            Publication: {{ $text->publication }}
+        <p class="text-gray-700 py-4" >
+            <span class="font-bold">Publication:</span> {{ $text->publication }}
         </p>
-        <p>
-            Publication date: {{ $text->publication_date }}
+        <p class="text-gray-700 py-4" >
+            <span class="font-bold">Publication date:</span> {{ $text->publication_date }}
         </p>
-    </article>
+    </div>
 
 </x-layout>
