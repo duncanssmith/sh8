@@ -37,34 +37,34 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/posts', [PostController::class, 'index'])->name('home');
 
-Route::get('admin/posts/create', [AdminPostController::class, 'create']);
+Route::get('/admin/posts/create', [AdminPostController::class, 'create']);
 // ->middleware('admin');
-Route::post('admin/posts', [AdminPostController::class, 'store']);
+Route::post('/admin/posts', [AdminPostController::class, 'store']);
 //->middleware('admin');
 
-Route::get('admin/categories/edit', [CategoryController::class, 'edit']);//->middleware('admin');
-Route::get('admin/categories/create', [CategoryController::class, 'create']);//->middleware('admin');
-Route::post('admin/categories', [CategoryController::class, 'store']);//->middleware('admin');
+Route::get('/admin/categories/edit', [CategoryController::class, 'edit']);//->middleware('admin');
+Route::get('/admin/categories/create', [CategoryController::class, 'create']);//->middleware('admin');
+Route::post('/admin/categories', [CategoryController::class, 'store']);//->middleware('admin');
 
-Route::get('admin/works/create', [WorkController::class, 'create']);//->middleware('admin');
-Route::post('admin/works', [WorkController::class, 'store']);//->middleware('admin');
+Route::get('/admin/works/create', [WorkController::class, 'create']);//->middleware('admin');
+Route::post('/admin/works', [WorkController::class, 'store']);//->middleware('admin');
 
-Route::get('admin/texts/create', [TextController::class, 'create']);//->middleware('admin');
-Route::post('admin/texts', [TextController::class, 'store']);//->middleware('admin');
+Route::get('/admin/texts/create', [TextController::class, 'create']);//->middleware('admin');
+Route::post('/admin/texts', [TextController::class, 'store']);//->middleware('admin');
 
-Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
-Route::get('categories', [CategoryController::class, 'index'])->name('categories');
-Route::get('categories/{category:slug}', [CategoryController::class, 'show']);
-Route::get('category-posts/{category:slug}', [CategoryController::class, 'showPosts']);
+Route::get('/', [CategoryController::class, 'index'])->name('categories');
+Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
+Route::get('/category-posts/{category:slug}', [CategoryController::class, 'showPosts']);
 
-Route::get('works', [WorkController::class, 'index'])->name('works');
-Route::get('works/{work:slug}', [WorkController::class, 'show']);
+Route::get('/works', [WorkController::class, 'index'])->name('works');
+Route::get('/works/{work:slug}', [WorkController::class, 'show']);
 
-Route::get('texts', [TextController::class, 'index'])->name('texts');
-Route::get('texts/{text:slug}', [TextController::class, 'show']);
+Route::get('/texts', [TextController::class, 'index'])->name('texts');
+Route::get('/texts/{text:slug}', [TextController::class, 'show']);
 
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');

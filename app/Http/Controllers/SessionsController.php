@@ -18,9 +18,8 @@ class SessionsController extends Controller
             'password' => 'required'
         ]);
 
-//        $dspass = $attributes['password'];
-//        $encrypted = bcrypt($dspass);
-//        ddd($attributes, $dspass, $encrypted);
+//        $encrypted = bcrypt($attributes['password']);
+//        ddd($attributes, $encrypted);
 
         if (! auth()->attempt($attributes)) {
             throw ValidationException::withMessages([

@@ -19,6 +19,6 @@
         active:bg-gray-600 font-bold uppercase text-xs px-4 py-2 rounded-r outline-none
         focus:outline-none mb-1 ease-linear transition-all duration-150"
         type="button">
-        <a href="/categories">Pages</a>
+        <a href="/">Pages</a>
     </button>
 </div>

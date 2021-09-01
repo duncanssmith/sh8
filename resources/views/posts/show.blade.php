@@ -1,7 +1,7 @@
 <x-layout>
 
     @php
-        $pagetitle="Posts"; $index="/"; $create="/admin/posts/create";
+        $pagetitle="Posts"; $index="/posts"; $create="/admin/posts/create";
     @endphp
 
     <x-pagelinks :pagetitle="$pagetitle" :index="$index" :create="$create" :admin="$userIsAdmin" />

@@ -35,8 +35,9 @@
 
                 @guest
                     <div class="mt-8 mb-8 md:mt-2 py-2">
-                        <a href="/login" class="text-xs font-bold uppercase text-gray-400">Login</a> |
-                        <a href="/register" class="text-xs font-bold uppercase text-gray-400">Register</a>
+                        <a href="/login" class="text-xs font-bold uppercase text-gray-400">Login</a>
+{{--                        <span class="text-xs font-bold text-gray-400">|</span>--}}
+{{--                        <a href="/register" class="text-xs font-bold uppercase text-gray-400">Register</a>--}}
                     </div>
                 @endguest
 
