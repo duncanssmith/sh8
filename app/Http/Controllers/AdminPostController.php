@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class AdminPostController extends Controller
@@ -16,7 +17,17 @@ class AdminPostController extends Controller
 
     public function create()
     {
-        return view('admin.posts.create');
+        $admin = false;
+
+        if (Auth::user()) {
+            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
+        }
+
+        return view('admin.posts.create', [
+            'route' => '/posts',
+            'userIsAdmin' => $admin,
+        ]);
+//        return view('admin.posts.create');
     }
 
     public function store()

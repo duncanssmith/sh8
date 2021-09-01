@@ -1,10 +1,10 @@
 <x-layout>
 
     @php
-        $pagetitle="Text"; $backlink="/"; $index="/texts"; $create="/admin/texts/create";
+        $pagetitle="Text"; $index="/texts"; $create="/admin/texts/create";
     @endphp
 
-    <x-pagelinks :pagetitle="$pagetitle" :backlink="$backlink" :index="$index" :create="$create" :admin="$userIsAdmin" />
+    <x-pagelinks :pagetitle="$pagetitle" :index="$index" :create="$create" :admin="$userIsAdmin" />
 
     <article class="">
         <h1> {{ $text->title }} </h1>

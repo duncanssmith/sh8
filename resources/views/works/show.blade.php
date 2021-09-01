@@ -1,10 +1,10 @@
 <x-layout>
 
     @php
-        $pagetitle="Work"; $backlink="/"; $index="/works"; $create="/admin/works/create";
+        $pagetitle="Work"; $index="/works"; $create="/admin/works/create";
     @endphp
 
-    <x-pagelinks :pagetitle="$pagetitle" :backlink="$backlink" :index="$index" :create="$create" :admin="$userIsAdmin" />
+    <x-pagelinks :pagetitle="$pagetitle" :index="$index" :create="$create" :admin="$userIsAdmin" />
 
     <article class="max-w-4xl mx-auto">
         <img src="{{ asset($work->thumbnail) }}">

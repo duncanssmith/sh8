@@ -1,4 +1,4 @@
-@props(['pagetitle', 'backlink', 'index', 'create', 'admin'])
+@props(['pagetitle', 'index', 'create', 'admin'])
 
 <button
     class="text-gray-600 bg-transparent
@@ -7,13 +7,15 @@
     type="button">
     {{ $pagetitle }}
 </button>
-<button
-    class="text-gray-400 bg-transparent hover:bg-gray-400 hover:text-white
-    active:bg-gray-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none
-    focus:outline-none mb-1 ease-linear transition-all duration-150"
-    type="button">
-    <a href="{{ $backlink }}" title="previous page"><i class="fas fa-step-backward"></i></a>
-</button>
+@guest
+    <button
+        class="text-gray-400 bg-transparent hover:bg-gray-400 hover:text-white
+        active:bg-gray-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none
+        focus:outline-none mb-1 ease-linear transition-all duration-150"
+        type="button">
+        <a href="{{ $index }}" title="previous page"><i class="fas fa-step-backward"></i></a>
+    </button>
+@endguest
 
 @if($admin)
     <button

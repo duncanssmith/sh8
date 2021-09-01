@@ -1,10 +1,10 @@
 <x-layout>
 
     @php
-        $pagetitle="Posts"; $backlink="/"; $index="/"; $create="/admin/posts/create";
+        $pagetitle="Posts"; $index="/"; $create="/admin/posts/create";
     @endphp
 
-    <x-pagelinks :pagetitle="$title" :backlink="$backlink" :index="$index" :create="$create" :admin="$userIsAdmin" />
+    <x-pagelinks :pagetitle="$title" :index="$index" :create="$create" :admin="$userIsAdmin" />
 
         @if ($posts->count() > 0)
             <x-posts-grid :posts="$posts" />

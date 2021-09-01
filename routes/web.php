@@ -27,7 +27,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-//require __DIR__.'/auth.php';
+require __DIR__.'/auth.php';
 
 Route::get('/laravel', function () {
     return view('laravel');
@@ -44,9 +44,12 @@ Route::get('admin/posts/create', [AdminPostController::class, 'create']);
 Route::post('admin/posts', [AdminPostController::class, 'store']);
 //->middleware('admin');
 
+Route::get('admin/categories/edit', [CategoryController::class, 'edit']);//->middleware('admin');
+Route::get('admin/categories/create', [CategoryController::class, 'create']);//->middleware('admin');
+Route::post('admin/categories', [CategoryController::class, 'store']);//->middleware('admin');
+
 Route::get('admin/works/create', [WorkController::class, 'create']);//->middleware('admin');
 Route::post('admin/works', [WorkController::class, 'store']);//->middleware('admin');
-
 
 Route::get('admin/texts/create', [TextController::class, 'create']);//->middleware('admin');
 Route::post('admin/texts', [TextController::class, 'store']);//->middleware('admin');

@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'duncanssmith',
             'email' => 'duncanssmith@gmail.com',
         ]);
+
         User::factory(6)->create();
 
         Category::create([

@@ -1,10 +1,10 @@
 <x-layout>
 
     @php
-        $pagetitle="Pages"; $backlink="/"; $index="/categories"; $create="/admin/category/create";
+        $pagetitle="Pages"; $index="/categories"; $create="/admin/categories/create";
     @endphp
 
-    <x-pagelinks :pagetitle="$pagetitle" :backlink="$backlink" :index="$index" :create="$create" :admin="$userIsAdmin" />
+    <x-pagelinks :pagetitle="$pagetitle" :index="$index" :create="$create" :admin="$userIsAdmin" />
 
     <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-1 gap-x-10 text-gray-600">
         <div class="px-2 py-20">

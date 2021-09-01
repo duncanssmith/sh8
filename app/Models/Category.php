@@ -11,6 +11,10 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
+    protected $with = ['works', 'texts'];
+
     /**
      * @return BelongsToMany
      */

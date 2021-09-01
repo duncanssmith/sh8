@@ -18,9 +18,13 @@ class SessionsController extends Controller
             'password' => 'required'
         ]);
 
+//        $dspass = $attributes['password'];
+//        $encrypted = bcrypt($dspass);
+//        ddd($attributes, $dspass, $encrypted);
+
         if (! auth()->attempt($attributes)) {
             throw ValidationException::withMessages([
-                'email' => 'Your provided credentials could not be verified.'
+                'email' => 'The credentials provided were not verified.'
             ]);
         }
 
