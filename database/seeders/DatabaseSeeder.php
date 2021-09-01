@@ -340,90 +340,35 @@ class DatabaseSeeder extends Seeder
 //        ]);
 //        CategoryText::factory(18)->create();
 
-        CategoryText::create([
-            'category_id' => 1,
-            'text_id' => 2,
-            'order' => 1,
-        ]);
-
-        CategoryText::create([
-            'category_id' => 1,
-            'text_id' => 3,
-            'order' => 2,
-        ]);
-
-        CategoryText::create([
-            'category_id' => 2,
-            'text_id' => 2,
-            'order' => 3,
-        ]);
-
-        CategoryText::create([
-            'category_id' => 3,
-            'text_id' => 1,
-            'order' => 4,
-        ]);
+        CategoryText::create([ 'category_id' => 1, 'text_id' => 4, 'order' => 1 ]);
+        CategoryText::create([ 'category_id' => 2, 'text_id' => 5, 'order' => 2 ]);
+        CategoryText::create([ 'category_id' => 2, 'text_id' => 4, 'order' => 3 ]);
+        CategoryText::create([ 'category_id' => 3, 'text_id' => 3, 'order' => 4 ]);
+        CategoryText::create([ 'category_id' => 3, 'text_id' => 1, 'order' => 5 ]);
+        CategoryText::create([ 'category_id' => 4, 'text_id' => 1, 'order' => 6 ]);
+        CategoryText::create([ 'category_id' => 4, 'text_id' => 2, 'order' => 7 ]);
+        CategoryText::create([ 'category_id' => 5, 'text_id' => 2, 'order' => 8 ]);
+        CategoryText::create([ 'category_id' => 5, 'text_id' => 5, 'order' => 9 ]);
+        CategoryText::create([ 'category_id' => 6, 'text_id' => 1, 'order' => 10 ]);
+        CategoryText::create([ 'category_id' => 6, 'text_id' => 3, 'order' => 11 ]);
+        CategoryText::create([ 'category_id' => 6, 'text_id' => 4, 'order' => 12 ]);
 
 //        CategoryWork::factory(12)->create();
 
-        CategoryWork::create([
-            'category_id' => 1,
-            'work_id' => 1,
-            'order' => 1,
-        ]);
-
-        CategoryWork::create([
-            'category_id' => 1,
-            'work_id' => 2,
-            'order' => 2,
-        ]);
-
-        CategoryWork::create([
-            'category_id' => 2,
-            'work_id' => 3,
-            'order' => 3,
-        ]);
-
-        CategoryWork::create([
-            'category_id' => 2,
-            'work_id' => 4,
-            'order' => 4,
-        ]);
-
-        CategoryWork::create([
-            'category_id' => 3,
-            'work_id' => 4,
-            'order' => 5,
-        ]);
-
-        CategoryWork::create([
-            'category_id' => 3,
-            'work_id' => 1,
-            'order' => 6,
-        ]);
-
-        CategoryWork::create([
-            'category_id' => 4,
-            'work_id' => 5,
-            'order' => 7,
-        ]);
-
-        CategoryWork::create([
-            'category_id' => 5,
-            'work_id' => 4,
-            'order' => 8,
-        ]);
-
-        CategoryWork::create([
-            'category_id' => 6,
-            'work_id' => 3,
-            'order' => 9,
-        ]);
-
-        CategoryWork::create([
-            'category_id' => 6,
-            'work_id' => 1,
-            'order' => 10,
-        ]);
+        CategoryWork::create([ 'category_id' => 1, 'work_id' => 2, 'order' => 1 ]);
+        CategoryWork::create([ 'category_id' => 1, 'work_id' => 3, 'order' => 2 ]);
+        CategoryWork::create([ 'category_id' => 2, 'work_id' => 1, 'order' => 3 ]);
+        CategoryWork::create([ 'category_id' => 2, 'work_id' => 6, 'order' => 4 ]);
+        CategoryWork::create([ 'category_id' => 3, 'work_id' => 3, 'order' => 5 ]);
+        CategoryWork::create([ 'category_id' => 3, 'work_id' => 6, 'order' => 6 ]);
+        CategoryWork::create([ 'category_id' => 4, 'work_id' => 5, 'order' => 7 ]);
+        CategoryWork::create([ 'category_id' => 4, 'work_id' => 6, 'order' => 8 ]);
+        CategoryWork::create([ 'category_id' => 5, 'work_id' => 2, 'order' => 9 ]);
+        CategoryWork::create([ 'category_id' => 5, 'work_id' => 3, 'order' => 10 ]);
+        CategoryWork::create([ 'category_id' => 5, 'work_id' => 4, 'order' => 11 ]);
+        CategoryWork::create([ 'category_id' => 6, 'work_id' => 1, 'order' => 12 ]);
+        CategoryWork::create([ 'category_id' => 6, 'work_id' => 2, 'order' => 13 ]);
+        CategoryWork::create([ 'category_id' => 6, 'work_id' => 5, 'order' => 14 ]);
+        CategoryWork::create([ 'category_id' => 6, 'work_id' => 7, 'order' => 15 ]);
     }
 }
