@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-    <title>sh8</title>
+    <title>Duncan Smith {{ $attributes }}</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/app.css">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
