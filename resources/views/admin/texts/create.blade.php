@@ -2,7 +2,7 @@
 
 {{--        <x-panel class="max-w-sm mx-auto">--}}
 
-        <h1 class="text-xl text-indigo-700 font-bold py-6">Create text</h1>
+        <h1 class="text-xl text-gray-700 font-bold py-6">Create text</h1>
             <form method="POST" action="/admin/texts">
                 @csrf
 
@@ -48,13 +48,13 @@
                     Body
                 </label>
 
-                <input class="border border-gray-400 p-2 w-full text-gray-800"
-                       type="string"
+                <textarea class="border border-gray-400 p-2 w-full text-gray-800"
+                       type="text"
                        name="body"
                        id="body"
                        value="{{ old('body') }}"
                        required
-                />
+                ></textarea>
 
                 @error('body')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -126,13 +126,13 @@
                     Description
                 </label>
 
-                <input class="border border-gray-400 p-2 w-full text-gray-800"
-                       type="string"
+                <textarea class="border border-gray-400 p-2 w-full text-gray-800"
+                       type="text"
                        name="description"
                        id="description"
                        value="{{ old('description') }}"
                        required
-                />
+                ></textarea>
 
                 @error('description')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

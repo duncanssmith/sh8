@@ -2,7 +2,7 @@
 
 {{--        <x-panel class="max-w-sm mx-auto">--}}
 
-        <h1 class="text-xl text-indigo-700 font-bold py-6">Create work</h1>
+        <h1 class="text-xl text-gray-700 font-bold py-6">Create work</h1>
             <form method="POST" action="/admin/works" enctype="multipart/form-data">
                 @csrf
 

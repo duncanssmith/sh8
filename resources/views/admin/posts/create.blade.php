@@ -2,7 +2,7 @@
 
 {{--        <x-panel class="max-w-sm mx-auto">--}}
 
-        <h1 class="text-xl text-indigo-700 font-bold py-6">Create post</h1>
+        <h1 class="text-xl text-gray-700 font-bold py-6">Create post</h1>
             <form method="POST" action="/admin/posts" enctype="multipart/form-data">
                 @csrf
 
