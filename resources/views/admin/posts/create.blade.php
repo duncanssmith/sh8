@@ -6,97 +6,19 @@
             <form method="POST" action="/admin/posts" enctype="multipart/form-data">
                 @csrf
 
-{{--                ==========================================--}}
                 <x-form.input name="title" />
-
-                <label for="thumbnail" class="block mb2 uppercase font-bold text-xs text-gray-700">
-                </label>
-                <input class="border border-gray-400 p-2 w-full text-gray-800"
-                    type="file"
-                    name="thumbnail"
-                    id="thumbnail"
-                    value="{{ old('thumbnail') }}"
-                />
+                <x-form.file-upload name="thumbnail" />
+                <x-form.input name="slug" />
+                <x-form.input name="excerpt" />
+                <x-form.textarea name="body" />
 
 {{--                ==========================================--}}
-
-{{--                <label for="title" class="block mb2 uppercase font-bold text-xs text-gray-700">--}}
-{{--                    Title--}}
-{{--                </label>--}}
-
-{{--                <input class="border border-gray-400 p-2 w-full text-gray-800"--}}
-{{--                       type="text"--}}
-{{--                       name="title"--}}
-{{--                       id="title"--}}
-{{--                       value="{{ old('title') }}"--}}
-{{--                       required--}}
-{{--                />--}}
-
-{{--                @error('title')--}}
-{{--                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>--}}
-{{--                @enderror--}}
-
-{{--                ==========================================--}}
-
-                <label for="slug" class="block mb2 uppercase font-bold text-xs text-gray-700">
-                    Slug
-                </label>
-
-                <input class="border border-gray-400 p-2 w-full text-gray-800"
-                       type="string"
-                       name="slug"
-                       id="slug"
-                       value="{{ old('slug') }}"
-                       required
-                />
-
-                @error('slug')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-
-{{--                ==========================================--}}
-
-                <label for="excerpt" class="block mb2 uppercase font-bold text-xs text-gray-700">
-                    Excerpt
-                </label>
-
-                <textarea class="border border-gray-400 p-2 w-full text-gray-800"
-                       name="excerpt"
-                       id="excerpt"
-                       required
-                >{{ old('excerpt') }}</textarea>
-
-                @error('excerpt')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-
-{{--                ==========================================--}}
-
-                <label for="body" class="block mb2 uppercase font-bold text-xs text-gray-700">
-                    Body
-                </label>
-
-                <textarea class="border border-gray-400 p-2 w-full text-gray-800"
-                       name="body"
-                       id="body"
-                       required
-                > {{ old('body') }}</textarea>
-
-                @error('body')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-
-{{--                ==========================================--}}
-                <label for="category" class="block mb2 uppercase font-bold text-xs text-gray-700">
-                    Category
-                </label>
-
+                <x-form.label name="Category"/>
                 <select class="border border-gray-400 p-2 w-full text-gray-800"
                           name="category_id"
                           id="category_id"
                           required
                 >
-
                     @php
                         $categories = \App\Models\Category::all();
                     @endphp
@@ -110,13 +32,11 @@
 
                 </select>
 
-                @error('category')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-{{--                ==========================================--}}
+                <x-form.error name="category" />
 
-                <x-submit>Submit</x-submit>
-                <x-cancel :route="$route">Cancel</x-cancel>
+
+                <x-form.submit>Submit</x-form.submit>
+                <x-form.cancel :route="$route">Cancel</x-form.cancel>
 
             </form>
 {{--        </x-panel>--}}

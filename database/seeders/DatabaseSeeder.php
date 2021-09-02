@@ -321,25 +321,6 @@ class DatabaseSeeder extends Seeder
 
 //        Work::factory(3)->create();
 
-//        Post::create([
-//            'title' => 'Ambient feelings',
-//            'slug' => 'ambient-feelings',
-//            'body' => 'I want to write a post here, thanks!',
-//        ]);
-//
-//        Post::create([
-//            'title' => 'Greenhouse fingers',
-//            'slug' => 'greenhouse-fingers',
-//            'body' => 'I want to write another post here, thanks!',
-//        ]);
-//
-//        Post::create([
-//            'title' => 'Deep blue water',
-//            'slug' => 'deep-blue-water',
-//            'body' => 'I want to write a third post here, thanks!',
-//        ]);
-//        CategoryText::factory(18)->create();
-
         CategoryText::create([ 'category_id' => 1, 'text_id' => 4, 'order' => 1 ]);
         CategoryText::create([ 'category_id' => 2, 'text_id' => 5, 'order' => 2 ]);
         CategoryText::create([ 'category_id' => 2, 'text_id' => 4, 'order' => 3 ]);

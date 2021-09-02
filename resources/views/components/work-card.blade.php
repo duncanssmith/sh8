@@ -18,17 +18,17 @@
                 <header>
                     @if ($admin)
                         <span class="space-x-2">
-                            <a href="/admin/works/{{ $work->slug }}/edit"
+                            <a href="/admin/works/edit/{{ $work->slug }}"
                                class="px-3 py-1 border bg-blue-200 border-blue-300 rounded-full text-blue-700 text-xs uppercase font-semibold"
                                style="font-size: 10px"><i class="far fa-edit" title="Edit this work"></i></a>
                         </span>
                         <span class="space-x-2">
-                            <a href="/admin/works/{{ $work->slug }}/assign"
+                            <a href="/admin/works/assign/{{ $work->slug }}"
                                class="px-3 py-1 border bg-green-200 border-green-300 rounded-full text-green-700 text-xs uppercase font-semibold"
                                style="font-size: 10px"><i class="fas fa-link" title="Assign this work to a page"></i></a>
                         </span>
                         <span class="space-x-2">
-                            <a href="/admin/works/{{ $work->slug }}/delete"
+                            <a href="/admin/works/delete/{{ $work->slug }}"
                                class="px-3 py-1 border bg-red-200 border-red-300 rounded-full text-red-700 text-xs uppercase font-semibold"
                                style="font-size: 10px"><i class="far fa-trash-alt" title="Delete work! (Are you sure?)"></i></a>
                         </span>

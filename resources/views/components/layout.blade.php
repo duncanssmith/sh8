@@ -28,7 +28,7 @@
                     <form method="post" action="/logout">
                         @csrf
                         <span class="mt-0 mb-0 py-0">
-                            <x-submit>Logout</x-submit>
+                            <x-form.button>Logout</x-form.button>
                         </span>
                     </form>
                 @endif
