@@ -45,7 +45,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /* guest categories */
 Route::get('/', [CategoryController::class, 'index'])->name('list categories');
-Route::get('/categories/{category:slug}', [CategoryController::class, 'show category']);
+Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('show a category');
 
 /* auth categories */
 Route::post('/admin/category', [AdminCategoryController::class, 'store'])->name('save category');
@@ -57,7 +57,7 @@ Route::delete('admin/category/{category}', [AdminCategoryController::class, 'des
 
 /* guest works */
 Route::get('/works', [WorkController::class, 'index'])->name('list works');
-Route::get('/works/{work:slug}', [WorkController::class, 'show work']);
+Route::get('/works/{work:slug}', [WorkController::class, 'show'])->name('show a work');
 
 /* auth works */
 Route::post('/admin/work', [AdminWorkController::class, 'store'])->name('save work');
@@ -69,7 +69,7 @@ Route::delete('admin/work/{work}', [AdminWorkController::class, 'destroy'])->mid
 
 /* guest texts */
 Route::get('/texts', [TextController::class, 'index'])->name('list texts');
-Route::get('/texts/{text:slug}', [TextController::class, 'show text']);
+Route::get('/texts/{text:slug}', [TextController::class, 'show'])->name('show a text');
 
 /* auth texts */
 Route::post('/admin/text', [AdminTextController::class, 'store'])->name('save text')->middleware('admin');

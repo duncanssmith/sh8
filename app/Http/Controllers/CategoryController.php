@@ -27,11 +27,13 @@ class CategoryController extends Controller
             return Category::where('slug', $slug)->firstOrFail();
         });
 
+//        ddd($category);
+
         return view('categories.show', [
+            'category' => $category,
             'works' => $category->works,
             'texts' => $category->texts,
             'currentCategory' => $category,
-            'category' => $category,
             'categories' => Category::all(),
         ]);
     }

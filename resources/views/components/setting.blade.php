@@ -12,13 +12,13 @@
                 <a href="/admin/posts" class="{{ request()->is('admin/dashboard') ? 'text-blue-500' : '' }}">Posts</a>
             </li>
             <li>
-                <a href="/admin/post/create" class="{{ request()->is('admin/posts/create') ? 'text-blue-500' : '' }}">Add post</a>
+                <a href="/admin/post/create" class="{{ request()->is('admin/post/create') ? 'text-blue-500' : '' }}">Add post</a>
             </li>
             <li>
                 <a href="/admin/categories" class="{{ request()->is('admin/dashboard') ? 'text-blue-500' : '' }}">Categories</a>
             </li>
             <li>
-                <a href="/admin/category/create" class="{{ request()->is('admin/categories/create') ? 'text-blue-500' : '' }}">Add category</a>
+                <a href="/admin/category/create" class="{{ request()->is('admin/category/create') ? 'text-blue-500' : '' }}">Add category</a>
             </li>
             <li>
                 <a href="/admin/works" class="{{ request()->is('admin/dashboard') ? 'text-blue-500' : '' }}">Works</a>
