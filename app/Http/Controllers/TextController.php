@@ -40,33 +40,4 @@ class TextController extends Controller
             'title' => 'A text',
         ]);
     }
-
-    /**
-     * @return Factory|View
-     */
-    public function create()
-    {
-        return view('texts.create', [
-            'route' => '/texts',
-        ]);
-    }
-
-    public function store()
-    {
-        $attributes = request()->validate([
-            'title' => 'required',
-            'slug' => ['required', Rule::unique('texts', 'slug')],
-            'body' => 'required',
-            'author' => 'required',
-            'year' => 'required',
-            'description' => 'required',
-            'publication' => 'required',
-            'publication_date' => 'required',
-        ]);
-
-        Text::create($attributes);
-
-        return redirect('/texts');
-    }
-
 }

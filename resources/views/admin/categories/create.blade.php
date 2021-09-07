@@ -6,7 +6,7 @@
                 <x-form.input name="name" />
                 <x-form.input name="slug" />
                 <x-form.submit>Submit</x-form.submit>
-                <x-form.cancel :route="$route">Cancel</x-form.cancel>
+                <x-form.cancel>Cancel</x-form.cancel>
             </form>
 {{--        </x-panel>--}}
 </x-layout>

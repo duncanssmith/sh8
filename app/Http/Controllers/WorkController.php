@@ -40,34 +40,4 @@ class WorkController extends Controller
             'title' => 'A work',
         ]);
     }
-
-    /**
-     * @return Factory|View
-     */
-    public function create()
-    {
-        return view('works.create', [
-            'route' => 'works',
-        ]);
-    }
-
-    public function store()
-    {
-        $attributes = request()->validate([
-            'title' => 'required',
-            'thumbnail' => 'required|image',
-            'slug' => ['required', Rule::unique('works', 'slug')],
-            'media' => 'required',
-            'dimensions' => 'required',
-            'work_date' => 'required',
-        ]);
-
-        // Add the image filename/key to the database record
-        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
-
-        Work::create($attributes);
-
-        return redirect('/works');
-    }
-
 }

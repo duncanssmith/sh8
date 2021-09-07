@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\AdminTextController;
+use App\Http\Controllers\AdminWorkController;
+use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
@@ -40,39 +43,64 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 //   return ['duncan' => 'smith' ];
 //});
 
-Route::get('/', [CategoryController::class, 'index'])->name('categories');
-//Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
-//Route::get('/category-posts/{category:slug}', [CategoryController::class, 'showPosts']);
+/* guest categories */
+Route::get('/', [CategoryController::class, 'index'])->name('list categories');
+Route::get('/categories/{category:slug}', [CategoryController::class, 'show category']);
 
-Route::post('/works', [WorkController::class, 'store'])->name('save work');
-Route::get('/works/create', [WorkController::class, 'create'])->name('create work');
+/* auth categories */
+Route::post('/admin/category', [AdminCategoryController::class, 'store'])->name('save category');
+Route::get('/admin/category/create', [AdminCategoryController::class, 'create'])->name('create category');
+Route::get('/admin/categories', [AdminCategoryController::class, 'index'])->name('admin categories index')->middleware('admin');
+Route::get('/admin/category/{category}/edit', [AdminCategoryController::class, 'edit'])->name('admin category edit')->middleware('admin');
+Route::patch('admin/category/{category}', [AdminCategoryController::class, 'update'])->middleware('admin');
+Route::delete('admin/category/{category}', [AdminCategoryController::class, 'destroy'])->middleware('admin');
+
+/* guest works */
 Route::get('/works', [WorkController::class, 'index'])->name('list works');
 Route::get('/works/{work:slug}', [WorkController::class, 'show work']);
-//->middleware('admin');
 
-Route::post('/texts', [TextController::class, 'store'])->name('save text');
-Route::get('/texts/create', [TextController::class, 'create'])->name('create text');
+/* auth works */
+Route::post('/admin/work', [AdminWorkController::class, 'store'])->name('save work');
+Route::get('/admin/work/create', [AdminWorkController::class, 'create'])->name('create work');
+Route::get('/admin/works', [AdminWorkController::class, 'index'])->name('admin works index')->middleware('admin');
+Route::get('/admin/work/{work}/edit', [AdminWorkController::class, 'edit'])->name('admin work edit')->middleware('admin');
+Route::patch('admin/work/{work}', [AdminWorkController::class, 'update'])->middleware('admin');
+Route::delete('admin/work/{work}', [AdminWorkController::class, 'destroy'])->middleware('admin');
+
+/* guest texts */
 Route::get('/texts', [TextController::class, 'index'])->name('list texts');
 Route::get('/texts/{text:slug}', [TextController::class, 'show text']);
 
+/* auth texts */
+Route::post('/admin/text', [AdminTextController::class, 'store'])->name('save text')->middleware('admin');
+Route::get('/admin/text/create', [AdminTextController::class, 'create'])->name('create text')->middleware('admin');
+Route::get('/admin/texts', [AdminTextController::class, 'index'])->name('admin texts index')->middleware('admin');
+Route::get('/admin/text/{text}/edit', [AdminTextController::class, 'edit'])->name('admin text edit')->middleware('admin');
+Route::patch('admin/text/{text}', [AdminTextController::class, 'update'])->name('admin text update')->middleware('admin')->middleware('admin');
+Route::delete('admin/text/{text}', [AdminTextController::class, 'destroy'])->name('admin text delete')->middleware('admin')->middleware('admin');
+
+/* guest posts */
 Route::get('/posts', [PostController::class, 'index'])->name('list posts');
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('show post');
 
+/* auth posts */
 Route::post('/admin/post', [AdminPostController::class, 'store'])->name('save post')->middleware('admin');
 Route::get('/admin/post/create', [AdminPostController::class, 'create'])->name('create post')->middleware('admin');
 Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin posts index')->middleware('admin');
 Route::get('/admin/post/{post}/edit', [AdminPostController::class, 'edit'])->name('admin post edit')->middleware('admin');
-Route::patch('admin/post/{post}', [AdminPostController::class, 'update'])->middleware('admin');
-Route::delete('admin/post/{post}', [AdminPostController::class, 'destroy'])->middleware('admin');
+Route::patch('admin/post/{post}', [AdminPostController::class, 'update'])->name('admin post update')->middleware('admin');
+Route::delete('admin/post/{post}', [AdminPostController::class, 'destroy'])->name('admin post delete')->middleware('admin');
 
+/* guest register */
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
+/* guest login */
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('/login', [SessionsController::class, 'store'])->middleware('guest');
 
+/* auth logout */
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
-
 
 //Route::get('/admin/categories/edit/{category:slug}', [CategoryController::class, 'edit']);//->middleware('admin');
 //Route::get('/admin/categories/create', [CategoryController::class, 'create']);//->middleware('admin');
