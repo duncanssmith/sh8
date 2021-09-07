@@ -1,4 +1,3 @@
-{{--@props(['post', 'image'])--}}
 @props(['post'])
 
     <article

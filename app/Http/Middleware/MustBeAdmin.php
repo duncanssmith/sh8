@@ -17,9 +17,14 @@ class MustBeAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-//        if(auth()->user()?->username != 'duncanssmith') {
+        if(auth()->guest()) {
+//            abort(Response::HTTP_FORBIDDEN)
+            return redirect('/')->with('success', 'Access denied (Guest user)');
+        }
+
         if(auth()->user()->username !== 'duncanssmith') {
-            abort(Response::HTTP_FORBIDDEN);
+//            abort(Response::HTTP_UNAUTHORIZED)
+            return redirect('/')->with('success', 'Access denied (Logged in User)');
         }
 
         return $next($request);

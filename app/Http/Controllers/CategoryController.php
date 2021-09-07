@@ -14,16 +14,9 @@ class CategoryController extends Controller
     //
     public function index()
     {
-        $admin = false;
-        if (Auth::user()) {
-            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
-        }
-
         return view('categories.index', [
             'categories' => Category::all(),
-//            'categories' => Category::latest()->filter(request()->only('search'))->paginate(10),
             'title' => 'Categories',
-            'userIsAdmin' => $admin,
         ]);
     }
 
@@ -34,18 +27,12 @@ class CategoryController extends Controller
             return Category::where('slug', $slug)->firstOrFail();
         });
 
-        $admin = false;
-        if (Auth::user()) {
-            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
-        }
-
         return view('categories.show', [
             'works' => $category->works,
             'texts' => $category->texts,
             'currentCategory' => $category,
             'category' => $category,
             'categories' => Category::all(),
-            'userIsAdmin' => $admin,
         ]);
     }
 
@@ -54,14 +41,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $admin = false;
-        if (Auth::user()) {
-            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
-        }
-
         return view('admin.categories.create', [
             'route' => '/categories',
-            'userIsAdmin' => $admin,
         ]);
     }
 

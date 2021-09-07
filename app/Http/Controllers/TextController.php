@@ -16,16 +16,9 @@ class TextController extends Controller
      */
     public function index()
     {
-        $admin = false;
-        if (Auth::user()) {
-            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
-        }
-
         return view('texts.index', [
             'texts' => Text::latest()->filter(request()->only('search'))->paginate(3),
-//            'texts' => Text::all(),
             'title' => 'Texts',
-            'userIsAdmin' => $admin,
         ]);
     }
 
@@ -42,15 +35,9 @@ class TextController extends Controller
             return Text::where('slug', $slug)->firstOrFail();
         });
 
-        $admin = false;
-        if (Auth::user()) {
-            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
-        }
-
         return view('texts.show', [
             'text' => $text,
             'title' => 'A text',
-            'userIsAdmin' => $admin,
         ]);
     }
 
@@ -59,14 +46,8 @@ class TextController extends Controller
      */
     public function create()
     {
-        $admin = false;
-        if (Auth::user()) {
-            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
-        }
-
-        return view('admin.texts.create', [
+        return view('texts.create', [
             'route' => '/texts',
-            'userIsAdmin' => $admin,
         ]);
     }
 

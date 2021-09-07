@@ -16,16 +16,9 @@ class WorkController extends Controller
      */
     public function index()
     {
-        $admin = false;
-        if (Auth::user()) {
-            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
-        }
-
         return view('works.index', [
             'works' => Work::latest()->filter(request()->only('search'))->paginate(3),
-//            'works' => Work::all(),
             'title' => 'Works',
-            'userIsAdmin' => $admin,
         ]);
     }
 
@@ -42,15 +35,9 @@ class WorkController extends Controller
             return Work::where('slug', $slug)->firstOrFail();
         });
 
-        $admin = false;
-        if (Auth::user()) {
-            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
-        }
-
         return view('works.show', [
             'work' => $work,
             'title' => 'A work',
-            'userIsAdmin' => $admin,
         ]);
     }
 
@@ -59,14 +46,8 @@ class WorkController extends Controller
      */
     public function create()
     {
-        $admin = false;
-        if (Auth::user()) {
-            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
-        }
-
-        return view('admin.works.create', [
-            'route' => '/works',
-            'userIsAdmin' => $admin,
+        return view('works.create', [
+            'route' => 'works',
         ]);
     }
 
@@ -81,6 +62,7 @@ class WorkController extends Controller
             'work_date' => 'required',
         ]);
 
+        // Add the image filename/key to the database record
         $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
 
         Work::create($attributes);

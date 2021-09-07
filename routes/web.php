@@ -27,57 +27,73 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-require __DIR__.'/auth.php';
+//require __DIR__.'/auth.php';
 
-Route::get('/laravel', function () {
-    return view('laravel');
-});
+//Route::get('/laravel', function () {
+//    return view('laravel');
+//});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-
-Route::get('/posts', [PostController::class, 'index'])->name('home');
-
-Route::get('/admin/posts/create', [AdminPostController::class, 'create']);
-// ->middleware('admin');
-Route::post('/admin/posts', [AdminPostController::class, 'store']);
-//->middleware('admin');
-
-Route::get('/admin/categories/edit', [CategoryController::class, 'edit']);//->middleware('admin');
-Route::get('/admin/categories/create', [CategoryController::class, 'create']);//->middleware('admin');
-Route::post('/admin/categories', [CategoryController::class, 'store']);//->middleware('admin');
-
-Route::get('/admin/works/create', [WorkController::class, 'create']);//->middleware('admin');
-Route::post('/admin/works', [WorkController::class, 'store']);//->middleware('admin');
-
-Route::get('/admin/texts/create', [TextController::class, 'create']);//->middleware('admin');
-Route::post('/admin/texts', [TextController::class, 'store']);//->middleware('admin');
-
-Route::get('/posts/{post:slug}', [PostController::class, 'show']);
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//});
+//Route::get('/', function () {
+//   return ['duncan' => 'smith' ];
+//});
 
 Route::get('/', [CategoryController::class, 'index'])->name('categories');
-Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
-Route::get('/category-posts/{category:slug}', [CategoryController::class, 'showPosts']);
+//Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
+//Route::get('/category-posts/{category:slug}', [CategoryController::class, 'showPosts']);
 
-Route::get('/works', [WorkController::class, 'index'])->name('works');
-Route::get('/works/{work:slug}', [WorkController::class, 'show']);
+Route::post('/works', [WorkController::class, 'store'])->name('save work');
+Route::get('/works/create', [WorkController::class, 'create'])->name('create work');
+Route::get('/works', [WorkController::class, 'index'])->name('list works');
+Route::get('/works/{work:slug}', [WorkController::class, 'show work']);
+//->middleware('admin');
 
-Route::get('/texts', [TextController::class, 'index'])->name('texts');
-Route::get('/texts/{text:slug}', [TextController::class, 'show']);
+Route::post('/texts', [TextController::class, 'store'])->name('save text');
+Route::get('/texts/create', [TextController::class, 'create'])->name('create text');
+Route::get('/texts', [TextController::class, 'index'])->name('list texts');
+Route::get('/texts/{text:slug}', [TextController::class, 'show text']);
 
-Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
-Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+Route::get('/posts', [PostController::class, 'index'])->name('list posts');
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('show post');
 
-Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
-Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
+Route::post('/admin/post', [AdminPostController::class, 'store'])->name('save post')->middleware('admin');
+Route::get('/admin/post/create', [AdminPostController::class, 'create'])->name('create post')->middleware('admin');
+Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin posts index')->middleware('admin');
+Route::get('/admin/post/{post}/edit', [AdminPostController::class, 'edit'])->name('admin post edit')->middleware('admin');
+Route::patch('admin/post/{post}', [AdminPostController::class, 'update'])->middleware('admin');
+Route::delete('admin/post/{post}', [AdminPostController::class, 'destroy'])->middleware('admin');
 
-Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
-// Admin Section
-Route::middleware('can:admin')->group(function () {
-    Route::resource('admin/posts', AdminPostController::class)->except('show');
+Route::get('/login', [SessionsController::class, 'create'])->middleware('guest');
+Route::post('/login', [SessionsController::class, 'store'])->middleware('guest');
+
+Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
+
+
+//Route::get('/admin/categories/edit/{category:slug}', [CategoryController::class, 'edit']);//->middleware('admin');
+//Route::get('/admin/categories/create', [CategoryController::class, 'create']);//->middleware('admin');
+//Route::post('/admin/categories', [CategoryController::class, 'store']);//->middleware('admin');
+
+//Route::get('/admin/works/edit/{work:slug}', [WorkController::class, 'edit']);//->middleware('admin');
+//Route::get('/admin/works/create', [WorkController::class, 'create']);//->middleware('admin');
+//Route::post('/admin/works', [WorkController::class, 'store']);//->middleware('admin');
+
+//Route::get('/admin/texts/edit/{text:slug}', [TextController::class, 'edit']);//->middleware('admin');
+//Route::get('/admin/texts/create', [TextController::class, 'create']);//->middleware('admin');
+//Route::post('/admin/texts', [TextController::class, 'store']);//->middleware('admin');
+
+//Route::middleware('can:admin')->group(function () {
+//    Route::resource('admin/posts', AdminPostController::class)->except('show');
+//});
+
+Route::get('/service-container-route', function (SessionsController $service) {
+    die(get_class($service));
 });
+
 
 //    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {
 //    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {

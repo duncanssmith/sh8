@@ -1,4 +1,4 @@
-@props(['category', 'admin'])
+@props(['category'])
 
 <article
     {{ $attributes->merge(['class' => 'text-gray-700 bg-gray-100 transition-colors duration-300
@@ -11,7 +11,7 @@
 
             <div class="mt-8 flex flex-col justify-between">
                 <header>
-                    @if ($admin)
+                    @auth
                         <span class="space-x-2">
                             <a href="/admin/categories/edit/{{ $category->slug }}"
                                class="px-3 py-1 border bg-blue-200 border-blue-300 rounded-full text-blue-700 text-xs uppercase font-semibold"
@@ -32,7 +32,7 @@
                                class="px-3 py-1 border bg-red-200 border-red-300 rounded-full text-red-700 text-xs uppercase font-semibold"
                                style="font-size: 10px"><i class="far fa-trash-alt" title="Delete! (Are you sure?)"></i></a>
                         </span>
-                    @endif
+                    @endauth
 
                     <div class="mt-4">
                         <h1 class="text-3xl">

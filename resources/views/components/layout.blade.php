@@ -21,25 +21,40 @@
 
             @include ('_ds_nav')
 
-            <div class="mt-8 md:mt-2 py-2">
+            <div class="mt-8 md:mt-2 py-2 flex items-center">
+                @auth
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="text-sm py-0 mt-2 mb-0 font-bold text-gray-400 ">
+                                <i class="far fa-user"></i>&nbsp;
+                                {{ auth()->user()->username }}
+                            </button>
+                        </x-slot>
+                        <x-dropdown-item href="/admin/posts/" :active="request()->is('admin/posts')" class="text-sm font-bold text-gray-400">List posts</x-dropdown-item>
+                        <x-dropdown-item href="/admin/post/create" :active="request()->is('admin/post/create')" class="text-sm font-bold text-gray-400">Add post</x-dropdown-item>
+{{--                        <x-dropdown-item href="#" class="" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()" class="text-sm font-bold text-gray-400">--}}
+                        <x-dropdown-item href="#" class="text-sm font-bold text-gray-400">
+                            <form method="post" action="/logout">
+                                @csrf
+                                <x-form.button-logout-link>Log out</x-form.button-logout-link>
+                            </form>
+                        </x-dropdown-item>
+                    </x-dropdown>
 
-                @if(Auth()->user())
-                    <p class="text-gray-400 text-md py-0 mt-2 mb-0"><i class="far fa-user"></i> {{ Auth()->user()->username }}</p>
-                    <form method="post" action="/logout">
-                        @csrf
-                        <span class="mt-0 mb-0 py-0">
-                            <x-form.button>Logout</x-form.button>
-                        </span>
-                    </form>
-                @endif
-
-                @guest
+{{--                    <p class="text-gray-400 text-md py-0 mt-2 mb-0"><i class="far fa-user"></i> {{ Auth()->user()->username }}</p>--}}
+{{--                    <form method="post" action="/logout">--}}
+{{--                        @csrf--}}
+{{--                        <span class="mt-0 mb-0 py-0">--}}
+{{--                            <x-form.button>Logout</x-form.button>--}}
+{{--                        </span>--}}
+{{--                    </form>--}}
+                @else
                     <div class="mt-8 mb-8 md:mt-2 py-2">
                         <a href="/login" class="text-xs font-bold uppercase text-gray-400">Login</a>
-{{--                        <span class="text-xs font-bold text-gray-400">|</span>--}}
-{{--                        <a href="/register" class="text-xs font-bold uppercase text-gray-400">Register</a>--}}
+                        <span class="text-xs font-bold text-gray-400">|</span>
+                        <a href="/register" class="text-xs font-bold uppercase text-gray-400">Register</a>
                     </div>
-                @endguest
+                @endauth
 
             </div>
         </nav>

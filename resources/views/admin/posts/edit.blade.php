@@ -1,6 +1,6 @@
 <x-layout>
     <x-setting :heading="'Edit Post: ' . $post->title">
-        <form method="POST" action="/admin/posts/{{ $post->id }}" enctype="multipart/form-data">
+        <form method="POST" action="/admin/post/{{ $post->id }}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
 
@@ -13,7 +13,7 @@
                 </div>
 
                 @if($post->thumbnail)
-                <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="" class="rounded-xl ml-6" width="100">
+                    <img src="{{ asset( $post->thumbnail) }}" alt="" class="rounded-xl ml-6" width="100">
                 @else
                     <h1>No image</h1>
                 @endif
@@ -23,6 +23,7 @@
             <x-form.textarea name="body" required>{{ old('body', $post->body) }}</x-form.textarea>
 
             <x-form.field>
+                <div class="border border-solid bg-gray-200 rounded-4lg px-8 py-8">
                 <x-form.label name="category"/>
 
                 <select name="category_id" id="category_id" required>
@@ -35,6 +36,7 @@
                 </select>
 
                 <x-form.error name="category"/>
+                </div>
             </x-form.field>
 
             <x-form.button>Update</x-form.button>

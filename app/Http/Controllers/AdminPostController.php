@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -11,23 +13,29 @@ class AdminPostController extends Controller
     public function index()
     {
         return view('admin.posts.index', [
-            'posts' => Post::paginate(12)
+            'posts' => Post::paginate(50),
+            'title' => 'Posts Index (admin)',
+            'index' => '/admin/posts',
+            'create' => '/admin/posts/create',
+        ]);
+    }
+
+    public function show(Post $post)
+    {
+        $slug = $post->slug;
+        $post = cache()->remember("posts.{$slug}", 30, function() use ($slug) {
+            return Post::where('slug', $slug)->firstOrFail();
+        });
+
+        return view('posts.show', [
+            'post' => $post,
+            'title' => 'A post',
         ]);
     }
 
     public function create()
     {
-        $admin = false;
-
-        if (Auth::user()) {
-            $admin = Auth::user()->username == 'duncanssmith' ? true : false;
-        }
-
-        return view('admin.posts.create', [
-            'route' => '/posts',
-            'userIsAdmin' => $admin,
-        ]);
-//        return view('admin.posts.create');
+        return view('admin.posts.create', ['cancel' => '/posts']);
     }
 
     public function store()
@@ -38,7 +46,7 @@ class AdminPostController extends Controller
             'slug' => ['required', Rule::unique('posts', 'slug')],
             'excerpt' => 'required',
             'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
+            'category_id' => ['required', Rule::exists('categories', 'id')],
         ]);
 
         $attributes['user_id'] = auth()->id();
@@ -47,6 +55,7 @@ class AdminPostController extends Controller
         Post::create($attributes);
 
         return redirect('/');
+
     }
 
     public function edit(Post $post)
@@ -71,13 +80,13 @@ class AdminPostController extends Controller
 
         $post->update($attributes);
 
-        return back()->with('success', 'Post Updated!');
+        return back()->with('success', 'Post updated');
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
 
-        return back()->with('success', 'Post Deleted!');
+        return back()->with('success', 'Post deleted');
     }
 }

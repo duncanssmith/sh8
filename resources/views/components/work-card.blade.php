@@ -1,4 +1,4 @@
-@props(['work', 'admin'])
+@props(['work'])
 
 <article
     {{ $attributes->merge(['class' => 'text-gray-700 transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl']) }} >
@@ -16,7 +16,7 @@
 
             <div class="mt-8 flex flex-col justify-between">
                 <header>
-                    @if ($admin)
+                    @auth
                         <span class="space-x-2">
                             <a href="/admin/works/edit/{{ $work->slug }}"
                                class="px-3 py-1 border bg-blue-200 border-blue-300 rounded-full text-blue-700 text-xs uppercase font-semibold"
@@ -32,7 +32,7 @@
                                class="px-3 py-1 border bg-red-200 border-red-300 rounded-full text-red-700 text-xs uppercase font-semibold"
                                style="font-size: 10px"><i class="far fa-trash-alt" title="Delete work! (Are you sure?)"></i></a>
                         </span>
-                    @endif
+                    @endauth
 
                     <div class="mt-4">
                         <h1 class="text-3xl">
@@ -60,7 +60,7 @@
                         </a>
                     </div>
 
-                    @if ($admin)
+                    @auth
                         <div class="bg-pink-200 py-4 px-4 rounded-lg">
                             <h1 class="font-bold text-gray-700">{{ count($work->categories) }}
                                 {!! (count($work->categories) == 1) ?  'page' : 'pages' !!} with this work</h1>
@@ -70,7 +70,7 @@
                                 </div>
                             @endforeach
                         </div>
-                    @endif
+                    @endauth
                 </footer>
             </div>
         </div>

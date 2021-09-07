@@ -1,11 +1,5 @@
 <x-layout>
 
-    @php
-        $pagetitle="Text"; $index="/texts"; $create="/admin/texts/create";
-    @endphp
-
-    <x-pagelinks :pagetitle="$pagetitle" :index="$index" :create="$create" :admin="$userIsAdmin" />
-
     <div class="text-gray-700">
 
         <h1 class="text-gray-700 font-bold text-3xl lg:text-4xl mb-10">{{ $text->title }} </h1>

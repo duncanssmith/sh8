@@ -1,11 +1,5 @@
 <x-layout>
 
-    @php
-        $pagetitle="Posts"; $index="/posts"; $create="/admin/posts/create";
-    @endphp
-
-    <x-pagelinks :pagetitle="$pagetitle" :index="$index" :create="$create" :admin="$userIsAdmin" />
-
     <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10 text-gray-700">
         <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
             <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->title }}" class="rounded-xl">

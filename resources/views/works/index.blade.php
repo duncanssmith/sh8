@@ -1,13 +1,7 @@
 <x-layout>
 
-    @php
-         $pagetitle="Works"; $index="/works"; $create="/admin/works/create";
-    @endphp
-
-    <x-pagelinks :pagetitle="$title" :index="$index" :create="$create" :admin="$userIsAdmin" />
-
     @if ($works->count() > 0)
-        <x-works-grid :works="$works" :admin="$userIsAdmin"/>
+        <x-works-grid :works="$works"/>
 
         {!! empty($works) ? '' : $works->links() !!}
     @else
