@@ -44,18 +44,16 @@ class AdminWorkController extends Controller
             'title' => 'required',
             'thumbnail' => 'required|image',
             'slug' => ['required', Rule::unique('works', 'slug')],
-            'excerpt' => 'required',
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')],
+            'media' => 'required',
+            'dimensions' => 'required',
+            'work_date' => 'required',
         ]);
 
-        $attributes['user_id'] = auth()->id();
         $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
 
         Work::create($attributes);
 
         return redirect('/');
-
     }
 
     public function edit(Work $work)
@@ -69,16 +67,16 @@ class AdminWorkController extends Controller
             'title' => 'required',
             'thumbnail' => 'image',
             'slug' => ['required', Rule::unique('works', 'slug')->ignore($work->id)],
-            'excerpt' => 'required',
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
+            'media' => 'required',
+            'dimensions' => 'required',
+            'work_date' => 'required',
         ]);
 
         if (isset($attributes['thumbnail'])) {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
         }
 
-        $post->update($attributes);
+        $work->update($attributes);
 
         return back()->with('success', 'Work updated');
     }

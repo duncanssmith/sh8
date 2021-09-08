@@ -19,8 +19,8 @@
                 @endif
             </div>
 
-            <x-form.input name="media" :value="old('slug', $work->media)" required />
-            <x-form.input name="dimensions" :value="old('slug', $work->dimensions)" required />
+            <x-form.input name="media" :value="old('media', $work->media)" required />
+            <x-form.input name="dimensions" :value="old('dimensions', $work->dimensions)" required />
             <x-form.input name="work_date" :value="old('work_date', $work->work_date)" required />
 
             <x-form.button>Update</x-form.button>

@@ -28,7 +28,7 @@ class AdminTextController extends Controller
         });
 
         return view('texts.show', [
-            'title' => 'A text',
+            'title' => 'required',
             'slug' => ['required', Rule::unique('works', 'slug')->ignore($post->id)],
             'body' => 'required',
             'author' => 'required',
@@ -72,11 +72,13 @@ class AdminTextController extends Controller
     {
         $attributes = request()->validate([
             'title' => 'required',
-            'thumbnail' => 'image',
             'slug' => ['required', Rule::unique('texts', 'slug')->ignore($text->id)],
-            'excerpt' => 'required',
             'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
+            'author' => 'required',
+            'year' => 'required',
+            'description' => 'required',
+            'publication' => 'required',
+            'publication_date' => 'required',
         ]);
 
         if (isset($attributes['thumbnail'])) {
