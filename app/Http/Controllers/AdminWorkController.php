@@ -35,7 +35,8 @@ class AdminWorkController extends Controller
 
     public function create()
     {
-        return view('admin.works.create', ['cancel' => '/works']);
+//        dd(request());
+        return view('admin.works.create');
     }
 
     public function store()

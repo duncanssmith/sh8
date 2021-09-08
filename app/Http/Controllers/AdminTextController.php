@@ -41,7 +41,7 @@ class AdminTextController extends Controller
 
     public function create()
     {
-        return view('admin.texts.create', ['cancel' => '/texts']);
+        return view('admin.texts.create');
     }
 
     public function store()

@@ -1,6 +1,8 @@
 <x-layout>
-    <h1 class="text-xl text-gray-700 font-bold py-6">Edit page</h1>
-{{--    <x-setting :heading="Edit page:  . $category->name">--}}
+
+    <x-setting heading="Edit page">
+
+{{--    <h1 class="text-xl text-gray-700 font-bold py-6">Edit page</h1>--}}
         <form method="POST" action="/admin/category/{{ $category->id }}">
             @csrf
             @method('PATCH')
@@ -9,5 +11,6 @@
             <x-form.button>Update</x-form.button>
             <x-form.cancel>Cancel</x-form.cancel>
         </form>
-{{--    </x-setting>--}}
+
+    </x-setting>
 </x-layout>

@@ -1,6 +1,6 @@
 <x-layout>
-    <x-panel class="max-w-xl mx-auto">
-        <h1 class="text-xl text-gray-700 font-bold py-6">Create post</h1>
+    <x-setting heading="Create post">
+{{--        <h1 class="text-xl text-gray-700 font-bold py-6">Create post</h1>--}}
         <form method="POST" action="/admin/post" enctype="multipart/form-data">
             @csrf
             <x-form.input name="title" />
@@ -32,5 +32,5 @@
             <x-form.submit>Submit</x-form.submit>
             <x-form.cancel>Cancel</x-form.cancel>
         </form>
-    </x-panel>
+    </x-setting>
 </x-layout>

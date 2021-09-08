@@ -35,7 +35,7 @@ class AdminPostController extends Controller
 
     public function create()
     {
-        return view('admin.posts.create', ['cancel' => '/posts']);
+        return view('admin.posts.create');
     }
 
     public function store()

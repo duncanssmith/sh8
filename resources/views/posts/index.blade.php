@@ -1,4 +1,5 @@
 <x-layout>
+
     @if ($posts->count() > 0)
         <x-posts-grid :posts="$posts" />
 

@@ -35,7 +35,7 @@ class AdminCategoryController extends Controller
 
     public function create()
     {
-        return view('admin.categories.create', ['cancel' => '/categories']);
+        return view('admin.categories.create');
     }
 
     public function store()

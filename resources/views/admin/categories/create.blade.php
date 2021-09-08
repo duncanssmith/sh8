@@ -1,6 +1,6 @@
 <x-layout>
-{{--        <x-panel class="max-w-sm mx-auto">--}}
-        <h1 class="text-xl text-gray-700 font-bold py-6">Create page</h1>
+    <x-setting heading="Create page">
+{{--        <h1 class="text-xl text-gray-700 font-bold py-6">Create page</h1>--}}
             <form method="POST" action="/admin/category">
                 @csrf
                 <x-form.input name="name" />
@@ -8,5 +8,5 @@
                 <x-form.submit>Submit</x-form.submit>
                 <x-form.cancel>Cancel</x-form.cancel>
             </form>
-{{--        </x-panel>--}}
+    </x-setting>
 </x-layout>
