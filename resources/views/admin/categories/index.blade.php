@@ -7,12 +7,20 @@
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
                         <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-white divide-y divide-gray-200">
+                            <tr>
+{{--                                <th class="px-6 py-4 whitespace-nowrap text-gray-700"> &nbsp; </th>--}}
+                                <th class="px-6 py-4 whitespace-nowrap text-gray-700">Page name </th>
+                                <th class="px-6 py-4 whitespace-nowrap">&nbsp;</th>
+                                <th class="px-6 py-4 whitespace-nowrap">&nbsp;</th>
+                            </tr>
+                            </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($categories as $category)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
-                                            <div class="text-sm font-medium text-gray-900">
+                                            <div class="text-sm text-gray-600">
                                                 <a href="/categories/{{ $category->slug }}">
                                                     {{ $category->name }}
                                                 </a>

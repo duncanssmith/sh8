@@ -10,11 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\TextController;
 use App\Http\Controllers\WorkController;
-use App\Models\Category;
-use App\Models\Post;
-use App\Models\Text;
 use App\Models\User;
-use App\Models\Work;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -102,18 +98,6 @@ Route::post('/login', [SessionsController::class, 'store'])->middleware('guest')
 /* auth logout */
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
-//Route::get('/admin/categories/edit/{category:slug}', [CategoryController::class, 'edit']);//->middleware('admin');
-//Route::get('/admin/categories/create', [CategoryController::class, 'create']);//->middleware('admin');
-//Route::post('/admin/categories', [CategoryController::class, 'store']);//->middleware('admin');
-
-//Route::get('/admin/works/edit/{work:slug}', [WorkController::class, 'edit']);//->middleware('admin');
-//Route::get('/admin/works/create', [WorkController::class, 'create']);//->middleware('admin');
-//Route::post('/admin/works', [WorkController::class, 'store']);//->middleware('admin');
-
-//Route::get('/admin/texts/edit/{text:slug}', [TextController::class, 'edit']);//->middleware('admin');
-//Route::get('/admin/texts/create', [TextController::class, 'create']);//->middleware('admin');
-//Route::post('/admin/texts', [TextController::class, 'store']);//->middleware('admin');
-
 //Route::middleware('can:admin')->group(function () {
 //    Route::resource('admin/posts', AdminPostController::class)->except('show');
 //});
@@ -121,7 +105,6 @@ Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth
 Route::get('/service-container-route', function (SessionsController $service) {
     die(get_class($service));
 });
-
 
 //    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {
 //    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {
