@@ -169,6 +169,130 @@ class AdminCategoryController extends Controller
         return back()->with('success', 'Text assigned to selected category(ies)');
     }
 
+    /* TODO sort page works
+    public function sort_page_works(Category $category)
+    {
+        if (Auth::check()) {
+            $group = Group::with('Works')->where('id', '=', $id)->first();
 
+            // Couldn't figure out how to use Eloquent to get the works ordered by the pivot table order field
+            $works = DB::table('works')
+                ->join('group_work', 'works.id', '=', 'group_work.work_id')
+                ->join('groups', 'groups.id', '=', 'group_work.group_id')
+                ->select('group_work.order', 'works.id', 'works.title', 'works.media', 'works.dimensions', 'works.reference', 'works.work_date', 'works.description', 'works.notes')
+                ->where('groups.id', '=', $group->id)
+                ->orderBy('group_work.order')
+                ->get();
+
+            if (sizeof($works) < 1) {
+                Session::flash('message', 'There are currently no works on the '.$group->name.' page');
+                return Redirect::to('pages');
+            }
+            if (sizeof($works) == 1) {
+                Session::flash('message', 'There is currently only one work on the '.$group->name.' page');
+                return Redirect::to('pages');
+            }
+
+            return View::make('works.sort')
+                ->with('group', $group)
+                ->with('works', $works)
+                ->with('entity', 'page works')
+                ->with('title', 'Sort page works');
+
+        } else {
+
+            Session::flash('message', 'Please log in');
+
+            return Redirect::to('/');
+        }
+    }
+    */
+
+    /* TODO save page works order
+    public function save_page_works_order()
+    {
+
+        if (Request::ajax()){
+
+            $uuid = Input::get('uuid');
+            $id = Input::get('id');
+            $group_id = Input::get('group_id');
+
+            $i = 1;
+
+            foreach($id as $value) {
+                $groupwork = GroupWork::where('work_id', $value)->where('group_id', $group_id)->first();
+
+                $groupwork->order = $i;
+                $groupwork->save();
+
+                $i++;
+            }
+        }
+
+        return Redirect::to('/');
+    }
+    */
+
+    /* TODO sort page texts
+    public function sort_page_texts($id)
+    {
+        if (Auth::check()) {
+            $group = Group::where('id', '=', $id)->first();
+
+            // paginate
+            $groups = Group::orderBy('id', 'asc')->paginate(9);
+            $texts = $group->texts;
+
+            if (sizeof($texts) < 1) {
+                Session::flash('message', 'There are currently no texts on the '.$group->name.' page');
+                return Redirect::to('pages');
+            }
+            if (sizeof($texts) == 1) {
+                Session::flash('message', 'There is currently only one text on the '.$group->name.' page');
+                return Redirect::to('pages');
+            }
+
+            return View::make('texts.sort')
+                ->with('group', $group)
+                ->with('texts', $texts)
+                ->with('groups', $groups)
+                ->with('entity', 'page texts')
+                ->with('title', 'Sort page texts');
+
+        } else {
+            Session::flash('message', 'Please log in');
+            return Redirect::to('/');
+        }
+    }
+    */
+
+    /* TODO save page texts order
+    public function save_page_texts_order()
+    {
+
+        if (Request::ajax()){
+
+            $uuid = Input::get('uuid');
+            $id = Input::get('id');
+
+            $i = 1;
+
+            foreach($id as $val) {
+
+                $grouptext = GroupText::where('text_id', $val)->first();
+
+                $grouptext->order = $i;
+                $grouptext->save();
+
+                $i++;
+
+            }
+
+        }
+
+        return Redirect::to('/');
+    }
+    */
 
 }

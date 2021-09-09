@@ -13,6 +13,7 @@
                                     <th class="px-6 py-4 whitespace-nowrap text-gray-700"> Title </th>
                                     <th class="px-6 py-4 whitespace-nowrap">&nbsp;</th>
                                     <th class="px-6 py-4 whitespace-nowrap">&nbsp;</th>
+                                    <th class="px-6 py-4 whitespace-nowrap">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">

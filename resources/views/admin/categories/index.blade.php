@@ -33,11 +33,11 @@
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="/admin/category/sort_works/{{ $category->id }}" class="text-blue-500 hover:text-blue-600">Sort works</a>
+                                        <a href="/admin/category/{{ $category->id }}/sort_page_works" class="text-blue-500 hover:text-blue-600">Sort works</a>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="/admin/category/sort_texts/{{ $category->id }}" class="text-blue-500 hover:text-blue-600">Sort texts</a>
+                                        <a href="/admin/category/{{$category->id}}/sort_page_texts" class="text-blue-500 hover:text-blue-600">Sort texts</a>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

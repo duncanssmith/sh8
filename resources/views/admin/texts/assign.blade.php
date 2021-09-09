@@ -1,5 +1,6 @@
 <x-layout>
     <h1>{{ $text->title }}, {{ $text->year }}</h1>
+    <p>{{$text->body}}</p>
     <p>{{$text->description}}</p>
     <p>{{$text->author}}</p>
     <p>Select the pages you want this text to appear on.</p>

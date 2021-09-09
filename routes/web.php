@@ -73,6 +73,17 @@ Route::post('/admin/category/save_assigned_work', [AdminCategoryController::clas
 // Assign texts to Categories
 Route::get('/admin/category/assign_text/{text}', [AdminCategoryController::class, 'assign_text'])->name('assign text')->middleware('admin');
 Route::post('/admin/category/save_assigned_text', [AdminCategoryController::class, 'save_assigned_text'])->name('save_assigned_text')->middleware('admin');
+
+# Ordering items (works/texts) in Categories
+Route::get('/admin/category/{category}/sort_page_works', [AdminCategoryController::class, 'sort_page_works'])->name('sort page works');
+Route::get('/admin/category/{category}/sort_page_texts', [AdminCategoryController::class, 'sort_page_texts'])->name('sort page texts');
+//Route::get('/admin/category/sort_page_texts/{id}', [] ['as' => 'sort_page_texts',  'uses' => 'GroupController@sort_page_texts']);
+
+# Ajax routes to save orderings
+Route::post('/admin/category/save_page_works_order', [AdminCategoryController::class, 'save_page_works_order'])->name('save page works order');
+Route::post('/admin/category/save_page_texts_order', [AdminCategoryController::class, 'save_page_texts_order'])->name('save page texts order');
+
+
 //Route::get('/admin/assign_text/{id}', [AdminCategoryController::class, 'assign_text'])->name('assign_text')->middleware('admin');
 //Route::post('/admin/save_assigned_text', [AdminCategoryController::class, 'save_assign_text'])->name('save_assigned_text')->middleware('admin');
 
@@ -83,7 +94,6 @@ Route::post('/admin/category/save_assigned_text', [AdminCategoryController::clas
 # Ajax routes to save orders
 //Route::post('/save_page_works_order', [])->name()->middleware('admin'); //['as' => 'save_page_works_order',  'uses' => 'GroupController@save_page_works_order']);
 //Route::post('/save_page_texts_order', [])->name()->middleware('admin'); //['as' => 'save_page_texts_order',  'uses' => 'GroupController@save_page_texts_order']);
-
 
 /* guest texts */
 Route::get('/texts', [TextController::class, 'index'])->name('list texts');
