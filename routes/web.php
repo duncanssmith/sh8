@@ -66,9 +66,13 @@ Route::get('/admin/work/{work}/edit', [AdminWorkController::class, 'edit'])->nam
 Route::patch('admin/work/{work}', [AdminWorkController::class, 'update'])->middleware('admin');
 Route::delete('admin/work/{work}', [AdminWorkController::class, 'destroy'])->middleware('admin');
 
-// Assign items to Groups
+// Assign works to Categories
 Route::get('/admin/category/assign_work/{work}', [AdminCategoryController::class, 'assign_work'])->name('assign work')->middleware('admin');
 Route::post('/admin/category/save_assigned_work', [AdminCategoryController::class, 'save_assigned_work'])->name('save_assigned_work')->middleware('admin');
+
+// Assign texts to Categories
+Route::get('/admin/category/assign_text/{text}', [AdminCategoryController::class, 'assign_text'])->name('assign text')->middleware('admin');
+Route::post('/admin/category/save_assigned_text', [AdminCategoryController::class, 'save_assigned_text'])->name('save_assigned_text')->middleware('admin');
 //Route::get('/admin/assign_text/{id}', [AdminCategoryController::class, 'assign_text'])->name('assign_text')->middleware('admin');
 //Route::post('/admin/save_assigned_text', [AdminCategoryController::class, 'save_assign_text'])->name('save_assigned_text')->middleware('admin');
 

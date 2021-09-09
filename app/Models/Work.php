@@ -16,7 +16,7 @@ class Work extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class)->withPivot('order');
+        return $this->belongsToMany(Category::class)->withPivot('order')->withTimestamps();
     }
 
     /**

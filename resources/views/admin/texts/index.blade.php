@@ -13,6 +13,7 @@
                                 <th class="px-6 py-4 whitespace-nowrap text-gray-700"> Title </th>
                                 <th class="px-6 py-4 whitespace-nowrap">&nbsp;</th>
                                 <th class="px-6 py-4 whitespace-nowrap">&nbsp;</th>
+                                <th class="px-6 py-4 whitespace-nowrap">&nbsp;</th>
                             </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -30,6 +31,10 @@
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="/admin/text/{{ $text->id }}/edit" class="text-blue-500 hover:text-blue-600">Edit</a>
+                                    </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="/admin/category/assign_text/{{ $text->id }}" class="text-blue-500 hover:text-blue-600">Assign</a>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

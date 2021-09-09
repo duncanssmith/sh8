@@ -1,14 +1,15 @@
 <x-layout>
-    <h1>{{ $work->title }}, {{ $work->work_date }}</h1>
-    <p>Select the pages you want this work to appear on.</p>
-    <img src="{{ asset($work->thumbnail) }}" width="10%"/>&nbsp;
+    <h1>{{ $text->title }}, {{ $text->year }}</h1>
+    <p>{{$text->description}}</p>
+    <p>{{$text->author}}</p>
+    <p>Select the pages you want this text to appear on.</p>
 
-    <form method="POST" action="/admin/category/save_assigned_work" enctype="multipart/form-data">
+    <form method="POST" action="/admin/category/save_assigned_text" enctype="multipart/form-data">
         @csrf
         @foreach ($categories as $category)
             <x-form.checkbox name="{{ $category->name }}" id="{{ $category->id }}" checked="{{ isset($checked[$category->id]) ? true:false}}" />
         @endforeach
-        <input name="work_id" type="hidden" value="{{$work->id}}"/>
+        <input name="text_id" type="hidden" value="{{$text->id}}"/>
         <x-submit>Assign</x-submit>
     </form>
 

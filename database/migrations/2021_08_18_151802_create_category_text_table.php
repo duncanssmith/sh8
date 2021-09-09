@@ -14,10 +14,10 @@ class CreateCategoryTextTable extends Migration
     public function up()
     {
         Schema::create('category_text', function (Blueprint $table) {
-            $table->integerIncrements('id');
-            $table->unsignedInteger('category_id');
-            $table->unsignedInteger('text_id');
-            $table->unsignedSmallInteger('order')->nullable();
+            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreignId('text_id')->references('id')->on('texts')->onDelete('cascade');
+            $table->primary(['category_id', 'text_id']);
+            $table->unsignedSmallInteger('order')->default(10);
             $table->timestamps();
         });
     }

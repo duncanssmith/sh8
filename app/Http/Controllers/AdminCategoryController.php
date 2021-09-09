@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\CategoryWork;
+use App\Models\CategoryText;
+use App\Models\Text;
 use App\Models\Work;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -78,13 +80,11 @@ class AdminCategoryController extends Controller
 
     public function assign_work(Work $work)
     {
-        // store
         $slug = $work->slug;
         $work = cache()->remember("works.{$slug}", 30, function() use ($slug) {
             return Work::where('slug', $slug)->firstOrFail();
         });
 
-        $links = $work->categories;
         $categories = Category::all();
 
         $checked = [];
@@ -94,14 +94,19 @@ class AdminCategoryController extends Controller
 
         $checked = array_flip($checked);
 
+        $linkNames = [];
+        foreach($work->categories as $link) {
+            $linkNames[] = $link->name;
+        }
+
         // show the edit form and pass the group
         return view('admin.works.assign', [
+            'title' => 'Assign the work to a category or categories',
             'work' => $work,
-            'entity' => 'work',
-            'links' => $links,
+//            'entity' => 'work',
             'checked' => $checked,
             'categories' => $categories,
-            'title' => 'Assign the work to a category or categories',
+            'linkNames' => $linkNames,
         ]);
     }
 
@@ -118,4 +123,52 @@ class AdminCategoryController extends Controller
 
         return back()->with('success', 'Work assigned to selected category(ies)');
     }
+
+    public function assign_text(Text $text)
+    {
+        $slug = $text->slug;
+        $text = cache()->remember("texts.{$slug}", 30, function() use ($slug) {
+            return Text::where('slug', $slug)->firstOrFail();
+        });
+
+        $categories = Category::all();
+
+        $checked = [];
+        foreach ($text->categories as $link){
+            $checked[] = $link->pivot->category_id;
+        }
+
+        $checked = array_flip($checked);
+
+        $linkNames = [];
+        foreach($text->categories as $link) {
+            $linkNames[] = $link->name;
+        }
+
+        // show the edit form and pass the group
+        return view('admin.texts.assign', [
+            'title' => 'Assign the text to a category or categories',
+            'text' => $text,
+            'checked' => $checked,
+            'categories' => $categories,
+            'linkNames' => $linkNames,
+        ]);
+    }
+
+    public function save_assigned_text()
+    {
+        $text = Text::find($_POST['text_id']);
+
+        // only sync the pivot table data if there are any selected categories
+        if (!empty($_POST['categories_selected'])) {
+            $text->categories()->sync(array_keys($_POST['categories_selected']));
+        } else {
+            $text->categories()->detach();
+        }
+
+        return back()->with('success', 'Text assigned to selected category(ies)');
+    }
+
+
+
 }
