@@ -234,38 +234,38 @@ class AdminCategoryController extends Controller
     }
     */
 
-    /* TODO sort page texts
-    public function sort_page_texts($id)
+    /* TODO sort page texts */
+    public function sort_page_texts(Category $category)
     {
-        if (Auth::check()) {
-            $group = Group::where('id', '=', $id)->first();
+//        $category = Category::where('id', '=', $id)->first();
+        $slug = $category->slug;
+        $category = cache()->remember("categories.{$slug}", 30, function() use ($slug) {
+            return Category::where('slug', $slug)->firstOrFail();
+        });
 
-            // paginate
-            $groups = Group::orderBy('id', 'asc')->paginate(9);
-            $texts = $group->texts;
+        // paginate
+        $categories = Category::orderBy('id', 'asc')->paginate(50);
+        $texts = $category->texts;
+//        ddd($category->name, $texts);
 
-            if (sizeof($texts) < 1) {
-                Session::flash('message', 'There are currently no texts on the '.$group->name.' page');
-                return Redirect::to('pages');
-            }
-            if (sizeof($texts) == 1) {
-                Session::flash('message', 'There is currently only one text on the '.$group->name.' page');
-                return Redirect::to('pages');
-            }
-
-            return View::make('texts.sort')
-                ->with('group', $group)
-                ->with('texts', $texts)
-                ->with('groups', $groups)
-                ->with('entity', 'page texts')
-                ->with('title', 'Sort page texts');
-
-        } else {
-            Session::flash('message', 'Please log in');
-            return Redirect::to('/');
+        if (sizeof($texts) < 1) {
+//            Session::flash('message', 'There are currently no texts on the '.$category->name.' page');
+//            return Redirect::to('pages');
         }
+        if (sizeof($texts) == 1) {
+//            Session::flash('message', 'There is currently only one text on the '.$category->name.' page');
+//            return Redirect::to('pages');
+        }
+
+        return view('admin.texts.sort', [
+            'category' => $category,
+            'texts' => $texts,
+            'entity' => 'page texts',
+            'title' => 'Sort page texts',
+        ]);
+
     }
-    */
+    /* */
 
     /* TODO save page texts order
     public function save_page_texts_order()
