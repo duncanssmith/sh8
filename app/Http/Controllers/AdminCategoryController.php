@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\CategoryWork;
+use App\Models\Work;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -72,5 +74,48 @@ class AdminCategoryController extends Controller
         $category->delete();
 
         return back()->with('success', 'Category deleted');
+    }
+
+    public function assign_work(Work $work)
+    {
+        // store
+        $slug = $work->slug;
+        $work = cache()->remember("works.{$slug}", 30, function() use ($slug) {
+            return Work::where('slug', $slug)->firstOrFail();
+        });
+
+        $links = $work->categories;
+        $categories = Category::all();
+
+        $checked = [];
+        foreach ($work->categories as $link){
+            $checked[] = $link->pivot->category_id;
+        }
+
+        $checked = array_flip($checked);
+
+        // show the edit form and pass the group
+        return view('admin.works.assign', [
+            'work' => $work,
+            'entity' => 'work',
+            'links' => $links,
+            'checked' => $checked,
+            'categories' => $categories,
+            'title' => 'Assign the work to a category or categories',
+        ]);
+    }
+
+    public function save_assigned_work()
+    {
+        $work = Work::find($_POST['work_id']);
+
+        // only sync the pivot table data if there are any selected categories
+        if (!empty($_POST['categories_selected'])) {
+            $work->categories()->sync(array_keys($_POST['categories_selected']));
+        } else {
+            $work->categories()->detach();
+        }
+
+        return back()->with('success', 'Work assigned to selected category(ies)');
     }
 }

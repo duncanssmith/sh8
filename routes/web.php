@@ -39,6 +39,9 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 //   return ['duncan' => 'smith' ];
 //});
 
+/* guest home */
+Route::get('/home/{category:slug}', [CategoryController::class, 'home'])->name('works texts on page ');
+
 /* guest categories */
 Route::get('/', [CategoryController::class, 'index'])->name('list categories');
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('show a category');
@@ -56,12 +59,27 @@ Route::get('/works', [WorkController::class, 'index'])->name('list works');
 Route::get('/works/{work:slug}', [WorkController::class, 'show'])->name('show a work');
 
 /* auth works */
-Route::post('/admin/work', [AdminWorkController::class, 'store'])->name('save work');
-Route::get('/admin/work/create', [AdminWorkController::class, 'create'])->name('create work');
+Route::post('/admin/work', [AdminWorkController::class, 'store'])->name('save work')->middleware('admin');
+Route::get('/admin/work/create', [AdminWorkController::class, 'create'])->name('create work')->middleware('admin');
 Route::get('/admin/works', [AdminWorkController::class, 'index'])->name('admin works index')->middleware('admin');
 Route::get('/admin/work/{work}/edit', [AdminWorkController::class, 'edit'])->name('admin work edit')->middleware('admin');
 Route::patch('admin/work/{work}', [AdminWorkController::class, 'update'])->middleware('admin');
 Route::delete('admin/work/{work}', [AdminWorkController::class, 'destroy'])->middleware('admin');
+
+// Assign items to Groups
+Route::get('/admin/category/assign_work/{work}', [AdminCategoryController::class, 'assign_work'])->name('assign work')->middleware('admin');
+Route::post('/admin/category/save_assigned_work', [AdminCategoryController::class, 'save_assigned_work'])->name('save_assigned_work')->middleware('admin');
+//Route::get('/admin/assign_text/{id}', [AdminCategoryController::class, 'assign_text'])->name('assign_text')->middleware('admin');
+//Route::post('/admin/save_assigned_text', [AdminCategoryController::class, 'save_assign_text'])->name('save_assigned_text')->middleware('admin');
+
+# Ordering items in Groups
+//Route::get('/sort_page_works/{id}', [])->name()->middleware('admin'); //['as' => 'sort_page_works',  'uses' => 'GroupController@sort_page_works']);
+//Route::get('/sort_page_texts/{id}', [])->name()->middleware('admin'); //['as' => 'sort_page_texts',  'uses' => 'GroupController@sort_page_texts']);
+
+# Ajax routes to save orders
+//Route::post('/save_page_works_order', [])->name()->middleware('admin'); //['as' => 'save_page_works_order',  'uses' => 'GroupController@save_page_works_order']);
+//Route::post('/save_page_texts_order', [])->name()->middleware('admin'); //['as' => 'save_page_texts_order',  'uses' => 'GroupController@save_page_texts_order']);
+
 
 /* guest texts */
 Route::get('/texts', [TextController::class, 'index'])->name('list texts');

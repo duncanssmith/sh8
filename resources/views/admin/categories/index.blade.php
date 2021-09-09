@@ -33,6 +33,14 @@
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="/admin/category/sort_works/{{ $category->id }}" class="text-blue-500 hover:text-blue-600">Sort works</a>
+                                    </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="/admin/category/sort_texts/{{ $category->id }}" class="text-blue-500 hover:text-blue-600">Sort texts</a>
+                                    </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <form method="POST" action="/admin/category/{{ $category->id }}">
                                             @csrf
                                             @method('DELETE')

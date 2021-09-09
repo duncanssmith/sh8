@@ -36,11 +36,11 @@
 
                     <div class="mt-4">
                         <h1 class="text-3xl">
-                            <a href="/categories/{{ $category->slug }}"
-                               >
-                                {{ ucwords($category->name) }}
-                            </a>
+                            <a href="/categories/{{ $category->slug }}"> {{ ucwords($category->name) }} </a>
                         </h1>
+                        <h3 class="text-xl">
+                            <a href="/home/{{ $category->slug }}"> view as home page </a>
+                        </h3>
                         <p class="space-x-2">{{ count($category->works) }} {!! count($category->works) == 1 ? 'work' : 'works' !!}</p>
                         <p class="space-x-2">{{ count($category->texts) }} {!! count($category->texts) == 1 ? 'text' : 'texts' !!}</p>
                     </div>
