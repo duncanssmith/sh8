@@ -3,16 +3,18 @@
     <title>Duncan Smith {{ $attributes }}</title>
     <meta charset="UTF-8">
 {{--    Run npm run build to compile ~/css/app.css --}}
-    <link rel="stylesheet" href="/css/app.css">
     {{--    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script src="https://kit.fontawesome.com/1feeac4669.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!--<script src="{{ asset('/media/js/vendor/ckeditor/ckeditor.js') }}"></script> -->
-    <script src="//cdn.ckeditor.com/4.4.5/basic/ckeditor.js"></script>
-    <script src="{{ asset('/media/js/image_sort.js')}}"></script>
-    <script src="{{ asset('/media/js/text_sort.js')}}"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/app.css">
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+        <script src="https://kit.fontawesome.com/1feeac4669.js" crossorigin="anonymous"></script>
+    @auth
+        <script src="{{ asset('/js/ckeditor/ckeditor.js') }}"></script>
+{{--        <script src="//cdn.ckeditor.com/4.4.5/basic/ckeditor.js"></script>--}}
+        <script src="{{ asset('/media/js/image_sort.js')}}"></script>
+        <script src="{{ asset('/media/js/text_sort.js')}}"></script>
+    @endauth
 
 </head>
 

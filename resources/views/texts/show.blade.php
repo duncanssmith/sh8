@@ -9,7 +9,7 @@
            </h2>
 
         <div class="text-gray-700 py-4 space-y-4 lg:text-lg leading-loose">
-            {{ $text->body }}
+            {!! $text->body !!}
         </div>
         <p class="text-gray-700 py-4">
             <span class="font-bold">Author:</span> {{ $text->author }}
@@ -18,7 +18,7 @@
             <span class="font-bold">Year:</span> {{ $text->year }}
         </p>
         <p class="text-gray-700 py-4" >
-            <span class="font-bold">Description:</span> {{ $text->description }}
+            <span class="font-bold">Description:</span> {!! $text->description !!}
         </p>
         <p class="text-gray-700 py-4" >
             <span class="font-bold">Publication:</span> {{ $text->publication }}
