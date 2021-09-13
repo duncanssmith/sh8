@@ -169,20 +169,31 @@ class AdminCategoryController extends Controller
         return back()->with('success', 'Text assigned to selected category(ies)');
     }
 
-    /* TODO sort page works
+    /* TODO sort page works */
     public function sort_page_works(Category $category)
     {
-        if (Auth::check()) {
-            $group = Group::with('Works')->where('id', '=', $id)->first();
+        $slug = $category->slug;
+
+        $category = cache()->remember("categories.{$slug}", 30, function() use ($slug) {
+            return Category::where('slug', $slug)->firstOrFail();
+        });
+
+//        ddd($category->works->sortBy('pivot.order'));
+
+//            $cat = Category::with('Works')->where('id', '=', $category->id)->first();
+
+//        ddd($cat);
 
             // Couldn't figure out how to use Eloquent to get the works ordered by the pivot table order field
-            $works = DB::table('works')
-                ->join('group_work', 'works.id', '=', 'group_work.work_id')
-                ->join('groups', 'groups.id', '=', 'group_work.group_id')
-                ->select('group_work.order', 'works.id', 'works.title', 'works.media', 'works.dimensions', 'works.reference', 'works.work_date', 'works.description', 'works.notes')
-                ->where('groups.id', '=', $group->id)
-                ->orderBy('group_work.order')
-                ->get();
+//            $works = DB::table('works')
+//                ->join('group_work', 'works.id', '=', 'group_work.work_id')
+//                ->join('groups', 'groups.id', '=', 'group_work.group_id')
+//                ->select('group_work.order', 'works.id', 'works.title', 'works.media', 'works.dimensions', 'works.reference', 'works.work_date', 'works.description', 'works.notes')
+//                ->where('groups.id', '=', $group->id)
+//                ->orderBy('group_work.order')
+//                ->get();
+
+        $works = $category->works->sortBy('pivot.order', SORT_DESC);
 
             if (sizeof($works) < 1) {
                 Session::flash('message', 'There are currently no works on the '.$group->name.' page');
@@ -193,20 +204,12 @@ class AdminCategoryController extends Controller
                 return Redirect::to('pages');
             }
 
-            return View::make('works.sort')
-                ->with('group', $group)
-                ->with('works', $works)
-                ->with('entity', 'page works')
-                ->with('title', 'Sort page works');
-
-        } else {
-
-            Session::flash('message', 'Please log in');
-
-            return Redirect::to('/');
-        }
+        return view('admin.works.sort', [
+            'works' => $works,
+            'category' => $category,
+        ]);
     }
-    */
+    /**/
 
     /* TODO save page works order
     public function save_page_works_order()

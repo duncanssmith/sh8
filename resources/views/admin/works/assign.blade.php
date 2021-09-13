@@ -9,7 +9,9 @@
             <x-form.checkbox name="{{ $category->name }}" id="{{ $category->id }}" checked="{{ isset($checked[$category->id]) ? true:false}}" />
         @endforeach
         <input name="work_id" type="hidden" value="{{$work->id}}"/>
-        <x-submit>Assign</x-submit>
+        <x-form.submit>Assign</x-form.submit>
+        <x-form.cancel>Cancel</x-form.cancel>
+
     </form>
 
     @if(count($linkNames) > 0)

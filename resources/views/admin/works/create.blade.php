@@ -10,8 +10,8 @@
             <x-form.input name="dimensions" />
             <x-form.input name="work_date" />
 
-            <x-form.button>Submit</x-form.button>
-{{--            <x-form.cancel>Cancel</x-form.cancel>--}}
+            <x-form.submit>Submit</x-form.submit>
+            <x-form.cancel>Cancel</x-form.cancel>
         </form>
     </x-setting>
 </x-layout>

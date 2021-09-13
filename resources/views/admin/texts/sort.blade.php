@@ -32,9 +32,10 @@
         @endforeach
         </tbody>
     </table>
-
-{{--    <a href="/pages" class="btn btn-xs btn-default"><i class="fa fa-arrow-left" style="color:#999;"></i> Back</a>--}}
+    <x-form.cancel>Back</x-form.cancel>
 
     </div>
+
+
 
 </x-layout>

@@ -11,8 +11,9 @@
             <x-form.textarea name="description" class="ckeditor" />
             <x-form.input name="publication" />
             <x-form.input name="publication_date" />
+
             <x-form.submit>Submit</x-form.submit>
-{{--            <x-form.cancel>Cancel</x-form.cancel>--}}
+            <x-form.cancel>Cancel</x-form.cancel>
 
         </form>
     </x-setting>

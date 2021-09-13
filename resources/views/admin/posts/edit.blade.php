@@ -39,7 +39,8 @@
                 </div>
             </x-form.field>
 
-            <x-form.button>Update</x-form.button>
+            <x-form.submit>Update</x-form.submit>
+            <x-form.cancel>Cancel</x-form.cancel>
         </form>
     </x-setting>
 </x-layout>
