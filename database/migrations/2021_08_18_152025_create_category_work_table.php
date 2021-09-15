@@ -14,9 +14,9 @@ class CreateCategoryWorkTable extends Migration
     public function up()
     {
         Schema::create('category_work', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreignId('work_id')->references('id')->on('works')->onDelete('cascade');
-            $table->primary(['category_id', 'work_id']);
             $table->unsignedSmallInteger('order')->default(10);
             $table->timestamps();
         });
