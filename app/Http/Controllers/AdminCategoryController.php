@@ -7,11 +7,18 @@ use App\Models\CategoryWork;
 use App\Models\CategoryText;
 use App\Models\Text;
 use App\Models\Work;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class AdminCategoryController extends Controller
 {
+    /**
+     * @return Factory|View
+     */
     public function index()
     {
         return view('admin.categories.index', [
@@ -22,6 +29,11 @@ class AdminCategoryController extends Controller
         ]);
     }
 
+    /**
+     * @param Category $category
+     * @return Factory|View
+     * @throws \Exception
+     */
     public function show(Category $category)
     {
         $slug = $category->slug;
@@ -35,11 +47,17 @@ class AdminCategoryController extends Controller
         ]);
     }
 
+    /**
+     * @return Factory|View
+     */
     public function create()
     {
         return view('admin.categories.create');
     }
 
+    /**
+     * @return RedirectResponse|Redirector
+     */
     public function store()
     {
         $attributes = request()->validate([
@@ -52,11 +70,19 @@ class AdminCategoryController extends Controller
         return redirect('/');
     }
 
+    /**
+     * @param Category $category
+     * @return Factory|View
+     */
     public function edit(Category $category)
     {
         return view('admin.categories.edit', ['category' => $category]);
     }
 
+    /**
+     * @param Category $category
+     * @return RedirectResponse
+     */
     public function update(Category $category)
     {
         $attributes = request()->validate([
@@ -69,6 +95,10 @@ class AdminCategoryController extends Controller
         return back()->with('success', 'Category updated');
     }
 
+    /**
+     * @param Category $category
+     * @return RedirectResponse
+     */
     public function destroy(Category $category)
     {
         $category->delete();
@@ -76,6 +106,11 @@ class AdminCategoryController extends Controller
         return back()->with('success', 'Category deleted');
     }
 
+    /**
+     * @param Work $work
+     * @return Factory|View
+     * @throws \Exception
+     */
     public function assign_work(Work $work)
     {
         $slug = $work->slug;
@@ -107,6 +142,9 @@ class AdminCategoryController extends Controller
         ]);
     }
 
+    /**
+     * @return RedirectResponse
+     */
     public function save_assigned_work()
     {
         $work = Work::find($_POST['work_id']);
@@ -121,6 +159,11 @@ class AdminCategoryController extends Controller
         return back()->with('success', 'Work assigned to selected category(ies)');
     }
 
+    /**
+     * @param Text $text
+     * @return Factory|View
+     * @throws \Exception
+     */
     public function assign_text(Text $text)
     {
         $slug = $text->slug;
@@ -152,6 +195,9 @@ class AdminCategoryController extends Controller
         ]);
     }
 
+    /**
+     * @return RedirectResponse
+     */
     public function save_assigned_text()
     {
         $text = Text::find($_POST['text_id']);
@@ -166,6 +212,11 @@ class AdminCategoryController extends Controller
         return back()->with('success', 'Text assigned to selected category(ies)');
     }
 
+    /**
+     * @param Category $category
+     * @return Factory|View|RedirectResponse
+     * @throws \Exception
+     */
     public function sort_page_works(Category $category)
     {
         $slug = $category->slug;
@@ -193,6 +244,9 @@ class AdminCategoryController extends Controller
         ]);
     }
 
+    /**
+     * Save page works order
+     */
     public function save_page_works_order()
     {
         if (request()->ajax()) {
@@ -214,7 +268,11 @@ class AdminCategoryController extends Controller
         }
     }
 
-    /* TODO sort page texts */
+    /**
+     * @param Category $category
+     * @return Factory|View|RedirectResponse
+     * @throws \Exception
+     */
     public function sort_page_texts(Category $category)
     {
         $slug = $category->slug;
@@ -243,9 +301,10 @@ class AdminCategoryController extends Controller
         ]);
 
     }
-    /* */
 
-    /* TODO save page texts order */
+    /**
+     * Save page texts order
+     */
     public function save_page_texts_order()
     {
         if (request()->ajax()){
