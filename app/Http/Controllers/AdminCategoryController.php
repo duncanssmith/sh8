@@ -7,9 +7,7 @@ use App\Models\CategoryWork;
 use App\Models\CategoryText;
 use App\Models\Text;
 use App\Models\Work;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class AdminCategoryController extends Controller
@@ -103,7 +101,6 @@ class AdminCategoryController extends Controller
         return view('admin.works.assign', [
             'title' => 'Assign the work to a category or categories',
             'work' => $work,
-//            'entity' => 'work',
             'checked' => $checked,
             'categories' => $categories,
             'linkNames' => $linkNames,
@@ -169,133 +166,105 @@ class AdminCategoryController extends Controller
         return back()->with('success', 'Text assigned to selected category(ies)');
     }
 
-    /* TODO sort page works */
     public function sort_page_works(Category $category)
     {
         $slug = $category->slug;
 
-        $category = cache()->remember("categories.{$slug}", 30, function() use ($slug) {
+        $category = cache()->remember("categories.{$slug}", 5, function() use ($slug) {
             return Category::where('slug', $slug)->firstOrFail();
         });
-
-//        ddd($category->works->sortBy('pivot.order'));
-
-//            $cat = Category::with('Works')->where('id', '=', $category->id)->first();
-
-//        ddd($cat);
-
-            // Couldn't figure out how to use Eloquent to get the works ordered by the pivot table order field
-//            $works = DB::table('works')
-//                ->join('group_work', 'works.id', '=', 'group_work.work_id')
-//                ->join('groups', 'groups.id', '=', 'group_work.group_id')
-//                ->select('group_work.order', 'works.id', 'works.title', 'works.media', 'works.dimensions', 'works.reference', 'works.work_date', 'works.description', 'works.notes')
-//                ->where('groups.id', '=', $group->id)
-//                ->orderBy('group_work.order')
-//                ->get();
 
         $works = $category->works->sortBy('pivot.order', SORT_DESC);
 
             if (sizeof($works) < 1) {
-                Session::flash('message', 'There are currently no works on the '.$group->name.' page');
-                return Redirect::to('pages');
+                return back()->with('success', 'No works in '.$category->name.' yet');
             }
             if (sizeof($works) == 1) {
-                Session::flash('message', 'There is currently only one work on the '.$group->name.' page');
-                return Redirect::to('pages');
+                return back()->with('success', 'Only one work on '.$category->name . ' page');
             }
+
+        $uuid = Str::uuid()->toString();
 
         return view('admin.works.sort', [
             'works' => $works,
             'category' => $category,
+            'uuid' => $uuid,
+            'path' => '/admin/category/save_page_works_order',
         ]);
     }
-    /**/
 
-    /* TODO save page works order
     public function save_page_works_order()
     {
+        if (request()->ajax()) {
+            $uuid = request()->get('uuid');
+            $work_ids = request()->get('data_ids');
+            $category_id = request()->get('category_id');
 
-        if (Request::ajax()){
+            $i = 0;
+            foreach ($work_ids as $work_id) {
+                $categoryWork = CategoryWork::where('work_id', $work_id)
+                    ->where('category_id', $category_id)
+                    ->first();
 
-            $uuid = Input::get('uuid');
-            $id = Input::get('id');
-            $group_id = Input::get('group_id');
-
-            $i = 1;
-
-            foreach($id as $value) {
-                $groupwork = GroupWork::where('work_id', $value)->where('group_id', $group_id)->first();
-
-                $groupwork->order = $i;
-                $groupwork->save();
+                $categoryWork->order = $i;
+                $categoryWork->update();
 
                 $i++;
             }
         }
-
-        return Redirect::to('/');
     }
-    */
 
     /* TODO sort page texts */
     public function sort_page_texts(Category $category)
     {
-//        $category = Category::where('id', '=', $id)->first();
         $slug = $category->slug;
-        $category = cache()->remember("categories.{$slug}", 30, function() use ($slug) {
+        $category = cache()->remember("categories.{$slug}", 5, function() use ($slug) {
             return Category::where('slug', $slug)->firstOrFail();
         });
 
-        // paginate
-        $categories = Category::orderBy('id', 'asc')->paginate(50);
-        $texts = $category->texts;
-//        ddd($category->name, $texts);
+        $texts = $category->texts->sortBy('pivot.order', SORT_DESC);
 
         if (sizeof($texts) < 1) {
-//            Session::flash('message', 'There are currently no texts on the '.$category->name.' page');
-//            return Redirect::to('pages');
+            return back()->with('success', 'No texts yet');
         }
         if (sizeof($texts) == 1) {
-//            Session::flash('message', 'There is currently only one text on the '.$category->name.' page');
-//            return Redirect::to('pages');
+            return back()->with('success', 'Only one text on '.$category->name . ' page');
         }
+
+        $uuid = Str::uuid()->toString();
 
         return view('admin.texts.sort', [
             'category' => $category,
             'texts' => $texts,
             'entity' => 'page texts',
             'title' => 'Sort page texts',
+            'uuid' => $uuid,
+            'path' => '/admin/category/save_page_texts_order',
         ]);
 
     }
     /* */
 
-    /* TODO save page texts order
+    /* TODO save page texts order */
     public function save_page_texts_order()
     {
+        if (request()->ajax()){
+            $uuid = request()->get('uuid');
+            $text_ids = request()->get('data_ids');
+            $category_id = request()->get('category_id');
 
-        if (Request::ajax()){
+            $i = 0;
+            foreach($text_ids as $text_id) {
+                $categoryText = CategoryText::where('text_id', $text_id)
+                    ->where('category_id', $category_id)
+                    ->first();
 
-            $uuid = Input::get('uuid');
-            $id = Input::get('id');
-
-            $i = 1;
-
-            foreach($id as $val) {
-
-                $grouptext = GroupText::where('text_id', $val)->first();
-
-                $grouptext->order = $i;
-                $grouptext->save();
+                $categoryText->order = $i;
+                $categoryText->update();
 
                 $i++;
-
             }
-
         }
-
-        return Redirect::to('/');
     }
-    */
 
 }
