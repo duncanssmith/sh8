@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :uuid=$uuid :path="$path">
 
     <h1>Sort {{ $category->name }} texts</h1>
     <p>Click and drag items below to arrange in the desired order</p>
@@ -8,34 +8,48 @@
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-    <table class="table table-striped table-bordered group" data-groupid="{{ $category->id}}">
-        <thead>
-        <tr>
-            <td>Title</td>
-            <td>Content</td>
-            <td>Author</td>
-            <td>Description</td>
-            <td>Year</td>
-        </tr>
-        </thead>
-        <tbody id="text-sortable" class="text-sortable">
-        @foreach($texts as $key => $text)
-            <tr class="ui-state-default" data-id="{{ $text->id }}">
+    <div class="py-4 px2">
+        <table class="border category" data-categoryid="{{ $category->id}}">
+            <thead>
+            <tr>
 
-                <td>{{ $text->title }}</td>
-                <td title="{{ $text->body }}"><i class="fa fa-list"></i></td>
-                <td>{{ $text->author }}</td>
-                <td>{{ $text->description }}</td>
-                <td>{{ $text->year }}</td>
+                <th class="px-4 py-4 border border-solid text-gray-500"><i class="fa fa-sort"></i></th>
+{{--                <th class="border border-solid ">Sort-order</th>--}}
+{{--                <th class="border border-solid ">Id</th>--}}
+                <th class="border border-solid px-4 text-gray-500">Title</th>
+{{--                <th class="border border-solid">Slug</th>--}}
+                <th class="border border-solid px-4 text-gray-500">Body</th>
+                <th class="border border-solid px-4 text-gray-500">Author</th>
+                <th class="border border-solid px-4 text-gray-500">Year</th>
+                <th class="border border-solid px-4 text-gray-500">Description</th>
+                <th class="border border-solid px-4 text-gray-500">Publication</th>
+                <th class="border border-solid px-4 text-gray-500">Publication date</th>
 
             </tr>
-        @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody id="sortable" class="sortable ui-sortable">
+            @foreach($texts as $key => $text)
+                <tr class="ui-state-default ui-sortable-handle " data-id="{{ $text->id }}">
+
+                    <td class="px-4 py-4 text-gray-500 "><i class="fa fa-random" title="sort"></i></td>
+{{--                    <td class="border border-solid ">{{ $text->pivot->order }}</td>--}}
+{{--                    <td class="border border-solid ">{{ $text->id }}</td>--}}
+                    <td class="border border-solid py-2 px-3" title="id:[{{$text->id}}] order:[{{$text->pivot->order}}]">{{ $text->title }}</td>
+{{--                    <td class="border border-solid px-3">{{ $text->slug }}</td>--}}
+                    <td class="border border-solid px-3" title="{{ $text->body }}"><i class="fa fa-list text-gray-500" ></i></td>
+                    <td class="border border-solid px-3">{{ $text->author }}</td>
+                    <td class="border border-solid px-3">{{ $text->year }}</td>
+                    <td class="border border-solid px-3">{{ $text->description }}</td>
+                    <td class="border border-solid px-3">{{ $text->publication }}</td>
+                    <td class="border border-solid px-3">{{ $text->publication_date }}</td>
+
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
     <x-form.cancel>Back</x-form.cancel>
 
     </div>
-
-
 
 </x-layout>

@@ -11,8 +11,9 @@
                             <tr>
 {{--                                <th class="px-6 py-4 whitespace-nowrap text-gray-700"> &nbsp; </th>--}}
                                 <th class="px-6 py-4 whitespace-nowrap text-gray-700">Page name </th>
-                                <th class="px-6 py-4 whitespace-nowrap">&nbsp;</th>
-                                <th class="px-6 py-4 whitespace-nowrap">&nbsp;</th>
+                                <th class="px-6 py-4 whitespace-nowrap">Works&nbsp;</th>
+                                <th class="px-6 py-4 whitespace-nowrap">Texts&nbsp;</th>
+                                <th class="px-6 py-4 whitespace-nowrap" colspan="4">Actions&nbsp;</th>
                             </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -27,6 +28,8 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ count($category->works) }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ count($category->texts) }}</td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="/admin/category/{{ $category->id }}/edit" class="text-blue-500 hover:text-blue-600">Edit</a>

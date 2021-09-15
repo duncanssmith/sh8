@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <head>
-    <title>Duncan Smith {{ $attributes }}</title>
+    <title>Your Work My Work</title>
     <meta charset="UTF-8">
-{{--    Run npm run build to compile ~/css/app.css --}}
-    {{--    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    {{--    Run npm run build to compile ~/css/app.css --}}
+{{--        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    {{--    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">--}}
+    <link rel="stylesheet" href="/css/app.css">
 
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/css/app.css">
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-        <script src="https://kit.fontawesome.com/1feeac4669.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://kit.fontawesome.com/1feeac4669.js" crossorigin="anonymous"></script>
+
     @auth
-        <script src="{{ asset('/js/ckeditor/ckeditor.js') }}"></script>
-{{--        <script src="//cdn.ckeditor.com/4.4.5/basic/ckeditor.js"></script>--}}
-        <script src="{{ asset('/media/js/image_sort.js')}}"></script>
-        <script src="{{ asset('/media/js/text_sort.js')}}"></script>
+        <script src="{{ asset('/js/vendor/ckeditor/ckeditor.js') }}"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <style>
+            #sortable { list-style-type: none; margin: 10px; padding: 10px; width: 30%; }
+            #sortable li { margin: 10px 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+            #sortable li span { position: absolute; margin-left: -1.3em; }
+        </style>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript">var uuid = "{{ $uuid ?? ''}}"; var path = "{{ $path ?? ''}}";</script>
+        <script type="text/javascript" src="{{ asset('/js/sortable-sort.js') }}" rel="script"></script>
     @endauth
-
 </head>
-
 <body>
 
 {{--    Gives padding to whole section--}}
@@ -26,7 +34,7 @@
         <nav class="md:flex md:justify-between md:items-center">
             <div>
                 <a href="/">
-                    <h1 class="font-bold text-gray-700 text-2xl ">Duncan Smith</h1>
+                    <h1 class="font-bold text-gray-700 text-2xl ">Your Work My Work</h1>
                 </a>
             </div>
 
@@ -85,5 +93,11 @@
     </div>
 
     <x-flash />
+
+{{-- React example --}}
+{{--<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>--}}
+{{--<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>--}}
+<!-- Load our React component. -->
+{{--<script src="/js/like_button.js"></script>--}}
 
 </body>
