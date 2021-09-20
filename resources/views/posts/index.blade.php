@@ -7,4 +7,5 @@
     @else
         <p class="text-center">No posts found.</p>
     @endif
+
 </x-layout>

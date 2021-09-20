@@ -1,6 +1,6 @@
 <x-layout>
 
-    <x-setting heading="Manage pages">
+    <x-setting heading="Manage pages" count="{{count($categories)}}">
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -11,6 +11,7 @@
                             <tr>
 {{--                                <th class="px-6 py-4 whitespace-nowrap text-gray-700"> &nbsp; </th>--}}
                                 <th class="px-6 py-4 whitespace-nowrap text-gray-700">Page name </th>
+                                <th class="px-6 py-4 whitespace-nowrap">Display?&nbsp;</th>
                                 <th class="px-6 py-4 whitespace-nowrap">Works&nbsp;</th>
                                 <th class="px-6 py-4 whitespace-nowrap">Texts&nbsp;</th>
                                 <th class="px-6 py-4 whitespace-nowrap" colspan="4">Actions&nbsp;</th>
@@ -27,6 +28,12 @@
                                                 </a>
                                             </div>
                                         </div>
+                                    </td>
+                                    <td class="">
+
+                                        @if ($category->display)
+                                            <i class="fa fa-check text-green-500"></i>
+                                        @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ count($category->works) }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ count($category->texts) }}</td>
@@ -52,9 +59,13 @@
                                         </form>
                                     </td>
                                 </tr>
+
                             @endforeach
+
                             </tbody>
                         </table>
+
+                        {!! empty($categories) ? '' : $categories->links() !!}
                     </div>
                 </div>
             </div>

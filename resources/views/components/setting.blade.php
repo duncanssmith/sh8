@@ -1,9 +1,10 @@
-@props(['heading'])
+@props(['heading', 'count'])
 
 <section class="py-8 max-w-6xl mx-auto">
-    <h1 class="text-gray-700 font-semibold">{{ $heading }}</h1>
+    <h1 class="text-gray-700 font-semibold">{{ $heading }}
+        <span class="py-2 px-2 border border-solid border-gray-800 bg-transparent text-gray-500 rounded-lg">{{ $count ?? 0 }}</span>
+    </h1>
 </section>
-
 
 <div class="flex">
     <x-panel>

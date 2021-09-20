@@ -12,12 +12,12 @@
     <div class="py-4 px2">
         <table class="category py-4 px-2" data-categoryid="{{ $category->id}}">
             <thead>
-            <tr class="text-gray-500">
+            <tr class="text-gray-500 text-sm">
 
                 <th class="px-4 py-4 border border-solid"><i class="fa fa-sort text-blue-500" title="Drag and drop rows to sort"></i></th>
 {{--                <th class="border border-solid ">Sort-order</th>--}}
 {{--                <th class="border border-solid ">Id</th>--}}
-                <th class="border border-solid px-4">Thumbnail</th>
+                <th class="border border-solid px-4">Image</th>
                 <th class="border border-solid px-4">Title</th>
                 <th class="border border-solid px-4">Slug</th>
                 <th class="border border-solid px-4">Media</th>
@@ -28,7 +28,7 @@
             </thead>
             <tbody id="sortable" class="sortable ui-sortable">
             @foreach($works as $key => $work)
-                <tr class="ui-state-default ui-sortable-handle text-gray-500" data-id="{{ $work->id }}">
+                <tr class="ui-state-default ui-sortable-handle text-gray-500 text-sm" data-id="{{ $work->id }}">
 
                     <td class="px-4 py-4 text-blue-500 "><i class="fa fa-random" title="s:[{{$work->pivot->order}}]"></i></td>
 {{--                    <td class="border border-solid ">{{ $work->pivot->order }}</td>--}}

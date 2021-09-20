@@ -26,25 +26,32 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-//require __DIR__.'/auth.php';
-
-//Route::get('/laravel', function () {
-//    return view('laravel');
-//});
-
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//});
-//Route::get('/', function () {
-//   return ['duncan' => 'smith' ];
-//});
-
 /* guest home */
 Route::get('/home/{category:slug}', [CategoryController::class, 'home'])->name('works texts on page ');
+
+/* guest posts */
+Route::get('/posts', [PostController::class, 'index'])->name('list posts');
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('show post');
 
 /* guest categories */
 Route::get('/', [CategoryController::class, 'index'])->name('list categories');
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('show a category');
+
+/* guest works */
+Route::get('/works', [WorkController::class, 'index'])->name('list works');
+Route::get('/works/{work:slug}', [WorkController::class, 'show'])->name('show a work');
+
+/* guest texts */
+Route::get('/texts', [TextController::class, 'index'])->name('list texts');
+Route::get('/texts/{text:slug}', [TextController::class, 'show'])->name('show a text');
+
+/* auth posts */
+Route::post('/admin/post', [AdminPostController::class, 'store'])->name('save post')->middleware('admin');
+Route::get('/admin/post/create', [AdminPostController::class, 'create'])->name('create post')->middleware('admin');
+Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin posts index')->middleware('admin');
+Route::get('/admin/post/{post}/edit', [AdminPostController::class, 'edit'])->name('admin post edit')->middleware('admin');
+Route::patch('admin/post/{post}', [AdminPostController::class, 'update'])->name('admin post update')->middleware('admin');
+Route::delete('admin/post/{post}', [AdminPostController::class, 'destroy'])->name('admin post delete')->middleware('admin');
 
 /* auth categories */
 Route::post('/admin/category', [AdminCategoryController::class, 'store'])->name('save category');
@@ -54,10 +61,6 @@ Route::get('/admin/category/{category}/edit', [AdminCategoryController::class, '
 Route::patch('admin/category/{category}', [AdminCategoryController::class, 'update'])->middleware('admin');
 Route::delete('admin/category/{category}', [AdminCategoryController::class, 'destroy'])->middleware('admin');
 
-/* guest works */
-Route::get('/works', [WorkController::class, 'index'])->name('list works');
-Route::get('/works/{work:slug}', [WorkController::class, 'show'])->name('show a work');
-
 /* auth works */
 Route::post('/admin/work', [AdminWorkController::class, 'store'])->name('save work')->middleware('admin');
 Route::get('/admin/work/create', [AdminWorkController::class, 'create'])->name('create work')->middleware('admin');
@@ -65,6 +68,14 @@ Route::get('/admin/works', [AdminWorkController::class, 'index'])->name('admin w
 Route::get('/admin/work/{work}/edit', [AdminWorkController::class, 'edit'])->name('admin work edit')->middleware('admin');
 Route::patch('admin/work/{work}', [AdminWorkController::class, 'update'])->middleware('admin');
 Route::delete('admin/work/{work}', [AdminWorkController::class, 'destroy'])->middleware('admin');
+
+/* auth texts */
+Route::post('/admin/text', [AdminTextController::class, 'store'])->name('save text')->middleware('admin');
+Route::get('/admin/text/create', [AdminTextController::class, 'create'])->name('create text')->middleware('admin');
+Route::get('/admin/texts', [AdminTextController::class, 'index'])->name('admin texts index')->middleware('admin');
+Route::get('/admin/text/{text}/edit', [AdminTextController::class, 'edit'])->name('admin text edit')->middleware('admin');
+Route::patch('admin/text/{text}', [AdminTextController::class, 'update'])->name('admin text update')->middleware('admin')->middleware('admin');
+Route::delete('admin/text/{text}', [AdminTextController::class, 'destroy'])->name('admin text delete')->middleware('admin')->middleware('admin');
 
 // Assign works to Categories
 Route::get('/admin/category/assign_work/{work}', [AdminCategoryController::class, 'assign_work'])->name('assign work')->middleware('admin');
@@ -77,47 +88,10 @@ Route::post('/admin/category/save_assigned_text', [AdminCategoryController::clas
 # Ordering items (works/texts) in Categories
 Route::get('/admin/category/{category}/sort_page_works', [AdminCategoryController::class, 'sort_page_works'])->name('sort page works');
 Route::get('/admin/category/{category}/sort_page_texts', [AdminCategoryController::class, 'sort_page_texts'])->name('sort page texts');
-//Route::get('/admin/category/sort_page_texts/{id}', [] ['as' => 'sort_page_texts',  'uses' => 'GroupController@sort_page_texts']);
-
-# Ajax routes to save orderings
-Route::post('/admin/category/save_page_works_order', [AdminCategoryController::class, 'save_page_works_order'])->name('save page works order');
-Route::post('/admin/category/save_page_texts_order', [AdminCategoryController::class, 'save_page_texts_order'])->name('save page texts order');
-
-
-//Route::get('/admin/assign_text/{id}', [AdminCategoryController::class, 'assign_text'])->name('assign_text')->middleware('admin');
-//Route::post('/admin/save_assigned_text', [AdminCategoryController::class, 'save_assign_text'])->name('save_assigned_text')->middleware('admin');
-
-# Ordering items in Groups
-//Route::get('/sort_page_works/{id}', [])->name()->middleware('admin'); //['as' => 'sort_page_works',  'uses' => 'GroupController@sort_page_works']);
-//Route::get('/sort_page_texts/{id}', [])->name()->middleware('admin'); //['as' => 'sort_page_texts',  'uses' => 'GroupController@sort_page_texts']);
 
 # Ajax routes to save orders
-//Route::post('/save_page_works_order', [])->name()->middleware('admin'); //['as' => 'save_page_works_order',  'uses' => 'GroupController@save_page_works_order']);
-//Route::post('/save_page_texts_order', [])->name()->middleware('admin'); //['as' => 'save_page_texts_order',  'uses' => 'GroupController@save_page_texts_order']);
-
-/* guest texts */
-Route::get('/texts', [TextController::class, 'index'])->name('list texts');
-Route::get('/texts/{text:slug}', [TextController::class, 'show'])->name('show a text');
-
-/* auth texts */
-Route::post('/admin/text', [AdminTextController::class, 'store'])->name('save text')->middleware('admin');
-Route::get('/admin/text/create', [AdminTextController::class, 'create'])->name('create text')->middleware('admin');
-Route::get('/admin/texts', [AdminTextController::class, 'index'])->name('admin texts index')->middleware('admin');
-Route::get('/admin/text/{text}/edit', [AdminTextController::class, 'edit'])->name('admin text edit')->middleware('admin');
-Route::patch('admin/text/{text}', [AdminTextController::class, 'update'])->name('admin text update')->middleware('admin')->middleware('admin');
-Route::delete('admin/text/{text}', [AdminTextController::class, 'destroy'])->name('admin text delete')->middleware('admin')->middleware('admin');
-
-/* guest posts */
-Route::get('/posts', [PostController::class, 'index'])->name('list posts');
-Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('show post');
-
-/* auth posts */
-Route::post('/admin/post', [AdminPostController::class, 'store'])->name('save post')->middleware('admin');
-Route::get('/admin/post/create', [AdminPostController::class, 'create'])->name('create post')->middleware('admin');
-Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin posts index')->middleware('admin');
-Route::get('/admin/post/{post}/edit', [AdminPostController::class, 'edit'])->name('admin post edit')->middleware('admin');
-Route::patch('admin/post/{post}', [AdminPostController::class, 'update'])->name('admin post update')->middleware('admin');
-Route::delete('admin/post/{post}', [AdminPostController::class, 'destroy'])->name('admin post delete')->middleware('admin');
+Route::post('/admin/category/save_page_works_order', [AdminCategoryController::class, 'save_page_works_order'])->name('save page works order');
+Route::post('/admin/category/save_page_texts_order', [AdminCategoryController::class, 'save_page_texts_order'])->name('save page texts order');
 
 /* guest register */
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
@@ -130,45 +104,21 @@ Route::post('/login', [SessionsController::class, 'store'])->middleware('guest')
 /* auth logout */
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
-//Route::middleware('can:admin')->group(function () {
-//    Route::resource('admin/posts', AdminPostController::class)->except('show');
-//});
-
 Route::get('/service-container-route', function (SessionsController $service) {
     die(get_class($service));
 });
 
-//    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {
-//    $post = cache()->remember("posts.slug", 30, function() use ($post->slug) {
-//        return Post::where('slug', $post->slug)->with('author')->firstOrFail();
-//    });
-
-//    return view('post', [
-//        'post' => $post,
-//    ]);
-//})->where('slug', '[A-z_\-]+');
-
 Route::get('/authors/{author:username}', function (User $author) {
 
-    return view('posts', [
-        'posts' => $author->posts->load(['author']),
-        'title' => 'Posts by author',
+    return view('author_posts', [
+        'posts' => $author->posts->load(['author'])->load('category'),
+        'title' => 'Posts by '.$author->name,
     ]);
 });
 
 /*
-Route::get('/works', function () {
-
-    return view('works', [
-        'works' => Work::all(),
-        'title' => 'Works',
-        'images' => self::IMAGES,
-    ]);
-});
-
 Route::get('/works/{work}', function ($slug) {
 //    $yamlFrontMatter = YamlFrontMatter::parse(file_get_contents(resource_path().'/views/post1.html'));
-
     $work = cache()->remember("works.{$slug}", 30, function() use ($slug) {
         return Work::where('slug', $slug)->firstOrFail();
     });
@@ -176,14 +126,9 @@ Route::get('/works/{work}', function ($slug) {
     return view('work', [
         'work' => $work,
         'title' => 'A work',
-        'images' => self::IMAGES[$work->id],
 //        'title' => $yamlFrontMatter->matter('title'),
 //        'author' => $yamlFrontMatter->matter('author'),
 //        'content' => $yamlFrontMatter->body(),
-
-//        'basePath' => $basePath,
-//        'appPath' => $appPath,
-//        'resourcePath' => $resourcePath,
 //        'publicPath' => $publicPath,
     ]);
 })->where('slug', '[A-z_\-]+');
@@ -211,13 +156,6 @@ Route::get('/texts/{text}', function ($slug) {
 })->where('slug', '[A-z_\-]+');
 */
 
-//Route::get('/categories', function () {
-//    return view('categories', [
-//        'categories' => Category::all(),
-//        'title' => 'Categories',
-//    ]);
-//});
-
 //Route::get('categories/{category:slug}', function (Category $category) {
 //    return view('posts', [
 //        'posts' => $category->posts,
@@ -225,7 +163,6 @@ Route::get('/texts/{text}', function ($slug) {
 //        'categories' => Category::all()
 //    ]);
 //})->name('category');
-
 
 //Route::get('/categories/{category}', function ($slug) {
 //    $category = cache()->remember("categories.{$slug}", 30, function() use ($slug) {
@@ -238,3 +175,4 @@ Route::get('/texts/{text}', function ($slug) {
 //        'title' => 'A category',
 //    ]);
 //})->where('slug', '[A-z_\-]+');
+
