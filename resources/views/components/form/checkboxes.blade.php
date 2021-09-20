@@ -4,7 +4,7 @@
     <x-form.label name="{{ $name }}"/>
 
     <input class="border border-gray-200 p-2 w-sm rounded"
-           name="{{ $name }}"
+           name="categories_selected[{{ $id }}]"
            type="checkbox"
            {!! $checked ? 'checked' : '' !!}
            id="{{ $name }}"

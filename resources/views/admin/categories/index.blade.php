@@ -23,7 +23,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm text-gray-600">
-                                                <a href="/categories/{{ $category->slug }}">
+                                                <a href="/admin/categories/{{ $category->slug }}">
                                                     {{ $category->name }}
                                                 </a>
                                             </div>

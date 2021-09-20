@@ -54,6 +54,7 @@ Route::patch('admin/post/{post}', [AdminPostController::class, 'update'])->name(
 Route::delete('admin/post/{post}', [AdminPostController::class, 'destroy'])->name('admin post delete')->middleware('admin');
 
 /* auth categories */
+Route::get('/admin/categories/{category:slug}', [AdminCategoryController::class, 'show'])->name('show category');
 Route::post('/admin/category', [AdminCategoryController::class, 'store'])->name('save category');
 Route::get('/admin/category/create', [AdminCategoryController::class, 'create'])->name('create category');
 Route::get('/admin/categories', [AdminCategoryController::class, 'index'])->name('admin categories index')->middleware('admin');

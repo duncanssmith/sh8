@@ -24,15 +24,15 @@ class CategoryController extends Controller
             'works'  => $category->works,
             'texts'  => $category->texts,
             'currentCategory' => $category,
-            'categories' => Category::all(),
+            'categories' => Category::where('display', '=', '1')->get(),
         ]);
     }
 
-
     public function index()
     {
+
         return view('categories.index', [
-            'categories' => Category::all(),
+            'categories' => Category::where('display', '=', '1')->get(),
             'title' => 'Categories',
         ]);
     }
@@ -44,12 +44,16 @@ class CategoryController extends Controller
             return Category::where('slug', $slug)->firstOrFail();
         });
 
+        $works = $category->works->sortBy('pivot.order', SORT_DESC);
+        $texts = $category->texts->sortBy('pivot.order', SORT_DESC);
+
         return view('categories.show', [
             'category' => $category,
-            'works' => $category->works,
-            'texts' => $category->texts,
+            'works' => $works,
+            'texts' => $texts,
             'currentCategory' => $category,
-            'categories' => Category::all(),
+            'categories' => Category::where('display', '=', '1')->get(),
+            // 'categories' => Category::all(),
         ]);
     }
 }

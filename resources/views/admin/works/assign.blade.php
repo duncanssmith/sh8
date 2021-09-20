@@ -6,7 +6,7 @@
     <form method="POST" action="/admin/category/save_assigned_work" enctype="multipart/form-data">
         @csrf
         @foreach ($categories as $category)
-            <x-form.checkbox name="{{ $category->name }}" id="{{ $category->id }}" checked="{{ isset($checked[$category->id]) ? true:false}}" />
+            <x-form.checkboxes name="{{ $category->name }}" id="{{ $category->id }}" checked="{{ isset($checked[$category->id]) ? true:false}}" />
         @endforeach
         <input name="work_id" type="hidden" value="{{$work->id}}"/>
         <x-form.submit>Assign</x-form.submit>

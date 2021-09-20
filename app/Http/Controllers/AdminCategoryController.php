@@ -41,7 +41,7 @@ class AdminCategoryController extends Controller
             return Category::where('slug', $slug)->firstOrFail();
         });
 
-        return view('categories.show', [
+        return view('admin.categories.show', [
             'category' => $category,
             'title' => 'A category',
         ]);
@@ -64,6 +64,8 @@ class AdminCategoryController extends Controller
             'name' => 'required',
             'slug' => ['required', Rule::unique('categories', 'slug')],
         ]);
+
+        $attributes['display'] = (null === request()->get('display')) ? 0 : 1;
 
         Category::create($attributes);
 
@@ -89,6 +91,8 @@ class AdminCategoryController extends Controller
             'name' => 'required',
             'slug' => ['required', Rule::unique('categories', 'slug')->ignore($category->id)],
         ]);
+
+        $attributes['display'] = (null === request()->get('display')) ? 0 : 1;
 
         $category->update($attributes);
 
