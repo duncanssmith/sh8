@@ -30,11 +30,23 @@ class CategoryController extends Controller
 
     public function index()
     {
+        $category = Category::where('display', 1)->first();
 
-        return view('categories.index', [
+        $works = $category->works->sortBy('pivot.order', SORT_DESC);
+        $texts = $category->texts->sortBy('pivot.order', SORT_DESC);
+
+        return view('categories.show', [
+            'category' => $category,
+            'works' => $works,
+            'texts' => $texts,
+            'currentCategory' => $category,
             'categories' => Category::where('display', '=', '1')->get(),
-            'title' => 'Categories',
         ]);
+
+        // return view('categories.index', [
+        // 'categories' => Category::where('display', '=', '1')->get(),
+        // 'title' => 'Categories',
+        // ]);
     }
 
     public function show(Category $category)
@@ -53,7 +65,6 @@ class CategoryController extends Controller
             'texts' => $texts,
             'currentCategory' => $category,
             'categories' => Category::where('display', '=', '1')->get(),
-            // 'categories' => Category::all(),
         ]);
     }
 }

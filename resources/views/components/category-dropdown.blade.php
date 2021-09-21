@@ -1,19 +1,20 @@
 <x-dropdown>
     <x-slot name="trigger">
-        <button class="py-2 pl-3 pr-9 text-sm font-semibold w-full lg:w-32 text-left flex lg:inline-flex">
-            {{  isset($currentCategory) ? ucwords($currentCategory->name) : 'Categories' }}
+        <button class="
+        text-gray-400 bg-transparent border-solid border-t border-b border-r border-gray-400 hover:bg-gray-400 hover:text-white
+        active:bg-gray-600 font-bold uppercase text-xs px-4 py-2 rounded-r outline-none
+        focus:outline-none mb-1 ease-linear transition-all duration-150 px-12
+        ">
+            {{ isset($currentCategory) ? ucwords($currentCategory->name) : ' PAGES ' }}
 
 {{--            <x-icon name="down-arrow" class="absolute pointer-events-none" style=""/>--}}
         </button>
     </x-slot>
 
-    <x-dropdown-item href="/" :active="request()->routeIs('home')">All</x-dropdown-item>
-
     @foreach ($categories as $category)
-
         <x-dropdown-item
-            href="/?category={{ $category->slug }}"
-           :active='request()->is("categories/.{$category->slug}")'
+            href="/category/{{ $category->slug }}"
+           :active='request()->is("category/.{$category->slug}")'
         >{{ ucwords($category->name) }}
         </x-dropdown-item>
     @endforeach

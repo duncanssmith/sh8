@@ -35,7 +35,7 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('show po
 
 /* guest categories */
 Route::get('/', [CategoryController::class, 'index'])->name('list categories');
-Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('show a category');
+Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('show a category');
 
 /* guest works */
 Route::get('/works', [WorkController::class, 'index'])->name('list works');
