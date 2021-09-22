@@ -7,7 +7,7 @@
                 {{ $category->name }}
             </h1>
 
-            <div class="px-0 py-12">
+            <div class="px-0 py-2">
 
                 @if ($works->count())
                     <h3 class="font-bold text-lg">Works <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> {{count($works)}} </span> </h3>

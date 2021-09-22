@@ -1,6 +1,5 @@
 @props(['categories'])
 
-{{--<div class="xl:grid xl:grid-cols-6 lg:grid lg:grid-cols-6 md:grid md:grid-cols-4 sm:grid sm:grid-cols-2">--}}
 <div class="
 sm:grid sm:grid-cols-2
 md:grid md:grid-cols-4
