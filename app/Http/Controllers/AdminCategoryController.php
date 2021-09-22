@@ -65,6 +65,7 @@ class AdminCategoryController extends Controller
             'slug' => ['required', Rule::unique('categories', 'slug')],
         ]);
 
+        $attributes['nav_menu_item'] = (null === request()->get('nav_menu_item')) ? 0 : 1;
         $attributes['display'] = (null === request()->get('display')) ? 0 : 1;
 
         Category::create($attributes);
@@ -92,6 +93,7 @@ class AdminCategoryController extends Controller
             'slug' => ['required', Rule::unique('categories', 'slug')->ignore($category->id)],
         ]);
 
+        $attributes['nav_menu_item'] = (null === request()->get('nav_menu_item')) ? 0 : 1;
         $attributes['display'] = (null === request()->get('display')) ? 0 : 1;
 
         $category->update($attributes);

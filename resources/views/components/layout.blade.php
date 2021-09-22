@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <head>
-    <title>Your Work My Work</title>
+    <title>Works</title>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     {{--    Run npm run build to compile ~/css/app.css --}}
-{{--        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
+    {{--    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     {{--    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">--}}
     <link rel="stylesheet" href="/css/app.css">
@@ -29,12 +29,12 @@
 <body>
 
 {{--    Gives padding to whole section--}}
-    <div class="px-6 py-0 bg-gray-200 text-gray-700">
+    <div class="px-6 py-0 bg-transparent text-gray-500 text-base">
 
-        <nav class="md:flex md:justify-between md:items-center">
+        <nav class="md:flex md:justify-between md:items-center border-b border-solid border-gray-100 border-b">
             <div>
                 <a href="/">
-                    <h1 class="font-bold text-gray-700 text-2xl ">Your Work My Work</h1>
+                    <h1 class="font-semibold text-gray-400 text-4xg ">works</h1>
                 </a>
             </div>
 
@@ -50,13 +50,14 @@
                         <x-slot name="trigger">
                             <button class="text-sm py-0 mt-2 mb-0 font-bold text-gray-400 ">
                                 <i class="far fa-user"></i>&nbsp;
-                                {{ auth()->user()->username }}
+                                {{ auth()->user()->name }}<br/>
+                                <span class="text-xs">{{ auth()->user()->email }}</span>
                             </button>
                         </x-slot>
 
                         <x-dropdown-item href="/admin/posts/" :active="request()->is('admin/posts')" class="text-sm font-bold text-gray-400">List posts</x-dropdown-item>
                         <x-dropdown-item href="/admin/post/create" :active="request()->is('admin/post/create')" class="text-sm font-bold text-gray-400">Add post</x-dropdown-item>
-                        <x-dropdown-item href="#" class="text-sm font-bold text-gray-400">
+                        <x-dropdown-item href="#" class="text-base font-bold text-gray-400">
                             <form method="post" action="/logout">
                                 @csrf
                                 <x-form.button-logout-link>Log out</x-form.button-logout-link>
@@ -65,10 +66,10 @@
                     </x-dropdown>
 
                 @else
-                    <div class="mt-8 mb-8 md:mt-2 py-2">
-                        <a href="/login" class="text-xs font-bold uppercase text-gray-400">Login</a>
-                        <span class="text-xs font-bold text-gray-400">|</span>
-                        <a href="/register" class="text-xs font-bold uppercase text-gray-400">Register</a>
+                    <div class="mt-8 mb-8 md:mt-2 py-2 text-gray-400">
+                        <a href="/login" class="text-xs font-bold uppercase">Login</a>
+                        <span class="text-xs font-bold">|</span>
+                        <a href="/register" class="text-xs font-bold uppercase">Register</a>
                     </div>
                 @endauth
 
@@ -76,7 +77,7 @@
         </nav>
     </div>
 
-    <div class="bg-gray-100">
+    <div class="white">
         <main class="max-w-6xl mx-auto mt-0 lg:mt-0 space-y-6">
 
             {{ $slot }}
