@@ -22,7 +22,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             @if ($work->thumbnail)
                                                 <a href="/works/{{ $work->slug }}">
-                                                    <img src="{{ asset($work->thumbnail) }}" width="10%"/>&nbsp;
+                                                    <img src="{{ asset($work->thumbnail) }}" />
                                                 </a>
                                             @endif
                                         </td>
@@ -45,12 +45,35 @@
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <form method="POST" action="/admin/work/{{ $work->id }}">
-                                                @csrf
-                                                @method('DELETE')
 
-                                                <button class="text-xs text-gray-400">Delete</button>
-                                            </form>
+                                            <!-- Are you sure you want to delete this? modal /////////////////////////////////// -->
+                                            <div id="item-delete-{{$work->id}}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            <h4 class="modal-title">Delete</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you want to delete '{{$work->title}}'?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Close</button>
+                                                            <!-- delete the group (uses the destroy method DESTROY /groups/{id} -->
+                                                            <!-- we will add this later since its a little more complicated than the other two buttons -->
+                                                                <form method="POST" action="/admin/work/{{ $work->id }}">
+                                                                    @csrf
+                                                                    @method('DELETE')
+
+                                                                    <button class="text-xs text-gray-400">Delete</button>
+                                                                </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div
+
                                         </td>
                                     </tr>
                                 @endforeach

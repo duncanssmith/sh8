@@ -31,6 +31,7 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::where('display', 1)->first();
+        // $category = $category->filter(request()->only('search'))->paginate(3);
 
         $works = $category->works->sortBy('pivot.order', SORT_DESC);
         $texts = $category->texts->sortBy('pivot.order', SORT_DESC);
@@ -51,6 +52,7 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
+
         $slug = $category->slug;
         $category = cache()->remember("category.{$slug}", 30, function() use ($slug) {
             return Category::where('slug', $slug)->firstOrFail();
@@ -65,6 +67,7 @@ class CategoryController extends Controller
             'texts' => $texts,
             'currentCategory' => $category,
             'categories' => Category::where('display', '=', '1')->get(),
+            'searchbox' => 1,
         ]);
     }
 }

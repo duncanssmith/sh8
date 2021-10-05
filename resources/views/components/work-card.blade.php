@@ -5,10 +5,10 @@
 
     <a href="/works/{{ $work->slug }}">
 
-        <div class="py-6 px-5">
+        <div class="py-4 px-2">
             <div>
                 @if ($work->thumbnail)
-                <img src="{{ asset($work->thumbnail) }}" alt="Work image" class="rounded-sm" width="20%">
+                <img src="{{ asset($work->thumbnail) }}" alt="{{ $work->title }} " class="w-1/2"/>
                 @else
                     <h3>No image</h3>
                 @endif
@@ -35,16 +35,16 @@
                     <!-- @endauth -->
 
                     <div class="mt-4">
-                        <h1 class="text-3xl">
+                        <h1 class="text-base">
                             {{ $work->title }}
                         </h1>
-                        <p class="text-3sm">
+                        <p class="text-base">
                             {{ $work->media }}
                         </p>
-                        <p class="text-3sm">
+                        <p class="text-base">
                             {{ $work->dimensions }}
                         </p>
-                        <p class="text-3md">
+                        <p class="text-base">
                             {{ $work->work_date }}
                         </p>
 
