@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
 //
         User::factory(1)->create([
             'name' => 'Duncan Smith',
-            'username' => 'duncanssmith',
-            'email' => 'duncanssmith@gmail.com',
+            'username' => 'duncan.smith',
+            'email' => 'duncan.smith@gmail.com',
         ]);
 
         User::factory(3)->create();
