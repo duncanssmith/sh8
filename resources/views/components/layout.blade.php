@@ -76,7 +76,7 @@
         <nav class="md:flex md:justify-between md:items-center border-b border-solid border-gray-100 border-b">
             <div>
                 <a href="/">
-                    <h1 class="font-semibold text-gray-400 text-4xg ">works</h1>
+                    <h1 class="font-semibold text-gray-400 text-4xg ">sh8</h1>
                 </a>
             </div>
 
